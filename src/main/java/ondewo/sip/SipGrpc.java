@@ -219,6 +219,7 @@ public final class SipGrpc {
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, ondewo.sip.SipOuterClass.SipStatus>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SipGetSipStatus"))
+              .setSafe(true)
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
@@ -250,6 +251,7 @@ public final class SipGrpc {
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, ondewo.sip.SipOuterClass.SipStatusHistoryResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SipGetSipStatusHistory"))
+              .setSafe(true)
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
@@ -354,6 +356,99 @@ public final class SipGrpc {
       }
     }
     return getSipUnMuteMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest,
+      ondewo.sip.SipOuterClass.SipStatus> getSipReportAnsweringMachineDetectedMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SipReportAnsweringMachineDetected",
+      requestType = ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.class,
+      responseType = ondewo.sip.SipOuterClass.SipStatus.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest,
+      ondewo.sip.SipOuterClass.SipStatus> getSipReportAnsweringMachineDetectedMethod() {
+    io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest, ondewo.sip.SipOuterClass.SipStatus> getSipReportAnsweringMachineDetectedMethod;
+    if ((getSipReportAnsweringMachineDetectedMethod = SipGrpc.getSipReportAnsweringMachineDetectedMethod) == null) {
+      synchronized (SipGrpc.class) {
+        if ((getSipReportAnsweringMachineDetectedMethod = SipGrpc.getSipReportAnsweringMachineDetectedMethod) == null) {
+          SipGrpc.getSipReportAnsweringMachineDetectedMethod = getSipReportAnsweringMachineDetectedMethod =
+              io.grpc.MethodDescriptor.<ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest, ondewo.sip.SipOuterClass.SipStatus>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SipReportAnsweringMachineDetected"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipStatus.getDefaultInstance()))
+              .setSchemaDescriptor(new SipMethodDescriptorSupplier("SipReportAnsweringMachineDetected"))
+              .build();
+        }
+      }
+    }
+    return getSipReportAnsweringMachineDetectedMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest,
+      ondewo.sip.SipOuterClass.SipStatus> getSipSetCallMediaControlMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SipSetCallMediaControl",
+      requestType = ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.class,
+      responseType = ondewo.sip.SipOuterClass.SipStatus.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest,
+      ondewo.sip.SipOuterClass.SipStatus> getSipSetCallMediaControlMethod() {
+    io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest, ondewo.sip.SipOuterClass.SipStatus> getSipSetCallMediaControlMethod;
+    if ((getSipSetCallMediaControlMethod = SipGrpc.getSipSetCallMediaControlMethod) == null) {
+      synchronized (SipGrpc.class) {
+        if ((getSipSetCallMediaControlMethod = SipGrpc.getSipSetCallMediaControlMethod) == null) {
+          SipGrpc.getSipSetCallMediaControlMethod = getSipSetCallMediaControlMethod =
+              io.grpc.MethodDescriptor.<ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest, ondewo.sip.SipOuterClass.SipStatus>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SipSetCallMediaControl"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipStatus.getDefaultInstance()))
+              .setSchemaDescriptor(new SipMethodDescriptorSupplier("SipSetCallMediaControl"))
+              .build();
+        }
+      }
+    }
+    return getSipSetCallMediaControlMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipCallAudioRequest,
+      ondewo.sip.SipOuterClass.SipCallAudioResponse> getSipStreamCallAudioMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SipStreamCallAudio",
+      requestType = ondewo.sip.SipOuterClass.SipCallAudioRequest.class,
+      responseType = ondewo.sip.SipOuterClass.SipCallAudioResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipCallAudioRequest,
+      ondewo.sip.SipOuterClass.SipCallAudioResponse> getSipStreamCallAudioMethod() {
+    io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipCallAudioRequest, ondewo.sip.SipOuterClass.SipCallAudioResponse> getSipStreamCallAudioMethod;
+    if ((getSipStreamCallAudioMethod = SipGrpc.getSipStreamCallAudioMethod) == null) {
+      synchronized (SipGrpc.class) {
+        if ((getSipStreamCallAudioMethod = SipGrpc.getSipStreamCallAudioMethod) == null) {
+          SipGrpc.getSipStreamCallAudioMethod = getSipStreamCallAudioMethod =
+              io.grpc.MethodDescriptor.<ondewo.sip.SipOuterClass.SipCallAudioRequest, ondewo.sip.SipOuterClass.SipCallAudioResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SipStreamCallAudio"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipCallAudioRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipCallAudioResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new SipMethodDescriptorSupplier("SipStreamCallAudio"))
+              .build();
+        }
+      }
+    }
+    return getSipStreamCallAudioMethod;
   }
 
   /**
@@ -465,6 +560,17 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Transfers a call in an active SIP session for an account registered at a SIP server to another SIP account or phone number specified by &lt;code&gt;transfer_id&lt;/code&gt;&lt;/p&gt;
+     * &lt;p&gt;Call scoping: when the gRPC metadatum &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; is present it must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call, otherwise the request is refused with
+     * &lt;code&gt;exception_name=CallScopeMismatch&lt;/code&gt; and nothing is assigned to the status. When it is absent the request is
+     * accepted for backward compatibility (unless the server requires call scoping).&lt;/p&gt;
+     * &lt;p&gt;With &lt;code&gt;outcome_timeout_ms = 0&lt;/code&gt; the call is transferred as before (REFER, then an immediate hangup).
+     * With &lt;code&gt;outcome_timeout_ms &amp;gt; 0&lt;/code&gt; see &lt;code&gt;SipTransferCallRequest.outcome_timeout_ms&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;Refused while invited participants are present (see
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;): a REFER into a conference bridge transfers every
+     * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
+     * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
+     * is sent and the call is kept.&lt;/p&gt;
      * </pre>
      */
     default void sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request,
@@ -505,6 +611,8 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Plays wav files during an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;: a present &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum must
+     * match &lt;code&gt;SipStatus.call_id&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     default void sipPlayWavFiles(ondewo.sip.SipOuterClass.SipPlayWavFilesRequest request,
@@ -515,6 +623,9 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;. Sent by the in-container speech-to-speech pipeline it mutes only
+     * the bot's own mixer slot; sent by a remote client it sets the operator mute of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;, which the pipeline cannot undo.&lt;/p&gt;
      * </pre>
      */
     default void sipMute(com.google.protobuf.Empty request,
@@ -525,11 +636,66 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Un-mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping and the split between the pipeline's own mute and the operator mute as for &lt;code&gt;SipMute&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     default void sipUnMute(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSipUnMuteMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Reports that answering machine detection reached a verdict on the ongoing outgoing call. Sets the status
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt;; the call stays up.&lt;/p&gt;
+     * &lt;p&gt;Called by the speech-to-speech pipeline (ONDEWO-CSI) inside the same container, i.e. over loopback only.
+     * Refused, and the current status left untouched, when no outgoing call is connected: the returned
+     * &lt;code&gt;SipStatus&lt;/code&gt; then carries the refusal in &lt;code&gt;exception_name&lt;/code&gt; and &lt;code&gt;description&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     */
+    default void sipReportAnsweringMachineDetected(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest request,
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSipReportAnsweringMachineDetectedMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Call-scoped operator media control of the ongoing call: mute the bot and/or pause its listening.&lt;/p&gt;
+     * &lt;p&gt;Metadata REQUIRED: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; (must equal &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing
+     * call) and &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; (the per-container call-control token).&lt;/p&gt;
+     * &lt;p&gt;Every request sets a desired level per owner and never toggles; a repeat leaves the level unchanged. The bot is
+     * muted while ANY owner holds a mute, and its listening is paused while ANY owner holds a pause.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status with &lt;code&gt;call_id&lt;/code&gt;, &lt;code&gt;bot_muted&lt;/code&gt;, &lt;code&gt;listening_paused&lt;/code&gt; and
+     * &lt;code&gt;call_audio_streams&lt;/code&gt; filled. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; /
+     * &lt;code&gt;description&lt;/code&gt; (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;,
+     * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
+     * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
+     * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * </pre>
+     */
+    default void sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request,
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSipSetCallMediaControlMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Bidirectional live audio of the ongoing call.&lt;/p&gt;
+     * &lt;p&gt;The first request MUST be &lt;code&gt;config&lt;/code&gt; and must arrive within 2 seconds. Metadata as for
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;LISTEN receives the caller (plus any conference participants) mixed with the bot. TALK sends the agent's audio to
+     * the caller; it REQUIRES &lt;code&gt;take_over&lt;/code&gt;, i.e. the bot is muted and does not listen while the stream is
+     * connected, and in TALK the agent hears the caller only. Audio is LINEAR16 little-endian mono in 20 ms frames.&lt;/p&gt;
+     * &lt;p&gt;gRPC status codes: &lt;code&gt;UNAUTHENTICATED&lt;/code&gt; (token), &lt;code&gt;FAILED_PRECONDITION&lt;/code&gt; (call id mismatch, no
+     * connected call, answering machine detection in progress, bot still speaking at TALK start),
+     * &lt;code&gt;INVALID_ARGUMENT&lt;/code&gt; (missing or invalid &lt;code&gt;config&lt;/code&gt;, wrong frame size),
+     * &lt;code&gt;RESOURCE_EXHAUSTED&lt;/code&gt; (stream cap reached, a second TALK). A normal end sends one &lt;code&gt;ended&lt;/code&gt;
+     * message and then OK.&lt;/p&gt;
+     * </pre>
+     */
+    default io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioRequest> sipStreamCallAudio(
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioResponse> responseObserver) {
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getSipStreamCallAudioMethod(), responseObserver);
     }
   }
 
@@ -613,6 +779,17 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Transfers a call in an active SIP session for an account registered at a SIP server to another SIP account or phone number specified by &lt;code&gt;transfer_id&lt;/code&gt;&lt;/p&gt;
+     * &lt;p&gt;Call scoping: when the gRPC metadatum &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; is present it must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call, otherwise the request is refused with
+     * &lt;code&gt;exception_name=CallScopeMismatch&lt;/code&gt; and nothing is assigned to the status. When it is absent the request is
+     * accepted for backward compatibility (unless the server requires call scoping).&lt;/p&gt;
+     * &lt;p&gt;With &lt;code&gt;outcome_timeout_ms = 0&lt;/code&gt; the call is transferred as before (REFER, then an immediate hangup).
+     * With &lt;code&gt;outcome_timeout_ms &amp;gt; 0&lt;/code&gt; see &lt;code&gt;SipTransferCallRequest.outcome_timeout_ms&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;Refused while invited participants are present (see
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;): a REFER into a conference bridge transfers every
+     * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
+     * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
+     * is sent and the call is kept.&lt;/p&gt;
      * </pre>
      */
     public void sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request,
@@ -657,6 +834,8 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Plays wav files during an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;: a present &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum must
+     * match &lt;code&gt;SipStatus.call_id&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public void sipPlayWavFiles(ondewo.sip.SipOuterClass.SipPlayWavFilesRequest request,
@@ -668,6 +847,9 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;. Sent by the in-container speech-to-speech pipeline it mutes only
+     * the bot's own mixer slot; sent by a remote client it sets the operator mute of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;, which the pipeline cannot undo.&lt;/p&gt;
      * </pre>
      */
     public void sipMute(com.google.protobuf.Empty request,
@@ -679,12 +861,70 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Un-mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping and the split between the pipeline's own mute and the operator mute as for &lt;code&gt;SipMute&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public void sipUnMute(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSipUnMuteMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Reports that answering machine detection reached a verdict on the ongoing outgoing call. Sets the status
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt;; the call stays up.&lt;/p&gt;
+     * &lt;p&gt;Called by the speech-to-speech pipeline (ONDEWO-CSI) inside the same container, i.e. over loopback only.
+     * Refused, and the current status left untouched, when no outgoing call is connected: the returned
+     * &lt;code&gt;SipStatus&lt;/code&gt; then carries the refusal in &lt;code&gt;exception_name&lt;/code&gt; and &lt;code&gt;description&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     */
+    public void sipReportAnsweringMachineDetected(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest request,
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSipReportAnsweringMachineDetectedMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Call-scoped operator media control of the ongoing call: mute the bot and/or pause its listening.&lt;/p&gt;
+     * &lt;p&gt;Metadata REQUIRED: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; (must equal &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing
+     * call) and &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; (the per-container call-control token).&lt;/p&gt;
+     * &lt;p&gt;Every request sets a desired level per owner and never toggles; a repeat leaves the level unchanged. The bot is
+     * muted while ANY owner holds a mute, and its listening is paused while ANY owner holds a pause.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status with &lt;code&gt;call_id&lt;/code&gt;, &lt;code&gt;bot_muted&lt;/code&gt;, &lt;code&gt;listening_paused&lt;/code&gt; and
+     * &lt;code&gt;call_audio_streams&lt;/code&gt; filled. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; /
+     * &lt;code&gt;description&lt;/code&gt; (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;,
+     * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
+     * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
+     * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * </pre>
+     */
+    public void sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request,
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSipSetCallMediaControlMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Bidirectional live audio of the ongoing call.&lt;/p&gt;
+     * &lt;p&gt;The first request MUST be &lt;code&gt;config&lt;/code&gt; and must arrive within 2 seconds. Metadata as for
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;LISTEN receives the caller (plus any conference participants) mixed with the bot. TALK sends the agent's audio to
+     * the caller; it REQUIRES &lt;code&gt;take_over&lt;/code&gt;, i.e. the bot is muted and does not listen while the stream is
+     * connected, and in TALK the agent hears the caller only. Audio is LINEAR16 little-endian mono in 20 ms frames.&lt;/p&gt;
+     * &lt;p&gt;gRPC status codes: &lt;code&gt;UNAUTHENTICATED&lt;/code&gt; (token), &lt;code&gt;FAILED_PRECONDITION&lt;/code&gt; (call id mismatch, no
+     * connected call, answering machine detection in progress, bot still speaking at TALK start),
+     * &lt;code&gt;INVALID_ARGUMENT&lt;/code&gt; (missing or invalid &lt;code&gt;config&lt;/code&gt;, wrong frame size),
+     * &lt;code&gt;RESOURCE_EXHAUSTED&lt;/code&gt; (stream cap reached, a second TALK). A normal end sends one &lt;code&gt;ended&lt;/code&gt;
+     * message and then OK.&lt;/p&gt;
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioRequest> sipStreamCallAudio(
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioResponse> responseObserver) {
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
+          getChannel().newCall(getSipStreamCallAudioMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -750,6 +990,17 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Transfers a call in an active SIP session for an account registered at a SIP server to another SIP account or phone number specified by &lt;code&gt;transfer_id&lt;/code&gt;&lt;/p&gt;
+     * &lt;p&gt;Call scoping: when the gRPC metadatum &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; is present it must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call, otherwise the request is refused with
+     * &lt;code&gt;exception_name=CallScopeMismatch&lt;/code&gt; and nothing is assigned to the status. When it is absent the request is
+     * accepted for backward compatibility (unless the server requires call scoping).&lt;/p&gt;
+     * &lt;p&gt;With &lt;code&gt;outcome_timeout_ms = 0&lt;/code&gt; the call is transferred as before (REFER, then an immediate hangup).
+     * With &lt;code&gt;outcome_timeout_ms &amp;gt; 0&lt;/code&gt; see &lt;code&gt;SipTransferCallRequest.outcome_timeout_ms&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;Refused while invited participants are present (see
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;): a REFER into a conference bridge transfers every
+     * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
+     * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
+     * is sent and the call is kept.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request) throws io.grpc.StatusException {
@@ -790,6 +1041,8 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Plays wav files during an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;: a present &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum must
+     * match &lt;code&gt;SipStatus.call_id&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipPlayWavFiles(ondewo.sip.SipOuterClass.SipPlayWavFilesRequest request) throws io.grpc.StatusException {
@@ -800,6 +1053,9 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;. Sent by the in-container speech-to-speech pipeline it mutes only
+     * the bot's own mixer slot; sent by a remote client it sets the operator mute of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;, which the pipeline cannot undo.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipMute(com.google.protobuf.Empty request) throws io.grpc.StatusException {
@@ -810,11 +1066,68 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Un-mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping and the split between the pipeline's own mute and the operator mute as for &lt;code&gt;SipMute&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipUnMute(com.google.protobuf.Empty request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getSipUnMuteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Reports that answering machine detection reached a verdict on the ongoing outgoing call. Sets the status
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt;; the call stays up.&lt;/p&gt;
+     * &lt;p&gt;Called by the speech-to-speech pipeline (ONDEWO-CSI) inside the same container, i.e. over loopback only.
+     * Refused, and the current status left untouched, when no outgoing call is connected: the returned
+     * &lt;code&gt;SipStatus&lt;/code&gt; then carries the refusal in &lt;code&gt;exception_name&lt;/code&gt; and &lt;code&gt;description&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     */
+    public ondewo.sip.SipOuterClass.SipStatus sipReportAnsweringMachineDetected(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getSipReportAnsweringMachineDetectedMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Call-scoped operator media control of the ongoing call: mute the bot and/or pause its listening.&lt;/p&gt;
+     * &lt;p&gt;Metadata REQUIRED: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; (must equal &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing
+     * call) and &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; (the per-container call-control token).&lt;/p&gt;
+     * &lt;p&gt;Every request sets a desired level per owner and never toggles; a repeat leaves the level unchanged. The bot is
+     * muted while ANY owner holds a mute, and its listening is paused while ANY owner holds a pause.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status with &lt;code&gt;call_id&lt;/code&gt;, &lt;code&gt;bot_muted&lt;/code&gt;, &lt;code&gt;listening_paused&lt;/code&gt; and
+     * &lt;code&gt;call_audio_streams&lt;/code&gt; filled. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; /
+     * &lt;code&gt;description&lt;/code&gt; (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;,
+     * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
+     * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
+     * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * </pre>
+     */
+    public ondewo.sip.SipOuterClass.SipStatus sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getSipSetCallMediaControlMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Bidirectional live audio of the ongoing call.&lt;/p&gt;
+     * &lt;p&gt;The first request MUST be &lt;code&gt;config&lt;/code&gt; and must arrive within 2 seconds. Metadata as for
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;LISTEN receives the caller (plus any conference participants) mixed with the bot. TALK sends the agent's audio to
+     * the caller; it REQUIRES &lt;code&gt;take_over&lt;/code&gt;, i.e. the bot is muted and does not listen while the stream is
+     * connected, and in TALK the agent hears the caller only. Audio is LINEAR16 little-endian mono in 20 ms frames.&lt;/p&gt;
+     * &lt;p&gt;gRPC status codes: &lt;code&gt;UNAUTHENTICATED&lt;/code&gt; (token), &lt;code&gt;FAILED_PRECONDITION&lt;/code&gt; (call id mismatch, no
+     * connected call, answering machine detection in progress, bot still speaking at TALK start),
+     * &lt;code&gt;INVALID_ARGUMENT&lt;/code&gt; (missing or invalid &lt;code&gt;config&lt;/code&gt;, wrong frame size),
+     * &lt;code&gt;RESOURCE_EXHAUSTED&lt;/code&gt; (stream cap reached, a second TALK). A normal end sends one &lt;code&gt;ended&lt;/code&gt;
+     * message and then OK.&lt;/p&gt;
+     * </pre>
+     */
+    @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/10918")
+    public io.grpc.stub.BlockingClientCall<ondewo.sip.SipOuterClass.SipCallAudioRequest, ondewo.sip.SipOuterClass.SipCallAudioResponse>
+        sipStreamCallAudio() {
+      return io.grpc.stub.ClientCalls.blockingBidiStreamingCall(
+          getChannel(), getSipStreamCallAudioMethod(), getCallOptions());
     }
   }
 
@@ -880,6 +1193,17 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Transfers a call in an active SIP session for an account registered at a SIP server to another SIP account or phone number specified by &lt;code&gt;transfer_id&lt;/code&gt;&lt;/p&gt;
+     * &lt;p&gt;Call scoping: when the gRPC metadatum &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; is present it must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call, otherwise the request is refused with
+     * &lt;code&gt;exception_name=CallScopeMismatch&lt;/code&gt; and nothing is assigned to the status. When it is absent the request is
+     * accepted for backward compatibility (unless the server requires call scoping).&lt;/p&gt;
+     * &lt;p&gt;With &lt;code&gt;outcome_timeout_ms = 0&lt;/code&gt; the call is transferred as before (REFER, then an immediate hangup).
+     * With &lt;code&gt;outcome_timeout_ms &amp;gt; 0&lt;/code&gt; see &lt;code&gt;SipTransferCallRequest.outcome_timeout_ms&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;Refused while invited participants are present (see
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;): a REFER into a conference bridge transfers every
+     * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
+     * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
+     * is sent and the call is kept.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request) {
@@ -920,6 +1244,8 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Plays wav files during an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;: a present &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum must
+     * match &lt;code&gt;SipStatus.call_id&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipPlayWavFiles(ondewo.sip.SipOuterClass.SipPlayWavFilesRequest request) {
@@ -930,6 +1256,9 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;. Sent by the in-container speech-to-speech pipeline it mutes only
+     * the bot's own mixer slot; sent by a remote client it sets the operator mute of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;, which the pipeline cannot undo.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipMute(com.google.protobuf.Empty request) {
@@ -940,11 +1269,46 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Un-mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping and the split between the pipeline's own mute and the operator mute as for &lt;code&gt;SipMute&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipUnMute(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSipUnMuteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Reports that answering machine detection reached a verdict on the ongoing outgoing call. Sets the status
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt;; the call stays up.&lt;/p&gt;
+     * &lt;p&gt;Called by the speech-to-speech pipeline (ONDEWO-CSI) inside the same container, i.e. over loopback only.
+     * Refused, and the current status left untouched, when no outgoing call is connected: the returned
+     * &lt;code&gt;SipStatus&lt;/code&gt; then carries the refusal in &lt;code&gt;exception_name&lt;/code&gt; and &lt;code&gt;description&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     */
+    public ondewo.sip.SipOuterClass.SipStatus sipReportAnsweringMachineDetected(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSipReportAnsweringMachineDetectedMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Call-scoped operator media control of the ongoing call: mute the bot and/or pause its listening.&lt;/p&gt;
+     * &lt;p&gt;Metadata REQUIRED: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; (must equal &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing
+     * call) and &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; (the per-container call-control token).&lt;/p&gt;
+     * &lt;p&gt;Every request sets a desired level per owner and never toggles; a repeat leaves the level unchanged. The bot is
+     * muted while ANY owner holds a mute, and its listening is paused while ANY owner holds a pause.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status with &lt;code&gt;call_id&lt;/code&gt;, &lt;code&gt;bot_muted&lt;/code&gt;, &lt;code&gt;listening_paused&lt;/code&gt; and
+     * &lt;code&gt;call_audio_streams&lt;/code&gt; filled. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; /
+     * &lt;code&gt;description&lt;/code&gt; (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;,
+     * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
+     * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
+     * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * </pre>
+     */
+    public ondewo.sip.SipOuterClass.SipStatus sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSipSetCallMediaControlMethod(), getCallOptions(), request);
     }
   }
 
@@ -1014,6 +1378,17 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Transfers a call in an active SIP session for an account registered at a SIP server to another SIP account or phone number specified by &lt;code&gt;transfer_id&lt;/code&gt;&lt;/p&gt;
+     * &lt;p&gt;Call scoping: when the gRPC metadatum &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; is present it must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call, otherwise the request is refused with
+     * &lt;code&gt;exception_name=CallScopeMismatch&lt;/code&gt; and nothing is assigned to the status. When it is absent the request is
+     * accepted for backward compatibility (unless the server requires call scoping).&lt;/p&gt;
+     * &lt;p&gt;With &lt;code&gt;outcome_timeout_ms = 0&lt;/code&gt; the call is transferred as before (REFER, then an immediate hangup).
+     * With &lt;code&gt;outcome_timeout_ms &amp;gt; 0&lt;/code&gt; see &lt;code&gt;SipTransferCallRequest.outcome_timeout_ms&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;Refused while invited participants are present (see
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;): a REFER into a conference bridge transfers every
+     * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
+     * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
+     * is sent and the call is kept.&lt;/p&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipTransferCall(
@@ -1058,6 +1433,8 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Plays wav files during an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;: a present &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum must
+     * match &lt;code&gt;SipStatus.call_id&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipPlayWavFiles(
@@ -1069,6 +1446,9 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping as for &lt;code&gt;SipTransferCall&lt;/code&gt;. Sent by the in-container speech-to-speech pipeline it mutes only
+     * the bot's own mixer slot; sent by a remote client it sets the operator mute of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;, which the pipeline cannot undo.&lt;/p&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipMute(
@@ -1080,12 +1460,49 @@ public final class SipGrpc {
     /**
      * <pre>
      * &lt;p&gt;Un-mutes the microphone in an ongoing call of an active SIP session&lt;/p&gt;
+     * &lt;p&gt;Call scoping and the split between the pipeline's own mute and the operator mute as for &lt;code&gt;SipMute&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipUnMute(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSipUnMuteMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Reports that answering machine detection reached a verdict on the ongoing outgoing call. Sets the status
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt;; the call stays up.&lt;/p&gt;
+     * &lt;p&gt;Called by the speech-to-speech pipeline (ONDEWO-CSI) inside the same container, i.e. over loopback only.
+     * Refused, and the current status left untouched, when no outgoing call is connected: the returned
+     * &lt;code&gt;SipStatus&lt;/code&gt; then carries the refusal in &lt;code&gt;exception_name&lt;/code&gt; and &lt;code&gt;description&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipReportAnsweringMachineDetected(
+        ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSipReportAnsweringMachineDetectedMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Call-scoped operator media control of the ongoing call: mute the bot and/or pause its listening.&lt;/p&gt;
+     * &lt;p&gt;Metadata REQUIRED: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; (must equal &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing
+     * call) and &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; (the per-container call-control token).&lt;/p&gt;
+     * &lt;p&gt;Every request sets a desired level per owner and never toggles; a repeat leaves the level unchanged. The bot is
+     * muted while ANY owner holds a mute, and its listening is paused while ANY owner holds a pause.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status with &lt;code&gt;call_id&lt;/code&gt;, &lt;code&gt;bot_muted&lt;/code&gt;, &lt;code&gt;listening_paused&lt;/code&gt; and
+     * &lt;code&gt;call_audio_streams&lt;/code&gt; filled. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; /
+     * &lt;code&gt;description&lt;/code&gt; (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;,
+     * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
+     * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
+     * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipSetCallMediaControl(
+        ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSipSetCallMediaControlMethod(), getCallOptions()), request);
     }
   }
 
@@ -1100,6 +1517,9 @@ public final class SipGrpc {
   private static final int METHODID_SIP_PLAY_WAV_FILES = 8;
   private static final int METHODID_SIP_MUTE = 9;
   private static final int METHODID_SIP_UN_MUTE = 10;
+  private static final int METHODID_SIP_REPORT_ANSWERING_MACHINE_DETECTED = 11;
+  private static final int METHODID_SIP_SET_CALL_MEDIA_CONTROL = 12;
+  private static final int METHODID_SIP_STREAM_CALL_AUDIO = 13;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1162,6 +1582,14 @@ public final class SipGrpc {
           serviceImpl.sipUnMute((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus>) responseObserver);
           break;
+        case METHODID_SIP_REPORT_ANSWERING_MACHINE_DETECTED:
+          serviceImpl.sipReportAnsweringMachineDetected((ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest) request,
+              (io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus>) responseObserver);
+          break;
+        case METHODID_SIP_SET_CALL_MEDIA_CONTROL:
+          serviceImpl.sipSetCallMediaControl((ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest) request,
+              (io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -1172,6 +1600,9 @@ public final class SipGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_SIP_STREAM_CALL_AUDIO:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.sipStreamCallAudio(
+              (io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -1257,6 +1688,27 @@ public final class SipGrpc {
               com.google.protobuf.Empty,
               ondewo.sip.SipOuterClass.SipStatus>(
                 service, METHODID_SIP_UN_MUTE)))
+        .addMethod(
+          getSipReportAnsweringMachineDetectedMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest,
+              ondewo.sip.SipOuterClass.SipStatus>(
+                service, METHODID_SIP_REPORT_ANSWERING_MACHINE_DETECTED)))
+        .addMethod(
+          getSipSetCallMediaControlMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest,
+              ondewo.sip.SipOuterClass.SipStatus>(
+                service, METHODID_SIP_SET_CALL_MEDIA_CONTROL)))
+        .addMethod(
+          getSipStreamCallAudioMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              ondewo.sip.SipOuterClass.SipCallAudioRequest,
+              ondewo.sip.SipOuterClass.SipCallAudioResponse>(
+                service, METHODID_SIP_STREAM_CALL_AUDIO)))
         .build();
   }
 
@@ -1316,6 +1768,9 @@ public final class SipGrpc {
               .addMethod(getSipPlayWavFilesMethod())
               .addMethod(getSipMuteMethod())
               .addMethod(getSipUnMuteMethod())
+              .addMethod(getSipReportAnsweringMachineDetectedMethod())
+              .addMethod(getSipSetCallMediaControlMethod())
+              .addMethod(getSipStreamCallAudioMethod())
               .build();
         }
       }
