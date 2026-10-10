@@ -37,8 +37,8 @@ import org.junit.jupiter.api.Test;
  * real request/response round trip over the in-process transport - no socket, no network, but
  * the real generated marshallers on both ends.
  *
- * <p>ondewo-sip-api declares no streaming rpc, so unlike the s2t/t2s clients there is no
- * streaming method type to assert here.
+ * <p>Since ondewo-sip-api 5.5.0 the service also declares one bidirectional streaming rpc,
+ * {@code SipStreamCallAudio}, whose method type is asserted below.
  */
 class GeneratedServicesTest {
 
@@ -127,7 +127,10 @@ class GeneratedServicesTest {
                                 "SipEndSession",
                                 "SipStartCall",
                                 "SipEndCall",
-                                "SipRegisterAccount")),
+                                "SipRegisterAccount",
+                                "SipReportAnsweringMachineDetected",
+                                "SipSetCallMediaControl",
+                                "SipStreamCallAudio")),
                 "missing rpcs, got " + methods);
         assertEquals(
                 MethodDescriptor.MethodType.UNARY,
@@ -135,6 +138,9 @@ class GeneratedServicesTest {
         assertEquals(
                 "ondewo.sip.Sip/SipStartSession",
                 SipGrpc.getSipStartSessionMethod().getFullMethodName());
+        assertEquals(
+                MethodDescriptor.MethodType.BIDI_STREAMING,
+                SipGrpc.getSipStreamCallAudioMethod().getType());
     }
 
     /**

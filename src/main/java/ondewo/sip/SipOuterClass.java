@@ -26,6 +26,695 @@ public final class SipOuterClass {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * <pre>
+   * &lt;p&gt;Desired setting of one media control flag&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf enum {@code ondewo.sip.MediaControlSetting}
+   */
+  public enum MediaControlSetting
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * Leave the flag as it is for this owner
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_SETTING_UNCHANGED = 0;</code>
+     */
+    MEDIA_CONTROL_SETTING_UNCHANGED(0),
+    /**
+     * <pre>
+     * The flag is on: the bot speaks (&lt;code&gt;bot_voice&lt;/code&gt;) or the bot listens (&lt;code&gt;bot_listening&lt;/code&gt;)
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_SETTING_ON = 1;</code>
+     */
+    MEDIA_CONTROL_SETTING_ON(1),
+    /**
+     * <pre>
+     * The flag is off: the bot is muted (&lt;code&gt;bot_voice&lt;/code&gt;) or the bot's listening is paused (&lt;code&gt;bot_listening&lt;/code&gt;)
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_SETTING_OFF = 2;</code>
+     */
+    MEDIA_CONTROL_SETTING_OFF(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        MediaControlSetting.class.getName());
+    }
+    /**
+     * <pre>
+     * Leave the flag as it is for this owner
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_SETTING_UNCHANGED = 0;</code>
+     */
+    public static final int MEDIA_CONTROL_SETTING_UNCHANGED_VALUE = 0;
+    /**
+     * <pre>
+     * The flag is on: the bot speaks (&lt;code&gt;bot_voice&lt;/code&gt;) or the bot listens (&lt;code&gt;bot_listening&lt;/code&gt;)
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_SETTING_ON = 1;</code>
+     */
+    public static final int MEDIA_CONTROL_SETTING_ON_VALUE = 1;
+    /**
+     * <pre>
+     * The flag is off: the bot is muted (&lt;code&gt;bot_voice&lt;/code&gt;) or the bot's listening is paused (&lt;code&gt;bot_listening&lt;/code&gt;)
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_SETTING_OFF = 2;</code>
+     */
+    public static final int MEDIA_CONTROL_SETTING_OFF_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static MediaControlSetting valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static MediaControlSetting forNumber(int value) {
+      switch (value) {
+        case 0: return MEDIA_CONTROL_SETTING_UNCHANGED;
+        case 1: return MEDIA_CONTROL_SETTING_ON;
+        case 2: return MEDIA_CONTROL_SETTING_OFF;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MediaControlSetting>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MediaControlSetting> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MediaControlSetting>() {
+            public MediaControlSetting findValueByNumber(int number) {
+              return MediaControlSetting.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final MediaControlSetting[] VALUES = values();
+
+    public static MediaControlSetting valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private MediaControlSetting(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ondewo.sip.MediaControlSetting)
+  }
+
+  /**
+   * <pre>
+   * &lt;p&gt;Owner of a media control hold. Each owner holds its own mute and pause; releasing one owner's hold never releases
+   * another owner's&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf enum {@code ondewo.sip.MediaControlOwner}
+   */
+  public enum MediaControlOwner
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * Same as &lt;code&gt;MEDIA_CONTROL_OWNER_OPERATOR&lt;/code&gt;
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_OWNER_UNSPECIFIED = 0;</code>
+     */
+    MEDIA_CONTROL_OWNER_UNSPECIFIED(0),
+    /**
+     * <pre>
+     * An operator, e.g. a supervisor muting the bot
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_OWNER_OPERATOR = 1;</code>
+     */
+    MEDIA_CONTROL_OWNER_OPERATOR(1),
+    /**
+     * <pre>
+     * The bot policy of invited conference participants, set while at least one participant is ringing or joined. Its
+     * hold mutes or pauses the bot only when a participant's bot policy asks for it; it also carries
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_OWNER_PARTICIPANT = 2;</code>
+     */
+    MEDIA_CONTROL_OWNER_PARTICIPANT(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        MediaControlOwner.class.getName());
+    }
+    /**
+     * <pre>
+     * Same as &lt;code&gt;MEDIA_CONTROL_OWNER_OPERATOR&lt;/code&gt;
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_OWNER_UNSPECIFIED = 0;</code>
+     */
+    public static final int MEDIA_CONTROL_OWNER_UNSPECIFIED_VALUE = 0;
+    /**
+     * <pre>
+     * An operator, e.g. a supervisor muting the bot
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_OWNER_OPERATOR = 1;</code>
+     */
+    public static final int MEDIA_CONTROL_OWNER_OPERATOR_VALUE = 1;
+    /**
+     * <pre>
+     * The bot policy of invited conference participants, set while at least one participant is ringing or joined. Its
+     * hold mutes or pauses the bot only when a participant's bot policy asks for it; it also carries
+     * &lt;code&gt;SipSetCallMediaControlRequest.participants_present&lt;/code&gt;
+     * </pre>
+     *
+     * <code>MEDIA_CONTROL_OWNER_PARTICIPANT = 2;</code>
+     */
+    public static final int MEDIA_CONTROL_OWNER_PARTICIPANT_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static MediaControlOwner valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static MediaControlOwner forNumber(int value) {
+      switch (value) {
+        case 0: return MEDIA_CONTROL_OWNER_UNSPECIFIED;
+        case 1: return MEDIA_CONTROL_OWNER_OPERATOR;
+        case 2: return MEDIA_CONTROL_OWNER_PARTICIPANT;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MediaControlOwner>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MediaControlOwner> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MediaControlOwner>() {
+            public MediaControlOwner findValueByNumber(int number) {
+              return MediaControlOwner.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final MediaControlOwner[] VALUES = values();
+
+    public static MediaControlOwner valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private MediaControlOwner(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ondewo.sip.MediaControlOwner)
+  }
+
+  /**
+   * <pre>
+   * &lt;p&gt;Mode of a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf enum {@code ondewo.sip.SipCallAudioMode}
+   */
+  public enum SipCallAudioMode
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * Same as &lt;code&gt;SIP_CALL_AUDIO_MODE_LISTEN&lt;/code&gt;
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_MODE_UNSPECIFIED = 0;</code>
+     */
+    SIP_CALL_AUDIO_MODE_UNSPECIFIED(0),
+    /**
+     * <pre>
+     * Receive the call audio only
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_MODE_LISTEN = 1;</code>
+     */
+    SIP_CALL_AUDIO_MODE_LISTEN(1),
+    /**
+     * <pre>
+     * Receive the caller's audio and send audio to the caller. Requires &lt;code&gt;take_over&lt;/code&gt;
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_MODE_TALK = 2;</code>
+     */
+    SIP_CALL_AUDIO_MODE_TALK(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioMode.class.getName());
+    }
+    /**
+     * <pre>
+     * Same as &lt;code&gt;SIP_CALL_AUDIO_MODE_LISTEN&lt;/code&gt;
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_MODE_UNSPECIFIED = 0;</code>
+     */
+    public static final int SIP_CALL_AUDIO_MODE_UNSPECIFIED_VALUE = 0;
+    /**
+     * <pre>
+     * Receive the call audio only
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_MODE_LISTEN = 1;</code>
+     */
+    public static final int SIP_CALL_AUDIO_MODE_LISTEN_VALUE = 1;
+    /**
+     * <pre>
+     * Receive the caller's audio and send audio to the caller. Requires &lt;code&gt;take_over&lt;/code&gt;
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_MODE_TALK = 2;</code>
+     */
+    public static final int SIP_CALL_AUDIO_MODE_TALK_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static SipCallAudioMode valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static SipCallAudioMode forNumber(int value) {
+      switch (value) {
+        case 0: return SIP_CALL_AUDIO_MODE_UNSPECIFIED;
+        case 1: return SIP_CALL_AUDIO_MODE_LISTEN;
+        case 2: return SIP_CALL_AUDIO_MODE_TALK;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SipCallAudioMode>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SipCallAudioMode> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SipCallAudioMode>() {
+            public SipCallAudioMode findValueByNumber(int number) {
+              return SipCallAudioMode.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.getDescriptor().getEnumTypes().get(2);
+    }
+
+    private static final SipCallAudioMode[] VALUES = values();
+
+    public static SipCallAudioMode valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private SipCallAudioMode(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ondewo.sip.SipCallAudioMode)
+  }
+
+  /**
+   * <pre>
+   * &lt;p&gt;Why a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream ended&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf enum {@code ondewo.sip.SipCallAudioEndReason}
+   */
+  public enum SipCallAudioEndReason
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * No reason recorded
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_UNSPECIFIED = 0;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_UNSPECIFIED(0),
+    /**
+     * <pre>
+     * The client cancelled or half-closed the stream
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_CLIENT_CLOSED = 1;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_CLIENT_CLOSED(1),
+    /**
+     * <pre>
+     * The call ended
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_CALL_ENDED = 2;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_CALL_ENDED(2),
+    /**
+     * <pre>
+     * The call was transferred
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_CALL_TRANSFERRED = 3;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_CALL_TRANSFERRED(3),
+    /**
+     * <pre>
+     * &lt;code&gt;max_duration_s&lt;/code&gt; was reached
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_MAX_DURATION = 4;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_MAX_DURATION(4),
+    /**
+     * <pre>
+     * The client did not read the audio in time
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_STALLED = 5;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_STALLED(5),
+    /**
+     * <pre>
+     * An internal error ended the stream
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_INTERNAL = 6;</code>
+     */
+    SIP_CALL_AUDIO_END_REASON_INTERNAL(6),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioEndReason.class.getName());
+    }
+    /**
+     * <pre>
+     * No reason recorded
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_UNSPECIFIED = 0;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_UNSPECIFIED_VALUE = 0;
+    /**
+     * <pre>
+     * The client cancelled or half-closed the stream
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_CLIENT_CLOSED = 1;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_CLIENT_CLOSED_VALUE = 1;
+    /**
+     * <pre>
+     * The call ended
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_CALL_ENDED = 2;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_CALL_ENDED_VALUE = 2;
+    /**
+     * <pre>
+     * The call was transferred
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_CALL_TRANSFERRED = 3;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_CALL_TRANSFERRED_VALUE = 3;
+    /**
+     * <pre>
+     * &lt;code&gt;max_duration_s&lt;/code&gt; was reached
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_MAX_DURATION = 4;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_MAX_DURATION_VALUE = 4;
+    /**
+     * <pre>
+     * The client did not read the audio in time
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_STALLED = 5;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_STALLED_VALUE = 5;
+    /**
+     * <pre>
+     * An internal error ended the stream
+     * </pre>
+     *
+     * <code>SIP_CALL_AUDIO_END_REASON_INTERNAL = 6;</code>
+     */
+    public static final int SIP_CALL_AUDIO_END_REASON_INTERNAL_VALUE = 6;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static SipCallAudioEndReason valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static SipCallAudioEndReason forNumber(int value) {
+      switch (value) {
+        case 0: return SIP_CALL_AUDIO_END_REASON_UNSPECIFIED;
+        case 1: return SIP_CALL_AUDIO_END_REASON_CLIENT_CLOSED;
+        case 2: return SIP_CALL_AUDIO_END_REASON_CALL_ENDED;
+        case 3: return SIP_CALL_AUDIO_END_REASON_CALL_TRANSFERRED;
+        case 4: return SIP_CALL_AUDIO_END_REASON_MAX_DURATION;
+        case 5: return SIP_CALL_AUDIO_END_REASON_STALLED;
+        case 6: return SIP_CALL_AUDIO_END_REASON_INTERNAL;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SipCallAudioEndReason>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SipCallAudioEndReason> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SipCallAudioEndReason>() {
+            public SipCallAudioEndReason findValueByNumber(int number) {
+              return SipCallAudioEndReason.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.getDescriptor().getEnumTypes().get(3);
+    }
+
+    private static final SipCallAudioEndReason[] VALUES = values();
+
+    public static SipCallAudioEndReason valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private SipCallAudioEndReason(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ondewo.sip.SipCallAudioEndReason)
+  }
+
   public interface SipEndCallRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ondewo.sip.SipEndCallRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -39,6 +728,58 @@ public final class SipOuterClass {
      * @return The hardHangup.
      */
     boolean getHardHangup();
+
+    /**
+     * <pre>
+     * Optional: reason for ending the call. Leave unset for an ordinary hangup
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+     * @return The enum numeric value on the wire for endReason.
+     */
+    int getEndReasonValue();
+    /**
+     * <pre>
+     * Optional: reason for ending the call. Leave unset for an ordinary hangup
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+     * @return The endReason.
+     */
+    ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason getEndReason();
+
+    /**
+     * <pre>
+     * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+     * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+     * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+     * @return Whether the amdResult field is set.
+     */
+    boolean hasAmdResult();
+    /**
+     * <pre>
+     * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+     * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+     * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+     * @return The amdResult.
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult();
+    /**
+     * <pre>
+     * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+     * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+     * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder();
   }
   /**
    * <pre>
@@ -66,6 +807,7 @@ public final class SipOuterClass {
       super(builder);
     }
     private SipEndCallRequest() {
+      endReason_ = 0;
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -81,6 +823,194 @@ public final class SipOuterClass {
               ondewo.sip.SipOuterClass.SipEndCallRequest.class, ondewo.sip.SipOuterClass.SipEndCallRequest.Builder.class);
     }
 
+    /**
+     * <pre>
+     * &lt;p&gt;Why the call is being ended&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf enum {@code ondewo.sip.SipEndCallRequest.EndCallReason}
+     */
+    public enum EndCallReason
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <pre>
+       * No specific reason given. The call ends as an ordinary hangup, exactly as before this field existed
+       * </pre>
+       *
+       * <code>END_CALL_REASON_UNSPECIFIED = 0;</code>
+       */
+      END_CALL_REASON_UNSPECIFIED(0),
+      /**
+       * <pre>
+       * Answering machine detection decided the callee is not a person to talk to (answering machine, fax,
+       * network announcement, ...) and the call is hung up WITHOUT leaving a voice message. The terminal status
+       * of the call is &lt;code&gt;OUTGOING_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Answering machine detected with hang up&lt;/code&gt;
+       * </pre>
+       *
+       * <code>ANSWERING_MACHINE = 1;</code>
+       */
+      ANSWERING_MACHINE(1),
+      /**
+       * <pre>
+       * Answering machine detection decided the callee is an answering machine, a voice message was left on it,
+       * and the call is hung up afterwards (or when the voice message timeout expired). The terminal status of
+       * the call is &lt;code&gt;OUTGOING_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Answering machine detected with left voice message and hang up&lt;/code&gt;
+       * </pre>
+       *
+       * <code>ANSWERING_MACHINE_VOICE_MESSAGE_LEFT = 2;</code>
+       */
+      ANSWERING_MACHINE_VOICE_MESSAGE_LEFT(2),
+      /**
+       * <pre>
+       * A WARM transfer completed: the transfer target joined the call and the bot leaves it. The terminal status of
+       * the call is &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description &lt;code&gt;Call transferred&lt;/code&gt; and
+       * &lt;code&gt;transfer_call_id&lt;/code&gt; set to the transfer target
+       * </pre>
+       *
+       * <code>END_CALL_REASON_TRANSFERRED = 3;</code>
+       */
+      END_CALL_REASON_TRANSFERRED(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 0,
+          /* suffix= */ "",
+          EndCallReason.class.getName());
+      }
+      /**
+       * <pre>
+       * No specific reason given. The call ends as an ordinary hangup, exactly as before this field existed
+       * </pre>
+       *
+       * <code>END_CALL_REASON_UNSPECIFIED = 0;</code>
+       */
+      public static final int END_CALL_REASON_UNSPECIFIED_VALUE = 0;
+      /**
+       * <pre>
+       * Answering machine detection decided the callee is not a person to talk to (answering machine, fax,
+       * network announcement, ...) and the call is hung up WITHOUT leaving a voice message. The terminal status
+       * of the call is &lt;code&gt;OUTGOING_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Answering machine detected with hang up&lt;/code&gt;
+       * </pre>
+       *
+       * <code>ANSWERING_MACHINE = 1;</code>
+       */
+      public static final int ANSWERING_MACHINE_VALUE = 1;
+      /**
+       * <pre>
+       * Answering machine detection decided the callee is an answering machine, a voice message was left on it,
+       * and the call is hung up afterwards (or when the voice message timeout expired). The terminal status of
+       * the call is &lt;code&gt;OUTGOING_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Answering machine detected with left voice message and hang up&lt;/code&gt;
+       * </pre>
+       *
+       * <code>ANSWERING_MACHINE_VOICE_MESSAGE_LEFT = 2;</code>
+       */
+      public static final int ANSWERING_MACHINE_VOICE_MESSAGE_LEFT_VALUE = 2;
+      /**
+       * <pre>
+       * A WARM transfer completed: the transfer target joined the call and the bot leaves it. The terminal status of
+       * the call is &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description &lt;code&gt;Call transferred&lt;/code&gt; and
+       * &lt;code&gt;transfer_call_id&lt;/code&gt; set to the transfer target
+       * </pre>
+       *
+       * <code>END_CALL_REASON_TRANSFERRED = 3;</code>
+       */
+      public static final int END_CALL_REASON_TRANSFERRED_VALUE = 3;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static EndCallReason valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static EndCallReason forNumber(int value) {
+        switch (value) {
+          case 0: return END_CALL_REASON_UNSPECIFIED;
+          case 1: return ANSWERING_MACHINE;
+          case 2: return ANSWERING_MACHINE_VOICE_MESSAGE_LEFT;
+          case 3: return END_CALL_REASON_TRANSFERRED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<EndCallReason>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          EndCallReason> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<EndCallReason>() {
+              public EndCallReason findValueByNumber(int number) {
+                return EndCallReason.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.SipEndCallRequest.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final EndCallReason[] VALUES = values();
+
+      public static EndCallReason valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private EndCallReason(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:ondewo.sip.SipEndCallRequest.EndCallReason)
+    }
+
+    private int bitField0_;
     public static final int HARD_HANGUP_FIELD_NUMBER = 1;
     private boolean hardHangup_ = false;
     /**
@@ -94,6 +1024,76 @@ public final class SipOuterClass {
     @java.lang.Override
     public boolean getHardHangup() {
       return hardHangup_;
+    }
+
+    public static final int END_REASON_FIELD_NUMBER = 2;
+    private int endReason_ = 0;
+    /**
+     * <pre>
+     * Optional: reason for ending the call. Leave unset for an ordinary hangup
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+     * @return The enum numeric value on the wire for endReason.
+     */
+    @java.lang.Override public int getEndReasonValue() {
+      return endReason_;
+    }
+    /**
+     * <pre>
+     * Optional: reason for ending the call. Leave unset for an ordinary hangup
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+     * @return The endReason.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason getEndReason() {
+      ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason result = ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason.forNumber(endReason_);
+      return result == null ? ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason.UNRECOGNIZED : result;
+    }
+
+    public static final int AMD_RESULT_FIELD_NUMBER = 3;
+    private ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult amdResult_;
+    /**
+     * <pre>
+     * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+     * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+     * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+     * @return Whether the amdResult field is set.
+     */
+    @java.lang.Override
+    public boolean hasAmdResult() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <pre>
+     * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+     * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+     * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+     * @return The amdResult.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult() {
+      return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+    }
+    /**
+     * <pre>
+     * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+     * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+     * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder() {
+      return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -113,6 +1113,12 @@ public final class SipOuterClass {
       if (hardHangup_ != false) {
         output.writeBool(1, hardHangup_);
       }
+      if (endReason_ != ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason.END_CALL_REASON_UNSPECIFIED.getNumber()) {
+        output.writeEnum(2, endReason_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(3, getAmdResult());
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -125,6 +1131,14 @@ public final class SipOuterClass {
       if (hardHangup_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, hardHangup_);
+      }
+      if (endReason_ != ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason.END_CALL_REASON_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, endReason_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getAmdResult());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -143,6 +1157,12 @@ public final class SipOuterClass {
 
       if (getHardHangup()
           != other.getHardHangup()) return false;
+      if (endReason_ != other.endReason_) return false;
+      if (hasAmdResult() != other.hasAmdResult()) return false;
+      if (hasAmdResult()) {
+        if (!getAmdResult()
+            .equals(other.getAmdResult())) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -157,6 +1177,12 @@ public final class SipOuterClass {
       hash = (37 * hash) + HARD_HANGUP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getHardHangup());
+      hash = (37 * hash) + END_REASON_FIELD_NUMBER;
+      hash = (53 * hash) + endReason_;
+      if (hasAmdResult()) {
+        hash = (37 * hash) + AMD_RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getAmdResult().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -280,19 +1306,31 @@ public final class SipOuterClass {
 
       // Construct using ondewo.sip.SipOuterClass.SipEndCallRequest.newBuilder()
       private Builder() {
-
+        maybeForceBuilderInitialization();
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          internalGetAmdResultFieldBuilder();
+        }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
         hardHangup_ = false;
+        endReason_ = 0;
+        amdResult_ = null;
+        if (amdResultBuilder_ != null) {
+          amdResultBuilder_.dispose();
+          amdResultBuilder_ = null;
+        }
         return this;
       }
 
@@ -329,6 +1367,17 @@ public final class SipOuterClass {
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.hardHangup_ = hardHangup_;
         }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.endReason_ = endReason_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.amdResult_ = amdResultBuilder_ == null
+              ? amdResult_
+              : amdResultBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -345,6 +1394,12 @@ public final class SipOuterClass {
         if (other == ondewo.sip.SipOuterClass.SipEndCallRequest.getDefaultInstance()) return this;
         if (other.getHardHangup() != false) {
           setHardHangup(other.getHardHangup());
+        }
+        if (other.endReason_ != 0) {
+          setEndReasonValue(other.getEndReasonValue());
+        }
+        if (other.hasAmdResult()) {
+          mergeAmdResult(other.getAmdResult());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -377,6 +1432,18 @@ public final class SipOuterClass {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
+              case 16: {
+                endReason_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                input.readMessage(
+                    internalGetAmdResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -438,6 +1505,252 @@ public final class SipOuterClass {
         return this;
       }
 
+      private int endReason_ = 0;
+      /**
+       * <pre>
+       * Optional: reason for ending the call. Leave unset for an ordinary hangup
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+       * @return The enum numeric value on the wire for endReason.
+       */
+      @java.lang.Override public int getEndReasonValue() {
+        return endReason_;
+      }
+      /**
+       * <pre>
+       * Optional: reason for ending the call. Leave unset for an ordinary hangup
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+       * @param value The enum numeric value on the wire for endReason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEndReasonValue(int value) {
+        endReason_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: reason for ending the call. Leave unset for an ordinary hangup
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+       * @return The endReason.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason getEndReason() {
+        ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason result = ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason.forNumber(endReason_);
+        return result == null ? ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Optional: reason for ending the call. Leave unset for an ordinary hangup
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+       * @param value The endReason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEndReason(ondewo.sip.SipOuterClass.SipEndCallRequest.EndCallReason value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000002;
+        endReason_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: reason for ending the call. Leave unset for an ordinary hangup
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipEndCallRequest.EndCallReason end_reason = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEndReason() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        endReason_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult amdResult_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder> amdResultBuilder_;
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       * @return Whether the amdResult field is set.
+       */
+      public boolean hasAmdResult() {
+        return ((bitField0_ & 0x00000004) != 0);
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       * @return The amdResult.
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult() {
+        if (amdResultBuilder_ == null) {
+          return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+        } else {
+          return amdResultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      public Builder setAmdResult(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult value) {
+        if (amdResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          amdResult_ = value;
+        } else {
+          amdResultBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      public Builder setAmdResult(
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder builderForValue) {
+        if (amdResultBuilder_ == null) {
+          amdResult_ = builderForValue.build();
+        } else {
+          amdResultBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      public Builder mergeAmdResult(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult value) {
+        if (amdResultBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0) &&
+            amdResult_ != null &&
+            amdResult_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance()) {
+            getAmdResultBuilder().mergeFrom(value);
+          } else {
+            amdResult_ = value;
+          }
+        } else {
+          amdResultBuilder_.mergeFrom(value);
+        }
+        if (amdResult_ != null) {
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      public Builder clearAmdResult() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        amdResult_ = null;
+        if (amdResultBuilder_ != null) {
+          amdResultBuilder_.dispose();
+          amdResultBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder getAmdResultBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return internalGetAmdResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder() {
+        if (amdResultBuilder_ != null) {
+          return amdResultBuilder_.getMessageOrBuilder();
+        } else {
+          return amdResult_ == null ?
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+        }
+      }
+      /**
+       * <pre>
+       * Optional: result of the answering machine detection that decided to end the call. Only meaningful together with
+       * &lt;code&gt;end_reason = ANSWERING_MACHINE&lt;/code&gt; or &lt;code&gt;end_reason = ANSWERING_MACHINE_VOICE_MESSAGE_LEFT&lt;/code&gt;;
+       * it is carried into &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the terminal status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder> 
+          internalGetAmdResultFieldBuilder() {
+        if (amdResultBuilder_ == null) {
+          amdResultBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder>(
+                  getAmdResult(),
+                  getParentForChildren(),
+                  isClean());
+          amdResult_ = null;
+        }
+        return amdResultBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:ondewo.sip.SipEndCallRequest)
     }
 
@@ -484,6 +1797,2993 @@ public final class SipOuterClass {
 
     @java.lang.Override
     public ondewo.sip.SipOuterClass.SipEndCallRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipReportAnsweringMachineDetectedRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipReportAnsweringMachineDetectedRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+     * @return Whether the amdResult field is set.
+     */
+    boolean hasAmdResult();
+    /**
+     * <pre>
+     * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+     * @return The amdResult.
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult();
+    /**
+     * <pre>
+     * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Reports the verdict of the answering machine detection of the ongoing outgoing call&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipReportAnsweringMachineDetectedRequest}
+   */
+  public static final class SipReportAnsweringMachineDetectedRequest extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipReportAnsweringMachineDetectedRequest)
+      SipReportAnsweringMachineDetectedRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipReportAnsweringMachineDetectedRequest.class.getName());
+    }
+    // Use SipReportAnsweringMachineDetectedRequest.newBuilder() to construct.
+    private SipReportAnsweringMachineDetectedRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipReportAnsweringMachineDetectedRequest() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.class, ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int AMD_RESULT_FIELD_NUMBER = 1;
+    private ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult amdResult_;
+    /**
+     * <pre>
+     * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+     * @return Whether the amdResult field is set.
+     */
+    @java.lang.Override
+    public boolean hasAmdResult() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <pre>
+     * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+     * @return The amdResult.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult() {
+      return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+    }
+    /**
+     * <pre>
+     * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder() {
+      return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(1, getAmdResult());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getAmdResult());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest other = (ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest) obj;
+
+      if (hasAmdResult() != other.hasAmdResult()) return false;
+      if (hasAmdResult()) {
+        if (!getAmdResult()
+            .equals(other.getAmdResult())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasAmdResult()) {
+        hash = (37 * hash) + AMD_RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getAmdResult().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Reports the verdict of the answering machine detection of the ongoing outgoing call&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipReportAnsweringMachineDetectedRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipReportAnsweringMachineDetectedRequest)
+        ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.class, ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          internalGetAmdResultFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        amdResult_ = null;
+        if (amdResultBuilder_ != null) {
+          amdResultBuilder_.dispose();
+          amdResultBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest build() {
+        ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest buildPartial() {
+        ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest result = new ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.amdResult_ = amdResultBuilder_ == null
+              ? amdResult_
+              : amdResultBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest other) {
+        if (other == ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest.getDefaultInstance()) return this;
+        if (other.hasAmdResult()) {
+          mergeAmdResult(other.getAmdResult());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    internalGetAmdResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult amdResult_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder> amdResultBuilder_;
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       * @return Whether the amdResult field is set.
+       */
+      public boolean hasAmdResult() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       * @return The amdResult.
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult() {
+        if (amdResultBuilder_ == null) {
+          return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+        } else {
+          return amdResultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      public Builder setAmdResult(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult value) {
+        if (amdResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          amdResult_ = value;
+        } else {
+          amdResultBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      public Builder setAmdResult(
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder builderForValue) {
+        if (amdResultBuilder_ == null) {
+          amdResult_ = builderForValue.build();
+        } else {
+          amdResultBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      public Builder mergeAmdResult(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult value) {
+        if (amdResultBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            amdResult_ != null &&
+            amdResult_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance()) {
+            getAmdResultBuilder().mergeFrom(value);
+          } else {
+            amdResult_ = value;
+          }
+        } else {
+          amdResultBuilder_.mergeFrom(value);
+        }
+        if (amdResult_ != null) {
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      public Builder clearAmdResult() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        amdResult_ = null;
+        if (amdResultBuilder_ != null) {
+          amdResultBuilder_.dispose();
+          amdResultBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder getAmdResultBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return internalGetAmdResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder() {
+        if (amdResultBuilder_ != null) {
+          return amdResultBuilder_.getMessageOrBuilder();
+        } else {
+          return amdResult_ == null ?
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+        }
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection. Written to &lt;code&gt;SipStatus.amd_result&lt;/code&gt; of the
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; status of the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder> 
+          internalGetAmdResultFieldBuilder() {
+        if (amdResultBuilder_ == null) {
+          amdResultBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder>(
+                  getAmdResult(),
+                  getParentForChildren(),
+                  isClean());
+          amdResult_ = null;
+        }
+        return amdResultBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipReportAnsweringMachineDetectedRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipReportAnsweringMachineDetectedRequest)
+    private static final ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipReportAnsweringMachineDetectedRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SipReportAnsweringMachineDetectedRequest>() {
+      @java.lang.Override
+      public SipReportAnsweringMachineDetectedRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipReportAnsweringMachineDetectedRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipReportAnsweringMachineDetectedRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipReportAnsweringMachineDetectedRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AnsweringMachineDetectionResultOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.AnsweringMachineDetectionResult)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Who or what answered the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+     * @return The enum numeric value on the wire for verdict.
+     */
+    int getVerdictValue();
+    /**
+     * <pre>
+     * Who or what answered the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+     * @return The verdict.
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict getVerdict();
+
+    /**
+     * <pre>
+     * Evidence that led to the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+     * @return The enum numeric value on the wire for cause.
+     */
+    int getCauseValue();
+    /**
+     * <pre>
+     * Evidence that led to the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+     * @return The cause.
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause getCause();
+
+    /**
+     * <pre>
+     * Confidence of the verdict, between &lt;code&gt;0.0&lt;/code&gt; and &lt;code&gt;1.0&lt;/code&gt;
+     * </pre>
+     *
+     * <code>float confidence = 3;</code>
+     * @return The confidence.
+     */
+    float getConfidence();
+
+    /**
+     * <pre>
+     * Time in milliseconds from the call being connected until the verdict was reached
+     * </pre>
+     *
+     * <code>int32 decision_ms = 4;</code>
+     * @return The decisionMs.
+     */
+    int getDecisionMs();
+
+    /**
+     * <pre>
+     * Identifier of the detection rule that produced the verdict
+     * </pre>
+     *
+     * <code>string rule_id = 5;</code>
+     * @return The ruleId.
+     */
+    java.lang.String getRuleId();
+    /**
+     * <pre>
+     * Identifier of the detection rule that produced the verdict
+     * </pre>
+     *
+     * <code>string rule_id = 5;</code>
+     * @return The bytes for ruleId.
+     */
+    com.google.protobuf.ByteString
+        getRuleIdBytes();
+
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @return A list containing the matchedCueIds.
+     */
+    java.util.List<java.lang.String>
+        getMatchedCueIdsList();
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @return The count of matchedCueIds.
+     */
+    int getMatchedCueIdsCount();
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @param index The index of the element to return.
+     * @return The matchedCueIds at the given index.
+     */
+    java.lang.String getMatchedCueIds(int index);
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the matchedCueIds at the given index.
+     */
+    com.google.protobuf.ByteString
+        getMatchedCueIdsBytes(int index);
+
+    /**
+     * <pre>
+     * What was done because of the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+     * @return The enum numeric value on the wire for actionTaken.
+     */
+    int getActionTakenValue();
+    /**
+     * <pre>
+     * What was done because of the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+     * @return The actionTaken.
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken getActionTaken();
+
+    /**
+     * <pre>
+     * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+     * header of the call. Used to match a result to its call by identity rather than by recency
+     * </pre>
+     *
+     * <code>string call_id = 8;</code>
+     * @return The callId.
+     */
+    java.lang.String getCallId();
+    /**
+     * <pre>
+     * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+     * header of the call. Used to match a result to its call by identity rather than by recency
+     * </pre>
+     *
+     * <code>string call_id = 8;</code>
+     * @return The bytes for callId.
+     */
+    com.google.protobuf.ByteString
+        getCallIdBytes();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Result of the answering machine detection (AMD) of an outbound call&lt;/p&gt;
+   * &lt;p&gt;Carries identifiers from closed vocabularies only: never audio, transcript text or a phone number&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.AnsweringMachineDetectionResult}
+   */
+  public static final class AnsweringMachineDetectionResult extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.AnsweringMachineDetectionResult)
+      AnsweringMachineDetectionResultOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        AnsweringMachineDetectionResult.class.getName());
+    }
+    // Use AnsweringMachineDetectionResult.newBuilder() to construct.
+    private AnsweringMachineDetectionResult(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private AnsweringMachineDetectionResult() {
+      verdict_ = 0;
+      cause_ = 0;
+      ruleId_ = "";
+      matchedCueIds_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      actionTaken_ = 0;
+      callId_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_AnsweringMachineDetectionResult_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_AnsweringMachineDetectionResult_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.class, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder.class);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Who or what answered the call&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf enum {@code ondewo.sip.AnsweringMachineDetectionResult.Verdict}
+     */
+    public enum Verdict
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <pre>
+       * No verdict available
+       * </pre>
+       *
+       * <code>VERDICT_UNSPECIFIED = 0;</code>
+       */
+      VERDICT_UNSPECIFIED(0),
+      /**
+       * <pre>
+       * A person answered the call
+       * </pre>
+       *
+       * <code>HUMAN = 1;</code>
+       */
+      HUMAN(1),
+      /**
+       * <pre>
+       * An answering machine or voicemail answered the call
+       * </pre>
+       *
+       * <code>MACHINE = 2;</code>
+       */
+      MACHINE(2),
+      /**
+       * <pre>
+       * An interactive voice response system (IVR) answered the call
+       * </pre>
+       *
+       * <code>IVR = 3;</code>
+       */
+      IVR(3),
+      /**
+       * <pre>
+       * A fax machine answered the call
+       * </pre>
+       *
+       * <code>FAX = 4;</code>
+       */
+      FAX(4),
+      /**
+       * <pre>
+       * A network announcement answered the call, e.g. "the number you have dialed is not available"
+       * </pre>
+       *
+       * <code>NETWORK_ANNOUNCEMENT = 5;</code>
+       */
+      NETWORK_ANNOUNCEMENT(5),
+      /**
+       * <pre>
+       * A call screening service answered the call, e.g. asking the caller to state their name
+       * </pre>
+       *
+       * <code>CALL_SCREENING = 6;</code>
+       */
+      CALL_SCREENING(6),
+      /**
+       * <pre>
+       * Nothing was said within the detection window
+       * </pre>
+       *
+       * <code>NO_SPEECH = 7;</code>
+       */
+      NO_SPEECH(7),
+      /**
+       * <pre>
+       * The detection could not decide
+       * </pre>
+       *
+       * <code>UNKNOWN = 8;</code>
+       */
+      UNKNOWN(8),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 0,
+          /* suffix= */ "",
+          Verdict.class.getName());
+      }
+      /**
+       * <pre>
+       * No verdict available
+       * </pre>
+       *
+       * <code>VERDICT_UNSPECIFIED = 0;</code>
+       */
+      public static final int VERDICT_UNSPECIFIED_VALUE = 0;
+      /**
+       * <pre>
+       * A person answered the call
+       * </pre>
+       *
+       * <code>HUMAN = 1;</code>
+       */
+      public static final int HUMAN_VALUE = 1;
+      /**
+       * <pre>
+       * An answering machine or voicemail answered the call
+       * </pre>
+       *
+       * <code>MACHINE = 2;</code>
+       */
+      public static final int MACHINE_VALUE = 2;
+      /**
+       * <pre>
+       * An interactive voice response system (IVR) answered the call
+       * </pre>
+       *
+       * <code>IVR = 3;</code>
+       */
+      public static final int IVR_VALUE = 3;
+      /**
+       * <pre>
+       * A fax machine answered the call
+       * </pre>
+       *
+       * <code>FAX = 4;</code>
+       */
+      public static final int FAX_VALUE = 4;
+      /**
+       * <pre>
+       * A network announcement answered the call, e.g. "the number you have dialed is not available"
+       * </pre>
+       *
+       * <code>NETWORK_ANNOUNCEMENT = 5;</code>
+       */
+      public static final int NETWORK_ANNOUNCEMENT_VALUE = 5;
+      /**
+       * <pre>
+       * A call screening service answered the call, e.g. asking the caller to state their name
+       * </pre>
+       *
+       * <code>CALL_SCREENING = 6;</code>
+       */
+      public static final int CALL_SCREENING_VALUE = 6;
+      /**
+       * <pre>
+       * Nothing was said within the detection window
+       * </pre>
+       *
+       * <code>NO_SPEECH = 7;</code>
+       */
+      public static final int NO_SPEECH_VALUE = 7;
+      /**
+       * <pre>
+       * The detection could not decide
+       * </pre>
+       *
+       * <code>UNKNOWN = 8;</code>
+       */
+      public static final int UNKNOWN_VALUE = 8;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Verdict valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Verdict forNumber(int value) {
+        switch (value) {
+          case 0: return VERDICT_UNSPECIFIED;
+          case 1: return HUMAN;
+          case 2: return MACHINE;
+          case 3: return IVR;
+          case 4: return FAX;
+          case 5: return NETWORK_ANNOUNCEMENT;
+          case 6: return CALL_SCREENING;
+          case 7: return NO_SPEECH;
+          case 8: return UNKNOWN;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Verdict>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Verdict> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Verdict>() {
+              public Verdict findValueByNumber(int number) {
+                return Verdict.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Verdict[] VALUES = values();
+
+      public static Verdict valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Verdict(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:ondewo.sip.AnsweringMachineDetectionResult.Verdict)
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Evidence that led to the verdict&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf enum {@code ondewo.sip.AnsweringMachineDetectionResult.Cause}
+     */
+    public enum Cause
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <pre>
+       * No cause available
+       * </pre>
+       *
+       * <code>CAUSE_UNSPECIFIED = 0;</code>
+       */
+      CAUSE_UNSPECIFIED(0),
+      /**
+       * <pre>
+       * The speech cadence, e.g. a long uninterrupted greeting
+       * </pre>
+       *
+       * <code>CADENCE = 1;</code>
+       */
+      CADENCE(1),
+      /**
+       * <pre>
+       * A keyword or phrase typical of the verdict
+       * </pre>
+       *
+       * <code>KEYWORD = 2;</code>
+       */
+      KEYWORD(2),
+      /**
+       * <pre>
+       * A voicemail beep
+       * </pre>
+       *
+       * <code>BEEP = 3;</code>
+       */
+      BEEP(3),
+      /**
+       * <pre>
+       * A tone, e.g. a fax or special information tone
+       * </pre>
+       *
+       * <code>TONE = 4;</code>
+       */
+      TONE(4),
+      /**
+       * <pre>
+       * Both the speech cadence and a keyword
+       * </pre>
+       *
+       * <code>CADENCE_AND_KEYWORD = 5;</code>
+       */
+      CADENCE_AND_KEYWORD(5),
+      /**
+       * <pre>
+       * Both the speech cadence and a voicemail beep
+       * </pre>
+       *
+       * <code>CADENCE_AND_BEEP = 6;</code>
+       */
+      CADENCE_AND_BEEP(6),
+      /**
+       * <pre>
+       * The detection window ended before any other evidence decided
+       * </pre>
+       *
+       * <code>TIMEOUT = 7;</code>
+       */
+      TIMEOUT(7),
+      /**
+       * <pre>
+       * Silence throughout the detection window
+       * </pre>
+       *
+       * <code>SILENCE = 8;</code>
+       */
+      SILENCE(8),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 0,
+          /* suffix= */ "",
+          Cause.class.getName());
+      }
+      /**
+       * <pre>
+       * No cause available
+       * </pre>
+       *
+       * <code>CAUSE_UNSPECIFIED = 0;</code>
+       */
+      public static final int CAUSE_UNSPECIFIED_VALUE = 0;
+      /**
+       * <pre>
+       * The speech cadence, e.g. a long uninterrupted greeting
+       * </pre>
+       *
+       * <code>CADENCE = 1;</code>
+       */
+      public static final int CADENCE_VALUE = 1;
+      /**
+       * <pre>
+       * A keyword or phrase typical of the verdict
+       * </pre>
+       *
+       * <code>KEYWORD = 2;</code>
+       */
+      public static final int KEYWORD_VALUE = 2;
+      /**
+       * <pre>
+       * A voicemail beep
+       * </pre>
+       *
+       * <code>BEEP = 3;</code>
+       */
+      public static final int BEEP_VALUE = 3;
+      /**
+       * <pre>
+       * A tone, e.g. a fax or special information tone
+       * </pre>
+       *
+       * <code>TONE = 4;</code>
+       */
+      public static final int TONE_VALUE = 4;
+      /**
+       * <pre>
+       * Both the speech cadence and a keyword
+       * </pre>
+       *
+       * <code>CADENCE_AND_KEYWORD = 5;</code>
+       */
+      public static final int CADENCE_AND_KEYWORD_VALUE = 5;
+      /**
+       * <pre>
+       * Both the speech cadence and a voicemail beep
+       * </pre>
+       *
+       * <code>CADENCE_AND_BEEP = 6;</code>
+       */
+      public static final int CADENCE_AND_BEEP_VALUE = 6;
+      /**
+       * <pre>
+       * The detection window ended before any other evidence decided
+       * </pre>
+       *
+       * <code>TIMEOUT = 7;</code>
+       */
+      public static final int TIMEOUT_VALUE = 7;
+      /**
+       * <pre>
+       * Silence throughout the detection window
+       * </pre>
+       *
+       * <code>SILENCE = 8;</code>
+       */
+      public static final int SILENCE_VALUE = 8;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Cause valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Cause forNumber(int value) {
+        switch (value) {
+          case 0: return CAUSE_UNSPECIFIED;
+          case 1: return CADENCE;
+          case 2: return KEYWORD;
+          case 3: return BEEP;
+          case 4: return TONE;
+          case 5: return CADENCE_AND_KEYWORD;
+          case 6: return CADENCE_AND_BEEP;
+          case 7: return TIMEOUT;
+          case 8: return SILENCE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Cause>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Cause> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Cause>() {
+              public Cause findValueByNumber(int number) {
+                return Cause.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDescriptor().getEnumTypes().get(1);
+      }
+
+      private static final Cause[] VALUES = values();
+
+      public static Cause valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Cause(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:ondewo.sip.AnsweringMachineDetectionResult.Cause)
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;What was done because of the verdict&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf enum {@code ondewo.sip.AnsweringMachineDetectionResult.ActionTaken}
+     */
+    public enum ActionTaken
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <pre>
+       * No action recorded
+       * </pre>
+       *
+       * <code>ACTION_TAKEN_UNSPECIFIED = 0;</code>
+       */
+      ACTION_TAKEN_UNSPECIFIED(0),
+      /**
+       * <pre>
+       * The call was hung up
+       * </pre>
+       *
+       * <code>HUNG_UP = 1;</code>
+       */
+      HUNG_UP(1),
+      /**
+       * <pre>
+       * The call continued as normal
+       * </pre>
+       *
+       * <code>CONTINUED = 2;</code>
+       */
+      CONTINUED(2),
+      /**
+       * <pre>
+       * Detection only: the verdict was recorded, but the call was not influenced by it
+       * </pre>
+       *
+       * <code>DETECT_ONLY = 3;</code>
+       */
+      DETECT_ONLY(3),
+      /**
+       * <pre>
+       * A voice message was left on the answering machine, and the call was hung up afterwards
+       * </pre>
+       *
+       * <code>LEFT_VOICE_MESSAGE = 4;</code>
+       */
+      LEFT_VOICE_MESSAGE(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 32,
+          /* patch= */ 0,
+          /* suffix= */ "",
+          ActionTaken.class.getName());
+      }
+      /**
+       * <pre>
+       * No action recorded
+       * </pre>
+       *
+       * <code>ACTION_TAKEN_UNSPECIFIED = 0;</code>
+       */
+      public static final int ACTION_TAKEN_UNSPECIFIED_VALUE = 0;
+      /**
+       * <pre>
+       * The call was hung up
+       * </pre>
+       *
+       * <code>HUNG_UP = 1;</code>
+       */
+      public static final int HUNG_UP_VALUE = 1;
+      /**
+       * <pre>
+       * The call continued as normal
+       * </pre>
+       *
+       * <code>CONTINUED = 2;</code>
+       */
+      public static final int CONTINUED_VALUE = 2;
+      /**
+       * <pre>
+       * Detection only: the verdict was recorded, but the call was not influenced by it
+       * </pre>
+       *
+       * <code>DETECT_ONLY = 3;</code>
+       */
+      public static final int DETECT_ONLY_VALUE = 3;
+      /**
+       * <pre>
+       * A voice message was left on the answering machine, and the call was hung up afterwards
+       * </pre>
+       *
+       * <code>LEFT_VOICE_MESSAGE = 4;</code>
+       */
+      public static final int LEFT_VOICE_MESSAGE_VALUE = 4;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ActionTaken valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static ActionTaken forNumber(int value) {
+        switch (value) {
+          case 0: return ACTION_TAKEN_UNSPECIFIED;
+          case 1: return HUNG_UP;
+          case 2: return CONTINUED;
+          case 3: return DETECT_ONLY;
+          case 4: return LEFT_VOICE_MESSAGE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ActionTaken>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ActionTaken> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ActionTaken>() {
+              public ActionTaken findValueByNumber(int number) {
+                return ActionTaken.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDescriptor().getEnumTypes().get(2);
+      }
+
+      private static final ActionTaken[] VALUES = values();
+
+      public static ActionTaken valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private ActionTaken(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:ondewo.sip.AnsweringMachineDetectionResult.ActionTaken)
+    }
+
+    public static final int VERDICT_FIELD_NUMBER = 1;
+    private int verdict_ = 0;
+    /**
+     * <pre>
+     * Who or what answered the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+     * @return The enum numeric value on the wire for verdict.
+     */
+    @java.lang.Override public int getVerdictValue() {
+      return verdict_;
+    }
+    /**
+     * <pre>
+     * Who or what answered the call
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+     * @return The verdict.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict getVerdict() {
+      ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict result = ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict.forNumber(verdict_);
+      return result == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict.UNRECOGNIZED : result;
+    }
+
+    public static final int CAUSE_FIELD_NUMBER = 2;
+    private int cause_ = 0;
+    /**
+     * <pre>
+     * Evidence that led to the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+     * @return The enum numeric value on the wire for cause.
+     */
+    @java.lang.Override public int getCauseValue() {
+      return cause_;
+    }
+    /**
+     * <pre>
+     * Evidence that led to the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+     * @return The cause.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause getCause() {
+      ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause result = ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause.forNumber(cause_);
+      return result == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause.UNRECOGNIZED : result;
+    }
+
+    public static final int CONFIDENCE_FIELD_NUMBER = 3;
+    private float confidence_ = 0F;
+    /**
+     * <pre>
+     * Confidence of the verdict, between &lt;code&gt;0.0&lt;/code&gt; and &lt;code&gt;1.0&lt;/code&gt;
+     * </pre>
+     *
+     * <code>float confidence = 3;</code>
+     * @return The confidence.
+     */
+    @java.lang.Override
+    public float getConfidence() {
+      return confidence_;
+    }
+
+    public static final int DECISION_MS_FIELD_NUMBER = 4;
+    private int decisionMs_ = 0;
+    /**
+     * <pre>
+     * Time in milliseconds from the call being connected until the verdict was reached
+     * </pre>
+     *
+     * <code>int32 decision_ms = 4;</code>
+     * @return The decisionMs.
+     */
+    @java.lang.Override
+    public int getDecisionMs() {
+      return decisionMs_;
+    }
+
+    public static final int RULE_ID_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ruleId_ = "";
+    /**
+     * <pre>
+     * Identifier of the detection rule that produced the verdict
+     * </pre>
+     *
+     * <code>string rule_id = 5;</code>
+     * @return The ruleId.
+     */
+    @java.lang.Override
+    public java.lang.String getRuleId() {
+      java.lang.Object ref = ruleId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ruleId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Identifier of the detection rule that produced the verdict
+     * </pre>
+     *
+     * <code>string rule_id = 5;</code>
+     * @return The bytes for ruleId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRuleIdBytes() {
+      java.lang.Object ref = ruleId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ruleId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MATCHED_CUE_IDS_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList matchedCueIds_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @return A list containing the matchedCueIds.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getMatchedCueIdsList() {
+      return matchedCueIds_;
+    }
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @return The count of matchedCueIds.
+     */
+    public int getMatchedCueIdsCount() {
+      return matchedCueIds_.size();
+    }
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @param index The index of the element to return.
+     * @return The matchedCueIds at the given index.
+     */
+    public java.lang.String getMatchedCueIds(int index) {
+      return matchedCueIds_.get(index);
+    }
+    /**
+     * <pre>
+     * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+     * </pre>
+     *
+     * <code>repeated string matched_cue_ids = 6;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the matchedCueIds at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getMatchedCueIdsBytes(int index) {
+      return matchedCueIds_.getByteString(index);
+    }
+
+    public static final int ACTION_TAKEN_FIELD_NUMBER = 7;
+    private int actionTaken_ = 0;
+    /**
+     * <pre>
+     * What was done because of the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+     * @return The enum numeric value on the wire for actionTaken.
+     */
+    @java.lang.Override public int getActionTakenValue() {
+      return actionTaken_;
+    }
+    /**
+     * <pre>
+     * What was done because of the verdict
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+     * @return The actionTaken.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken getActionTaken() {
+      ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken result = ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken.forNumber(actionTaken_);
+      return result == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken.UNRECOGNIZED : result;
+    }
+
+    public static final int CALL_ID_FIELD_NUMBER = 8;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object callId_ = "";
+    /**
+     * <pre>
+     * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+     * header of the call. Used to match a result to its call by identity rather than by recency
+     * </pre>
+     *
+     * <code>string call_id = 8;</code>
+     * @return The callId.
+     */
+    @java.lang.Override
+    public java.lang.String getCallId() {
+      java.lang.Object ref = callId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        callId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+     * header of the call. Used to match a result to its call by identity rather than by recency
+     * </pre>
+     *
+     * <code>string call_id = 8;</code>
+     * @return The bytes for callId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getCallIdBytes() {
+      java.lang.Object ref = callId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        callId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (verdict_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict.VERDICT_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, verdict_);
+      }
+      if (cause_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause.CAUSE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(2, cause_);
+      }
+      if (java.lang.Float.floatToRawIntBits(confidence_) != 0) {
+        output.writeFloat(3, confidence_);
+      }
+      if (decisionMs_ != 0) {
+        output.writeInt32(4, decisionMs_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(ruleId_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, ruleId_);
+      }
+      for (int i = 0; i < matchedCueIds_.size(); i++) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, matchedCueIds_.getRaw(i));
+      }
+      if (actionTaken_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken.ACTION_TAKEN_UNSPECIFIED.getNumber()) {
+        output.writeEnum(7, actionTaken_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(callId_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 8, callId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (verdict_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict.VERDICT_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, verdict_);
+      }
+      if (cause_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause.CAUSE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, cause_);
+      }
+      if (java.lang.Float.floatToRawIntBits(confidence_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, confidence_);
+      }
+      if (decisionMs_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, decisionMs_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(ruleId_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, ruleId_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < matchedCueIds_.size(); i++) {
+          dataSize += computeStringSizeNoTag(matchedCueIds_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getMatchedCueIdsList().size();
+      }
+      if (actionTaken_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken.ACTION_TAKEN_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(7, actionTaken_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(callId_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(8, callId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult other = (ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult) obj;
+
+      if (verdict_ != other.verdict_) return false;
+      if (cause_ != other.cause_) return false;
+      if (java.lang.Float.floatToIntBits(getConfidence())
+          != java.lang.Float.floatToIntBits(
+              other.getConfidence())) return false;
+      if (getDecisionMs()
+          != other.getDecisionMs()) return false;
+      if (!getRuleId()
+          .equals(other.getRuleId())) return false;
+      if (!getMatchedCueIdsList()
+          .equals(other.getMatchedCueIdsList())) return false;
+      if (actionTaken_ != other.actionTaken_) return false;
+      if (!getCallId()
+          .equals(other.getCallId())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VERDICT_FIELD_NUMBER;
+      hash = (53 * hash) + verdict_;
+      hash = (37 * hash) + CAUSE_FIELD_NUMBER;
+      hash = (53 * hash) + cause_;
+      hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getConfidence());
+      hash = (37 * hash) + DECISION_MS_FIELD_NUMBER;
+      hash = (53 * hash) + getDecisionMs();
+      hash = (37 * hash) + RULE_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getRuleId().hashCode();
+      if (getMatchedCueIdsCount() > 0) {
+        hash = (37 * hash) + MATCHED_CUE_IDS_FIELD_NUMBER;
+        hash = (53 * hash) + getMatchedCueIdsList().hashCode();
+      }
+      hash = (37 * hash) + ACTION_TAKEN_FIELD_NUMBER;
+      hash = (53 * hash) + actionTaken_;
+      hash = (37 * hash) + CALL_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getCallId().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Result of the answering machine detection (AMD) of an outbound call&lt;/p&gt;
+     * &lt;p&gt;Carries identifiers from closed vocabularies only: never audio, transcript text or a phone number&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.AnsweringMachineDetectionResult}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.AnsweringMachineDetectionResult)
+        ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_AnsweringMachineDetectionResult_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_AnsweringMachineDetectionResult_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.class, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        verdict_ = 0;
+        cause_ = 0;
+        confidence_ = 0F;
+        decisionMs_ = 0;
+        ruleId_ = "";
+        matchedCueIds_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        actionTaken_ = 0;
+        callId_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_AnsweringMachineDetectionResult_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult build() {
+        ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult buildPartial() {
+        ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult result = new ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.verdict_ = verdict_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.cause_ = cause_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.confidence_ = confidence_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.decisionMs_ = decisionMs_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.ruleId_ = ruleId_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          matchedCueIds_.makeImmutable();
+          result.matchedCueIds_ = matchedCueIds_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.actionTaken_ = actionTaken_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.callId_ = callId_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult) {
+          return mergeFrom((ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult other) {
+        if (other == ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance()) return this;
+        if (other.verdict_ != 0) {
+          setVerdictValue(other.getVerdictValue());
+        }
+        if (other.cause_ != 0) {
+          setCauseValue(other.getCauseValue());
+        }
+        if (java.lang.Float.floatToRawIntBits(other.getConfidence()) != 0) {
+          setConfidence(other.getConfidence());
+        }
+        if (other.getDecisionMs() != 0) {
+          setDecisionMs(other.getDecisionMs());
+        }
+        if (!other.getRuleId().isEmpty()) {
+          ruleId_ = other.ruleId_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        if (!other.matchedCueIds_.isEmpty()) {
+          if (matchedCueIds_.isEmpty()) {
+            matchedCueIds_ = other.matchedCueIds_;
+            bitField0_ |= 0x00000020;
+          } else {
+            ensureMatchedCueIdsIsMutable();
+            matchedCueIds_.addAll(other.matchedCueIds_);
+          }
+          onChanged();
+        }
+        if (other.actionTaken_ != 0) {
+          setActionTakenValue(other.getActionTakenValue());
+        }
+        if (!other.getCallId().isEmpty()) {
+          callId_ = other.callId_;
+          bitField0_ |= 0x00000080;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                verdict_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                cause_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 29: {
+                confidence_ = input.readFloat();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 29
+              case 32: {
+                decisionMs_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                ruleId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureMatchedCueIdsIsMutable();
+                matchedCueIds_.add(s);
+                break;
+              } // case 50
+              case 56: {
+                actionTaken_ = input.readEnum();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              case 66: {
+                callId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 66
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int verdict_ = 0;
+      /**
+       * <pre>
+       * Who or what answered the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+       * @return The enum numeric value on the wire for verdict.
+       */
+      @java.lang.Override public int getVerdictValue() {
+        return verdict_;
+      }
+      /**
+       * <pre>
+       * Who or what answered the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+       * @param value The enum numeric value on the wire for verdict to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVerdictValue(int value) {
+        verdict_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Who or what answered the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+       * @return The verdict.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict getVerdict() {
+        ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict result = ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict.forNumber(verdict_);
+        return result == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Who or what answered the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+       * @param value The verdict to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVerdict(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Verdict value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000001;
+        verdict_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Who or what answered the call
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Verdict verdict = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVerdict() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        verdict_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int cause_ = 0;
+      /**
+       * <pre>
+       * Evidence that led to the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+       * @return The enum numeric value on the wire for cause.
+       */
+      @java.lang.Override public int getCauseValue() {
+        return cause_;
+      }
+      /**
+       * <pre>
+       * Evidence that led to the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+       * @param value The enum numeric value on the wire for cause to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCauseValue(int value) {
+        cause_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Evidence that led to the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+       * @return The cause.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause getCause() {
+        ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause result = ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause.forNumber(cause_);
+        return result == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Evidence that led to the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+       * @param value The cause to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCause(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Cause value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000002;
+        cause_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Evidence that led to the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.Cause cause = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCause() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        cause_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private float confidence_ ;
+      /**
+       * <pre>
+       * Confidence of the verdict, between &lt;code&gt;0.0&lt;/code&gt; and &lt;code&gt;1.0&lt;/code&gt;
+       * </pre>
+       *
+       * <code>float confidence = 3;</code>
+       * @return The confidence.
+       */
+      @java.lang.Override
+      public float getConfidence() {
+        return confidence_;
+      }
+      /**
+       * <pre>
+       * Confidence of the verdict, between &lt;code&gt;0.0&lt;/code&gt; and &lt;code&gt;1.0&lt;/code&gt;
+       * </pre>
+       *
+       * <code>float confidence = 3;</code>
+       * @param value The confidence to set.
+       * @return This builder for chaining.
+       */
+      public Builder setConfidence(float value) {
+
+        confidence_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Confidence of the verdict, between &lt;code&gt;0.0&lt;/code&gt; and &lt;code&gt;1.0&lt;/code&gt;
+       * </pre>
+       *
+       * <code>float confidence = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearConfidence() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        confidence_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private int decisionMs_ ;
+      /**
+       * <pre>
+       * Time in milliseconds from the call being connected until the verdict was reached
+       * </pre>
+       *
+       * <code>int32 decision_ms = 4;</code>
+       * @return The decisionMs.
+       */
+      @java.lang.Override
+      public int getDecisionMs() {
+        return decisionMs_;
+      }
+      /**
+       * <pre>
+       * Time in milliseconds from the call being connected until the verdict was reached
+       * </pre>
+       *
+       * <code>int32 decision_ms = 4;</code>
+       * @param value The decisionMs to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDecisionMs(int value) {
+
+        decisionMs_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Time in milliseconds from the call being connected until the verdict was reached
+       * </pre>
+       *
+       * <code>int32 decision_ms = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDecisionMs() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        decisionMs_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ruleId_ = "";
+      /**
+       * <pre>
+       * Identifier of the detection rule that produced the verdict
+       * </pre>
+       *
+       * <code>string rule_id = 5;</code>
+       * @return The ruleId.
+       */
+      public java.lang.String getRuleId() {
+        java.lang.Object ref = ruleId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ruleId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the detection rule that produced the verdict
+       * </pre>
+       *
+       * <code>string rule_id = 5;</code>
+       * @return The bytes for ruleId.
+       */
+      public com.google.protobuf.ByteString
+          getRuleIdBytes() {
+        java.lang.Object ref = ruleId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ruleId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the detection rule that produced the verdict
+       * </pre>
+       *
+       * <code>string rule_id = 5;</code>
+       * @param value The ruleId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRuleId(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ruleId_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the detection rule that produced the verdict
+       * </pre>
+       *
+       * <code>string rule_id = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRuleId() {
+        ruleId_ = getDefaultInstance().getRuleId();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the detection rule that produced the verdict
+       * </pre>
+       *
+       * <code>string rule_id = 5;</code>
+       * @param value The bytes for ruleId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRuleIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ruleId_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringArrayList matchedCueIds_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureMatchedCueIdsIsMutable() {
+        if (!matchedCueIds_.isModifiable()) {
+          matchedCueIds_ = new com.google.protobuf.LazyStringArrayList(matchedCueIds_);
+        }
+        bitField0_ |= 0x00000020;
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @return A list containing the matchedCueIds.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getMatchedCueIdsList() {
+        matchedCueIds_.makeImmutable();
+        return matchedCueIds_;
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @return The count of matchedCueIds.
+       */
+      public int getMatchedCueIdsCount() {
+        return matchedCueIds_.size();
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @param index The index of the element to return.
+       * @return The matchedCueIds at the given index.
+       */
+      public java.lang.String getMatchedCueIds(int index) {
+        return matchedCueIds_.get(index);
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the matchedCueIds at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getMatchedCueIdsBytes(int index) {
+        return matchedCueIds_.getByteString(index);
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @param index The index to set the value at.
+       * @param value The matchedCueIds to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMatchedCueIds(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureMatchedCueIdsIsMutable();
+        matchedCueIds_.set(index, value);
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @param value The matchedCueIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addMatchedCueIds(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureMatchedCueIdsIsMutable();
+        matchedCueIds_.add(value);
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @param values The matchedCueIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllMatchedCueIds(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureMatchedCueIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, matchedCueIds_);
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMatchedCueIds() {
+        matchedCueIds_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifiers of the cues that matched, e.g. keyword or tone identifiers. Identifiers only, never transcript text
+       * </pre>
+       *
+       * <code>repeated string matched_cue_ids = 6;</code>
+       * @param value The bytes of the matchedCueIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addMatchedCueIdsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureMatchedCueIdsIsMutable();
+        matchedCueIds_.add(value);
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+
+      private int actionTaken_ = 0;
+      /**
+       * <pre>
+       * What was done because of the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+       * @return The enum numeric value on the wire for actionTaken.
+       */
+      @java.lang.Override public int getActionTakenValue() {
+        return actionTaken_;
+      }
+      /**
+       * <pre>
+       * What was done because of the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+       * @param value The enum numeric value on the wire for actionTaken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setActionTakenValue(int value) {
+        actionTaken_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * What was done because of the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+       * @return The actionTaken.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken getActionTaken() {
+        ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken result = ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken.forNumber(actionTaken_);
+        return result == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * What was done because of the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+       * @param value The actionTaken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setActionTaken(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.ActionTaken value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000040;
+        actionTaken_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * What was done because of the verdict
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult.ActionTaken action_taken = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearActionTaken() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        actionTaken_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object callId_ = "";
+      /**
+       * <pre>
+       * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+       * header of the call. Used to match a result to its call by identity rather than by recency
+       * </pre>
+       *
+       * <code>string call_id = 8;</code>
+       * @return The callId.
+       */
+      public java.lang.String getCallId() {
+        java.lang.Object ref = callId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          callId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+       * header of the call. Used to match a result to its call by identity rather than by recency
+       * </pre>
+       *
+       * <code>string call_id = 8;</code>
+       * @return The bytes for callId.
+       */
+      public com.google.protobuf.ByteString
+          getCallIdBytes() {
+        java.lang.Object ref = callId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          callId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+       * header of the call. Used to match a result to its call by identity rather than by recency
+       * </pre>
+       *
+       * <code>string call_id = 8;</code>
+       * @param value The callId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCallId(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        callId_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+       * header of the call. Used to match a result to its call by identity rather than by recency
+       * </pre>
+       *
+       * <code>string call_id = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCallId() {
+        callId_ = getDefaultInstance().getCallId();
+        bitField0_ = (bitField0_ & ~0x00000080);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the call the result belongs to, i.e. the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt;
+       * header of the call. Used to match a result to its call by identity rather than by recency
+       * </pre>
+       *
+       * <code>string call_id = 8;</code>
+       * @param value The bytes for callId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCallIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        callId_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.AnsweringMachineDetectionResult)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.AnsweringMachineDetectionResult)
+    private static final ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult();
+    }
+
+    public static ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AnsweringMachineDetectionResult>
+        PARSER = new com.google.protobuf.AbstractParser<AnsweringMachineDetectionResult>() {
+      @java.lang.Override
+      public AnsweringMachineDetectionResult parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<AnsweringMachineDetectionResult> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AnsweringMachineDetectionResult> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3216,7 +7516,9 @@ java.lang.String defaultValue) {
 
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3224,7 +7526,9 @@ java.lang.String defaultValue) {
     int getHeadersCount();
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3239,7 +7543,9 @@ java.lang.String defaultValue) {
     getHeaders();
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3248,7 +7554,9 @@ java.lang.String defaultValue) {
     getHeadersMap();
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3260,13 +7568,44 @@ java.lang.String getHeadersOrDefault(
 java.lang.String defaultValue);
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
      */
     java.lang.String getHeadersOrThrow(
         java.lang.String key);
+
+    /**
+     * <pre>
+     * &lt;p&gt;Optional. How long to wait, in milliseconds, for the SIP server's answer to the REFER before reporting the outcome.
+     * Clamped to 10000.&lt;/p&gt;
+     * &lt;p&gt;&lt;code&gt;0&lt;/code&gt; (default): legacy behaviour, unchanged: REFER, then an immediate hangup.&lt;/p&gt;
+     * &lt;p&gt;&lt;code&gt;&amp;gt; 0&lt;/code&gt;: the call is kept until the outcome is known:&lt;/p&gt;
+     * &lt;ul&gt;
+     * &lt;li&gt;REFER accepted (&lt;code&gt;202&lt;/code&gt;): the hangup is held for a short grace in which a terminal NOTIFY with a
+     * &lt;code&gt;404&lt;/code&gt; sipfrag (unknown target) still counts as a refusal; any other sipfrag, or none, means accepted.
+     * The bot then hangs up and &lt;code&gt;TRANSFER_CALL_INITIATED&lt;/code&gt; is returned with
+     * &lt;code&gt;sip_response_code = 202&lt;/code&gt;. The call ends as &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description
+     * &lt;code&gt;Call transferred&lt;/code&gt;.&lt;/li&gt;
+     * &lt;li&gt;REFER refused (a final response &lt;code&gt;&amp;gt;= 400&lt;/code&gt;, or the &lt;code&gt;404&lt;/code&gt; sipfrag above): the call is KEPT
+     * with the bot, nothing is assigned to the shared status, and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+     * &lt;code&gt;description = reason=refer-rejected&lt;/code&gt; and &lt;code&gt;sip_response_code&lt;/code&gt; (&lt;code&gt;0&lt;/code&gt; when the SIP
+     * stack did not report the code, e.g. a declined REFER).&lt;/li&gt;
+     * &lt;li&gt;No answer within the timeout: the call is KEPT and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+     * &lt;code&gt;description = reason=refer-timeout&lt;/code&gt;. A late acceptance still ends the bot's leg.&lt;/li&gt;
+     * &lt;li&gt;The call ended while waiting: &lt;code&gt;NO_ONGOING_CALL&lt;/code&gt; is returned.&lt;/li&gt;
+     * &lt;/ul&gt;
+     * &lt;p&gt;A &lt;code&gt;202&lt;/code&gt; does not mean the target answered: when the dialplan's dial to the target then fails (busy, no
+     * answer, unreachable) the caller is lost. Validate targets up front, or use a WARM transfer.&lt;/p&gt;
+     * </pre>
+     *
+     * <code>uint32 outcome_timeout_ms = 3;</code>
+     * @return The outcomeTimeoutMs.
+     */
+    int getOutcomeTimeoutMs();
   }
   /**
    * <pre>
@@ -3397,7 +7736,9 @@ java.lang.String defaultValue);
     }
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3418,7 +7759,9 @@ java.lang.String defaultValue);
     }
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3429,7 +7772,9 @@ java.lang.String defaultValue);
     }
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3447,7 +7792,9 @@ java.lang.String defaultValue) {
     }
     /**
      * <pre>
-     * The headers to include when transferring the call
+     * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+     * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+     * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
      * </pre>
      *
      * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3462,6 +7809,40 @@ java.lang.String defaultValue) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
+    }
+
+    public static final int OUTCOME_TIMEOUT_MS_FIELD_NUMBER = 3;
+    private int outcomeTimeoutMs_ = 0;
+    /**
+     * <pre>
+     * &lt;p&gt;Optional. How long to wait, in milliseconds, for the SIP server's answer to the REFER before reporting the outcome.
+     * Clamped to 10000.&lt;/p&gt;
+     * &lt;p&gt;&lt;code&gt;0&lt;/code&gt; (default): legacy behaviour, unchanged: REFER, then an immediate hangup.&lt;/p&gt;
+     * &lt;p&gt;&lt;code&gt;&amp;gt; 0&lt;/code&gt;: the call is kept until the outcome is known:&lt;/p&gt;
+     * &lt;ul&gt;
+     * &lt;li&gt;REFER accepted (&lt;code&gt;202&lt;/code&gt;): the hangup is held for a short grace in which a terminal NOTIFY with a
+     * &lt;code&gt;404&lt;/code&gt; sipfrag (unknown target) still counts as a refusal; any other sipfrag, or none, means accepted.
+     * The bot then hangs up and &lt;code&gt;TRANSFER_CALL_INITIATED&lt;/code&gt; is returned with
+     * &lt;code&gt;sip_response_code = 202&lt;/code&gt;. The call ends as &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description
+     * &lt;code&gt;Call transferred&lt;/code&gt;.&lt;/li&gt;
+     * &lt;li&gt;REFER refused (a final response &lt;code&gt;&amp;gt;= 400&lt;/code&gt;, or the &lt;code&gt;404&lt;/code&gt; sipfrag above): the call is KEPT
+     * with the bot, nothing is assigned to the shared status, and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+     * &lt;code&gt;description = reason=refer-rejected&lt;/code&gt; and &lt;code&gt;sip_response_code&lt;/code&gt; (&lt;code&gt;0&lt;/code&gt; when the SIP
+     * stack did not report the code, e.g. a declined REFER).&lt;/li&gt;
+     * &lt;li&gt;No answer within the timeout: the call is KEPT and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+     * &lt;code&gt;description = reason=refer-timeout&lt;/code&gt;. A late acceptance still ends the bot's leg.&lt;/li&gt;
+     * &lt;li&gt;The call ended while waiting: &lt;code&gt;NO_ONGOING_CALL&lt;/code&gt; is returned.&lt;/li&gt;
+     * &lt;/ul&gt;
+     * &lt;p&gt;A &lt;code&gt;202&lt;/code&gt; does not mean the target answered: when the dialplan's dial to the target then fails (busy, no
+     * answer, unreachable) the caller is lost. Validate targets up front, or use a WARM transfer.&lt;/p&gt;
+     * </pre>
+     *
+     * <code>uint32 outcome_timeout_ms = 3;</code>
+     * @return The outcomeTimeoutMs.
+     */
+    @java.lang.Override
+    public int getOutcomeTimeoutMs() {
+      return outcomeTimeoutMs_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3487,6 +7868,9 @@ java.lang.String defaultValue) {
           internalGetHeaders(),
           HeadersDefaultEntryHolder.defaultEntry,
           2);
+      if (outcomeTimeoutMs_ != 0) {
+        output.writeUInt32(3, outcomeTimeoutMs_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3509,6 +7893,10 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, headers__);
       }
+      if (outcomeTimeoutMs_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, outcomeTimeoutMs_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -3528,6 +7916,8 @@ java.lang.String defaultValue) {
           .equals(other.getTransferId())) return false;
       if (!internalGetHeaders().equals(
           other.internalGetHeaders())) return false;
+      if (getOutcomeTimeoutMs()
+          != other.getOutcomeTimeoutMs()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -3545,6 +7935,8 @@ java.lang.String defaultValue) {
         hash = (37 * hash) + HEADERS_FIELD_NUMBER;
         hash = (53 * hash) + internalGetHeaders().hashCode();
       }
+      hash = (37 * hash) + OUTCOME_TIMEOUT_MS_FIELD_NUMBER;
+      hash = (53 * hash) + getOutcomeTimeoutMs();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3704,6 +8096,7 @@ java.lang.String defaultValue) {
         bitField0_ = 0;
         transferId_ = "";
         internalGetMutableHeaders().clear();
+        outcomeTimeoutMs_ = 0;
         return this;
       }
 
@@ -3744,6 +8137,9 @@ java.lang.String defaultValue) {
           result.headers_ = internalGetHeaders();
           result.headers_.makeImmutable();
         }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.outcomeTimeoutMs_ = outcomeTimeoutMs_;
+        }
       }
 
       @java.lang.Override
@@ -3766,6 +8162,9 @@ java.lang.String defaultValue) {
         internalGetMutableHeaders().mergeFrom(
             other.internalGetHeaders());
         bitField0_ |= 0x00000002;
+        if (other.getOutcomeTimeoutMs() != 0) {
+          setOutcomeTimeoutMs(other.getOutcomeTimeoutMs());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -3806,6 +8205,11 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 24: {
+                outcomeTimeoutMs_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -3943,7 +8347,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3964,7 +8370,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3975,7 +8383,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -3993,7 +8403,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -4017,7 +8429,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -4040,7 +8454,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -4057,7 +8473,9 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * The headers to include when transferring the call
+       * The headers to include when transferring the call. They are sent on the REFER. Note that Asterisk (res_pjsip,
+       * measured on 18.6 and 22) does NOT forward headers of a REFER to the transfer target: the target receives the
+       * headers of the transferred caller's original INVITE. Hand headers to the target through the dialplan instead
        * </pre>
        *
        * <code>map&lt;string, string&gt; headers = 2;</code>
@@ -4067,6 +8485,107 @@ java.lang.String defaultValue) {
         internalGetMutableHeaders().getMutableMap()
             .putAll(values);
         bitField0_ |= 0x00000002;
+        return this;
+      }
+
+      private int outcomeTimeoutMs_ ;
+      /**
+       * <pre>
+       * &lt;p&gt;Optional. How long to wait, in milliseconds, for the SIP server's answer to the REFER before reporting the outcome.
+       * Clamped to 10000.&lt;/p&gt;
+       * &lt;p&gt;&lt;code&gt;0&lt;/code&gt; (default): legacy behaviour, unchanged: REFER, then an immediate hangup.&lt;/p&gt;
+       * &lt;p&gt;&lt;code&gt;&amp;gt; 0&lt;/code&gt;: the call is kept until the outcome is known:&lt;/p&gt;
+       * &lt;ul&gt;
+       * &lt;li&gt;REFER accepted (&lt;code&gt;202&lt;/code&gt;): the hangup is held for a short grace in which a terminal NOTIFY with a
+       * &lt;code&gt;404&lt;/code&gt; sipfrag (unknown target) still counts as a refusal; any other sipfrag, or none, means accepted.
+       * The bot then hangs up and &lt;code&gt;TRANSFER_CALL_INITIATED&lt;/code&gt; is returned with
+       * &lt;code&gt;sip_response_code = 202&lt;/code&gt;. The call ends as &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Call transferred&lt;/code&gt;.&lt;/li&gt;
+       * &lt;li&gt;REFER refused (a final response &lt;code&gt;&amp;gt;= 400&lt;/code&gt;, or the &lt;code&gt;404&lt;/code&gt; sipfrag above): the call is KEPT
+       * with the bot, nothing is assigned to the shared status, and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+       * &lt;code&gt;description = reason=refer-rejected&lt;/code&gt; and &lt;code&gt;sip_response_code&lt;/code&gt; (&lt;code&gt;0&lt;/code&gt; when the SIP
+       * stack did not report the code, e.g. a declined REFER).&lt;/li&gt;
+       * &lt;li&gt;No answer within the timeout: the call is KEPT and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+       * &lt;code&gt;description = reason=refer-timeout&lt;/code&gt;. A late acceptance still ends the bot's leg.&lt;/li&gt;
+       * &lt;li&gt;The call ended while waiting: &lt;code&gt;NO_ONGOING_CALL&lt;/code&gt; is returned.&lt;/li&gt;
+       * &lt;/ul&gt;
+       * &lt;p&gt;A &lt;code&gt;202&lt;/code&gt; does not mean the target answered: when the dialplan's dial to the target then fails (busy, no
+       * answer, unreachable) the caller is lost. Validate targets up front, or use a WARM transfer.&lt;/p&gt;
+       * </pre>
+       *
+       * <code>uint32 outcome_timeout_ms = 3;</code>
+       * @return The outcomeTimeoutMs.
+       */
+      @java.lang.Override
+      public int getOutcomeTimeoutMs() {
+        return outcomeTimeoutMs_;
+      }
+      /**
+       * <pre>
+       * &lt;p&gt;Optional. How long to wait, in milliseconds, for the SIP server's answer to the REFER before reporting the outcome.
+       * Clamped to 10000.&lt;/p&gt;
+       * &lt;p&gt;&lt;code&gt;0&lt;/code&gt; (default): legacy behaviour, unchanged: REFER, then an immediate hangup.&lt;/p&gt;
+       * &lt;p&gt;&lt;code&gt;&amp;gt; 0&lt;/code&gt;: the call is kept until the outcome is known:&lt;/p&gt;
+       * &lt;ul&gt;
+       * &lt;li&gt;REFER accepted (&lt;code&gt;202&lt;/code&gt;): the hangup is held for a short grace in which a terminal NOTIFY with a
+       * &lt;code&gt;404&lt;/code&gt; sipfrag (unknown target) still counts as a refusal; any other sipfrag, or none, means accepted.
+       * The bot then hangs up and &lt;code&gt;TRANSFER_CALL_INITIATED&lt;/code&gt; is returned with
+       * &lt;code&gt;sip_response_code = 202&lt;/code&gt;. The call ends as &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Call transferred&lt;/code&gt;.&lt;/li&gt;
+       * &lt;li&gt;REFER refused (a final response &lt;code&gt;&amp;gt;= 400&lt;/code&gt;, or the &lt;code&gt;404&lt;/code&gt; sipfrag above): the call is KEPT
+       * with the bot, nothing is assigned to the shared status, and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+       * &lt;code&gt;description = reason=refer-rejected&lt;/code&gt; and &lt;code&gt;sip_response_code&lt;/code&gt; (&lt;code&gt;0&lt;/code&gt; when the SIP
+       * stack did not report the code, e.g. a declined REFER).&lt;/li&gt;
+       * &lt;li&gt;No answer within the timeout: the call is KEPT and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+       * &lt;code&gt;description = reason=refer-timeout&lt;/code&gt;. A late acceptance still ends the bot's leg.&lt;/li&gt;
+       * &lt;li&gt;The call ended while waiting: &lt;code&gt;NO_ONGOING_CALL&lt;/code&gt; is returned.&lt;/li&gt;
+       * &lt;/ul&gt;
+       * &lt;p&gt;A &lt;code&gt;202&lt;/code&gt; does not mean the target answered: when the dialplan's dial to the target then fails (busy, no
+       * answer, unreachable) the caller is lost. Validate targets up front, or use a WARM transfer.&lt;/p&gt;
+       * </pre>
+       *
+       * <code>uint32 outcome_timeout_ms = 3;</code>
+       * @param value The outcomeTimeoutMs to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOutcomeTimeoutMs(int value) {
+
+        outcomeTimeoutMs_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;p&gt;Optional. How long to wait, in milliseconds, for the SIP server's answer to the REFER before reporting the outcome.
+       * Clamped to 10000.&lt;/p&gt;
+       * &lt;p&gt;&lt;code&gt;0&lt;/code&gt; (default): legacy behaviour, unchanged: REFER, then an immediate hangup.&lt;/p&gt;
+       * &lt;p&gt;&lt;code&gt;&amp;gt; 0&lt;/code&gt;: the call is kept until the outcome is known:&lt;/p&gt;
+       * &lt;ul&gt;
+       * &lt;li&gt;REFER accepted (&lt;code&gt;202&lt;/code&gt;): the hangup is held for a short grace in which a terminal NOTIFY with a
+       * &lt;code&gt;404&lt;/code&gt; sipfrag (unknown target) still counts as a refusal; any other sipfrag, or none, means accepted.
+       * The bot then hangs up and &lt;code&gt;TRANSFER_CALL_INITIATED&lt;/code&gt; is returned with
+       * &lt;code&gt;sip_response_code = 202&lt;/code&gt;. The call ends as &lt;code&gt;*_CALL_FINISHED&lt;/code&gt; with the description
+       * &lt;code&gt;Call transferred&lt;/code&gt;.&lt;/li&gt;
+       * &lt;li&gt;REFER refused (a final response &lt;code&gt;&amp;gt;= 400&lt;/code&gt;, or the &lt;code&gt;404&lt;/code&gt; sipfrag above): the call is KEPT
+       * with the bot, nothing is assigned to the shared status, and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+       * &lt;code&gt;description = reason=refer-rejected&lt;/code&gt; and &lt;code&gt;sip_response_code&lt;/code&gt; (&lt;code&gt;0&lt;/code&gt; when the SIP
+       * stack did not report the code, e.g. a declined REFER).&lt;/li&gt;
+       * &lt;li&gt;No answer within the timeout: the call is KEPT and &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; is returned with
+       * &lt;code&gt;description = reason=refer-timeout&lt;/code&gt;. A late acceptance still ends the bot's leg.&lt;/li&gt;
+       * &lt;li&gt;The call ended while waiting: &lt;code&gt;NO_ONGOING_CALL&lt;/code&gt; is returned.&lt;/li&gt;
+       * &lt;/ul&gt;
+       * &lt;p&gt;A &lt;code&gt;202&lt;/code&gt; does not mean the target answered: when the dialplan's dial to the target then fails (busy, no
+       * answer, unreachable) the caller is lost. Validate targets up front, or use a WARM transfer.&lt;/p&gt;
+       * </pre>
+       *
+       * <code>uint32 outcome_timeout_ms = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOutcomeTimeoutMs() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        outcomeTimeoutMs_ = 0;
+        onChanged();
         return this;
       }
 
@@ -4366,6 +8885,109 @@ java.lang.String defaultValue);
      */
     com.google.protobuf.ByteString
         getNluSessionNameBytes();
+
+    /**
+     * <pre>
+     * Result of the answering machine detection of the call. Set on
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+     * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+     * @return Whether the amdResult field is set.
+     */
+    boolean hasAmdResult();
+    /**
+     * <pre>
+     * Result of the answering machine detection of the call. Set on
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+     * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+     * @return The amdResult.
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult();
+    /**
+     * <pre>
+     * Result of the answering machine detection of the call. Set on
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+     * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+     */
+    ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder();
+
+    /**
+     * <pre>
+     * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+     * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+     * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+     * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+     * </pre>
+     *
+     * <code>string call_id = 12;</code>
+     * @return The callId.
+     */
+    java.lang.String getCallId();
+    /**
+     * <pre>
+     * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+     * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+     * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+     * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+     * </pre>
+     *
+     * <code>string call_id = 12;</code>
+     * @return The bytes for callId.
+     */
+    com.google.protobuf.ByteString
+        getCallIdBytes();
+
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt; while the bot is muted by an operator, a conference participant policy or a TALK take-over of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt; / &lt;code&gt;SipStreamCallAudio&lt;/code&gt;. Not the bot's own pipeline mute
+     * (&lt;code&gt;MICROPHONE_MUTED&lt;/code&gt;). Cleared when the call ends
+     * </pre>
+     *
+     * <code>bool bot_muted = 13;</code>
+     * @return The botMuted.
+     */
+    boolean getBotMuted();
+
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt; while the bot does not listen to the caller (see &lt;code&gt;bot_muted&lt;/code&gt; for who sets it). Cleared
+     * when the call ends
+     * </pre>
+     *
+     * <code>bool listening_paused = 14;</code>
+     * @return The listeningPaused.
+     */
+    boolean getListeningPaused();
+
+    /**
+     * <pre>
+     * Number of connected &lt;code&gt;SipStreamCallAudio&lt;/code&gt; streams of the ongoing call
+     * </pre>
+     *
+     * <code>int32 call_audio_streams = 15;</code>
+     * @return The callAudioStreams.
+     */
+    int getCallAudioStreams();
+
+    /**
+     * <pre>
+     * SIP response code of the last transfer attempt of the ongoing call (&lt;code&gt;202&lt;/code&gt; when accepted, the refusal code
+     * otherwise, &lt;code&gt;0&lt;/code&gt; when unknown). Call-scoped
+     * </pre>
+     *
+     * <code>int32 sip_response_code = 16;</code>
+     * @return The sipResponseCode.
+     */
+    int getSipResponseCode();
   }
   /**
    * <pre>
@@ -4401,6 +9023,7 @@ java.lang.String defaultValue);
       exceptionName_ = "";
       exceptionTraceback_ = "";
       nluSessionName_ = "";
+      callId_ = "";
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -4613,6 +9236,21 @@ java.lang.String defaultValue);
        * <code>NO_ONGOING_CALL = 21;</code>
        */
       NO_ONGOING_CALL(21),
+      /**
+       * <pre>
+       * Answering machine detection decided the callee of the ongoing outgoing call is not a person to talk to.
+       * NOT terminal: the call is still up when this status is set. &lt;code&gt;amd_result.verdict&lt;/code&gt; tells an
+       * answering machine, a fax, a network announcement, ... apart. The call then ends as
+       * &lt;code&gt;OUTGOING_CALL_FINISHED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt; and exactly one of the descriptions
+       * &lt;code&gt;Answering machine detected with hang up&lt;/code&gt;,
+       * &lt;code&gt;Answering machine detected with left voice message and hang up&lt;/code&gt;,
+       * &lt;code&gt;Answering machine detected, call ended by the answering machine&lt;/code&gt; or
+       * &lt;code&gt;Answering machine detected, call ended by the answering machine after leaving a voice message&lt;/code&gt;
+       * </pre>
+       *
+       * <code>OUTGOING_CALL_ANSWERING_MACHINE_DETECTED = 22;</code>
+       */
+      OUTGOING_CALL_ANSWERING_MACHINE_DETECTED(22),
       UNRECOGNIZED(-1),
       ;
 
@@ -4801,6 +9439,21 @@ java.lang.String defaultValue);
        * <code>NO_ONGOING_CALL = 21;</code>
        */
       public static final int NO_ONGOING_CALL_VALUE = 21;
+      /**
+       * <pre>
+       * Answering machine detection decided the callee of the ongoing outgoing call is not a person to talk to.
+       * NOT terminal: the call is still up when this status is set. &lt;code&gt;amd_result.verdict&lt;/code&gt; tells an
+       * answering machine, a fax, a network announcement, ... apart. The call then ends as
+       * &lt;code&gt;OUTGOING_CALL_FINISHED&lt;/code&gt; carrying &lt;code&gt;amd_result&lt;/code&gt; and exactly one of the descriptions
+       * &lt;code&gt;Answering machine detected with hang up&lt;/code&gt;,
+       * &lt;code&gt;Answering machine detected with left voice message and hang up&lt;/code&gt;,
+       * &lt;code&gt;Answering machine detected, call ended by the answering machine&lt;/code&gt; or
+       * &lt;code&gt;Answering machine detected, call ended by the answering machine after leaving a voice message&lt;/code&gt;
+       * </pre>
+       *
+       * <code>OUTGOING_CALL_ANSWERING_MACHINE_DETECTED = 22;</code>
+       */
+      public static final int OUTGOING_CALL_ANSWERING_MACHINE_DETECTED_VALUE = 22;
 
 
       public final int getNumber() {
@@ -4849,6 +9502,7 @@ java.lang.String defaultValue);
           case 19: return MICROPHONE_UNMUTED;
           case 20: return MICROPHONE_WAV_FILES_PLAYED;
           case 21: return NO_ONGOING_CALL;
+          case 22: return OUTGOING_CALL_ANSWERING_MACHINE_DETECTED;
           default: return null;
         }
       }
@@ -5396,6 +10050,167 @@ java.lang.String defaultValue) {
       }
     }
 
+    public static final int AMD_RESULT_FIELD_NUMBER = 11;
+    private ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult amdResult_;
+    /**
+     * <pre>
+     * Result of the answering machine detection of the call. Set on
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+     * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+     * @return Whether the amdResult field is set.
+     */
+    @java.lang.Override
+    public boolean hasAmdResult() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * Result of the answering machine detection of the call. Set on
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+     * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+     * @return The amdResult.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult() {
+      return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+    }
+    /**
+     * <pre>
+     * Result of the answering machine detection of the call. Set on
+     * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+     * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+     * </pre>
+     *
+     * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder() {
+      return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+    }
+
+    public static final int CALL_ID_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object callId_ = "";
+    /**
+     * <pre>
+     * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+     * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+     * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+     * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+     * </pre>
+     *
+     * <code>string call_id = 12;</code>
+     * @return The callId.
+     */
+    @java.lang.Override
+    public java.lang.String getCallId() {
+      java.lang.Object ref = callId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        callId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+     * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+     * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+     * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+     * </pre>
+     *
+     * <code>string call_id = 12;</code>
+     * @return The bytes for callId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getCallIdBytes() {
+      java.lang.Object ref = callId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        callId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BOT_MUTED_FIELD_NUMBER = 13;
+    private boolean botMuted_ = false;
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt; while the bot is muted by an operator, a conference participant policy or a TALK take-over of
+     * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt; / &lt;code&gt;SipStreamCallAudio&lt;/code&gt;. Not the bot's own pipeline mute
+     * (&lt;code&gt;MICROPHONE_MUTED&lt;/code&gt;). Cleared when the call ends
+     * </pre>
+     *
+     * <code>bool bot_muted = 13;</code>
+     * @return The botMuted.
+     */
+    @java.lang.Override
+    public boolean getBotMuted() {
+      return botMuted_;
+    }
+
+    public static final int LISTENING_PAUSED_FIELD_NUMBER = 14;
+    private boolean listeningPaused_ = false;
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt; while the bot does not listen to the caller (see &lt;code&gt;bot_muted&lt;/code&gt; for who sets it). Cleared
+     * when the call ends
+     * </pre>
+     *
+     * <code>bool listening_paused = 14;</code>
+     * @return The listeningPaused.
+     */
+    @java.lang.Override
+    public boolean getListeningPaused() {
+      return listeningPaused_;
+    }
+
+    public static final int CALL_AUDIO_STREAMS_FIELD_NUMBER = 15;
+    private int callAudioStreams_ = 0;
+    /**
+     * <pre>
+     * Number of connected &lt;code&gt;SipStreamCallAudio&lt;/code&gt; streams of the ongoing call
+     * </pre>
+     *
+     * <code>int32 call_audio_streams = 15;</code>
+     * @return The callAudioStreams.
+     */
+    @java.lang.Override
+    public int getCallAudioStreams() {
+      return callAudioStreams_;
+    }
+
+    public static final int SIP_RESPONSE_CODE_FIELD_NUMBER = 16;
+    private int sipResponseCode_ = 0;
+    /**
+     * <pre>
+     * SIP response code of the last transfer attempt of the ongoing call (&lt;code&gt;202&lt;/code&gt; when accepted, the refusal code
+     * otherwise, &lt;code&gt;0&lt;/code&gt; when unknown). Call-scoped
+     * </pre>
+     *
+     * <code>int32 sip_response_code = 16;</code>
+     * @return The sipResponseCode.
+     */
+    @java.lang.Override
+    public int getSipResponseCode() {
+      return sipResponseCode_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -5442,6 +10257,24 @@ java.lang.String defaultValue) {
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(nluSessionName_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 10, nluSessionName_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        output.writeMessage(11, getAmdResult());
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(callId_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 12, callId_);
+      }
+      if (botMuted_ != false) {
+        output.writeBool(13, botMuted_);
+      }
+      if (listeningPaused_ != false) {
+        output.writeBool(14, listeningPaused_);
+      }
+      if (callAudioStreams_ != 0) {
+        output.writeInt32(15, callAudioStreams_);
+      }
+      if (sipResponseCode_ != 0) {
+        output.writeInt32(16, sipResponseCode_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5491,6 +10324,29 @@ java.lang.String defaultValue) {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(nluSessionName_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(10, nluSessionName_);
       }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getAmdResult());
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(callId_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(12, callId_);
+      }
+      if (botMuted_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, botMuted_);
+      }
+      if (listeningPaused_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(14, listeningPaused_);
+      }
+      if (callAudioStreams_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(15, callAudioStreams_);
+      }
+      if (sipResponseCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(16, sipResponseCode_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -5528,6 +10384,21 @@ java.lang.String defaultValue) {
           .equals(other.getExceptionTraceback())) return false;
       if (!getNluSessionName()
           .equals(other.getNluSessionName())) return false;
+      if (hasAmdResult() != other.hasAmdResult()) return false;
+      if (hasAmdResult()) {
+        if (!getAmdResult()
+            .equals(other.getAmdResult())) return false;
+      }
+      if (!getCallId()
+          .equals(other.getCallId())) return false;
+      if (getBotMuted()
+          != other.getBotMuted()) return false;
+      if (getListeningPaused()
+          != other.getListeningPaused()) return false;
+      if (getCallAudioStreams()
+          != other.getCallAudioStreams()) return false;
+      if (getSipResponseCode()
+          != other.getSipResponseCode()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -5563,6 +10434,22 @@ java.lang.String defaultValue) {
       hash = (53 * hash) + getExceptionTraceback().hashCode();
       hash = (37 * hash) + NLU_SESSION_NAME_FIELD_NUMBER;
       hash = (53 * hash) + getNluSessionName().hashCode();
+      if (hasAmdResult()) {
+        hash = (37 * hash) + AMD_RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getAmdResult().hashCode();
+      }
+      hash = (37 * hash) + CALL_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getCallId().hashCode();
+      hash = (37 * hash) + BOT_MUTED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getBotMuted());
+      hash = (37 * hash) + LISTENING_PAUSED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getListeningPaused());
+      hash = (37 * hash) + CALL_AUDIO_STREAMS_FIELD_NUMBER;
+      hash = (53 * hash) + getCallAudioStreams();
+      hash = (37 * hash) + SIP_RESPONSE_CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getSipResponseCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5720,6 +10607,7 @@ java.lang.String defaultValue) {
         if (com.google.protobuf.GeneratedMessage
                 .alwaysUseFieldBuilders) {
           internalGetTimestampFieldBuilder();
+          internalGetAmdResultFieldBuilder();
         }
       }
       @java.lang.Override
@@ -5740,6 +10628,16 @@ java.lang.String defaultValue) {
         exceptionName_ = "";
         exceptionTraceback_ = "";
         nluSessionName_ = "";
+        amdResult_ = null;
+        if (amdResultBuilder_ != null) {
+          amdResultBuilder_.dispose();
+          amdResultBuilder_ = null;
+        }
+        callId_ = "";
+        botMuted_ = false;
+        listeningPaused_ = false;
+        callAudioStreams_ = 0;
+        sipResponseCode_ = 0;
         return this;
       }
 
@@ -5808,6 +10706,27 @@ java.lang.String defaultValue) {
         if (((from_bitField0_ & 0x00000200) != 0)) {
           result.nluSessionName_ = nluSessionName_;
         }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.amdResult_ = amdResultBuilder_ == null
+              ? amdResult_
+              : amdResultBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.callId_ = callId_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.botMuted_ = botMuted_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          result.listeningPaused_ = listeningPaused_;
+        }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          result.callAudioStreams_ = callAudioStreams_;
+        }
+        if (((from_bitField0_ & 0x00008000) != 0)) {
+          result.sipResponseCode_ = sipResponseCode_;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -5866,6 +10785,26 @@ java.lang.String defaultValue) {
           nluSessionName_ = other.nluSessionName_;
           bitField0_ |= 0x00000200;
           onChanged();
+        }
+        if (other.hasAmdResult()) {
+          mergeAmdResult(other.getAmdResult());
+        }
+        if (!other.getCallId().isEmpty()) {
+          callId_ = other.callId_;
+          bitField0_ |= 0x00000800;
+          onChanged();
+        }
+        if (other.getBotMuted() != false) {
+          setBotMuted(other.getBotMuted());
+        }
+        if (other.getListeningPaused() != false) {
+          setListeningPaused(other.getListeningPaused());
+        }
+        if (other.getCallAudioStreams() != 0) {
+          setCallAudioStreams(other.getCallAudioStreams());
+        }
+        if (other.getSipResponseCode() != 0) {
+          setSipResponseCode(other.getSipResponseCode());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -5949,6 +10888,38 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x00000200;
                 break;
               } // case 82
+              case 90: {
+                input.readMessage(
+                    internalGetAmdResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 90
+              case 98: {
+                callId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000800;
+                break;
+              } // case 98
+              case 104: {
+                botMuted_ = input.readBool();
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 104
+              case 112: {
+                listeningPaused_ = input.readBool();
+                bitField0_ |= 0x00002000;
+                break;
+              } // case 112
+              case 120: {
+                callAudioStreams_ = input.readInt32();
+                bitField0_ |= 0x00004000;
+                break;
+              } // case 120
+              case 128: {
+                sipResponseCode_ = input.readInt32();
+                bitField0_ |= 0x00008000;
+                break;
+              } // case 128
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6998,6 +11969,476 @@ java.lang.String defaultValue) {
         return this;
       }
 
+      private ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult amdResult_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder> amdResultBuilder_;
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       * @return Whether the amdResult field is set.
+       */
+      public boolean hasAmdResult() {
+        return ((bitField0_ & 0x00000400) != 0);
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       * @return The amdResult.
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult getAmdResult() {
+        if (amdResultBuilder_ == null) {
+          return amdResult_ == null ? ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+        } else {
+          return amdResultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      public Builder setAmdResult(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult value) {
+        if (amdResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          amdResult_ = value;
+        } else {
+          amdResultBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      public Builder setAmdResult(
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder builderForValue) {
+        if (amdResultBuilder_ == null) {
+          amdResult_ = builderForValue.build();
+        } else {
+          amdResultBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      public Builder mergeAmdResult(ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult value) {
+        if (amdResultBuilder_ == null) {
+          if (((bitField0_ & 0x00000400) != 0) &&
+            amdResult_ != null &&
+            amdResult_ != ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance()) {
+            getAmdResultBuilder().mergeFrom(value);
+          } else {
+            amdResult_ = value;
+          }
+        } else {
+          amdResultBuilder_.mergeFrom(value);
+        }
+        if (amdResult_ != null) {
+          bitField0_ |= 0x00000400;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      public Builder clearAmdResult() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        amdResult_ = null;
+        if (amdResultBuilder_ != null) {
+          amdResultBuilder_.dispose();
+          amdResultBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder getAmdResultBuilder() {
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return internalGetAmdResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      public ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder getAmdResultOrBuilder() {
+        if (amdResultBuilder_ != null) {
+          return amdResultBuilder_.getMessageOrBuilder();
+        } else {
+          return amdResult_ == null ?
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.getDefaultInstance() : amdResult_;
+        }
+      }
+      /**
+       * <pre>
+       * Result of the answering machine detection of the call. Set on
+       * &lt;code&gt;OUTGOING_CALL_ANSWERING_MACHINE_DETECTED&lt;/code&gt; and on the terminal status of every call on which answering machine detection ran, including a
+       * &lt;code&gt;HUMAN&lt;/code&gt; verdict; unset otherwise
+       * </pre>
+       *
+       * <code>.ondewo.sip.AnsweringMachineDetectionResult amd_result = 11;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder> 
+          internalGetAmdResultFieldBuilder() {
+        if (amdResultBuilder_ == null) {
+          amdResultBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResult.Builder, ondewo.sip.SipOuterClass.AnsweringMachineDetectionResultOrBuilder>(
+                  getAmdResult(),
+                  getParentForChildren(),
+                  isClean());
+          amdResult_ = null;
+        }
+        return amdResultBuilder_;
+      }
+
+      private java.lang.Object callId_ = "";
+      /**
+       * <pre>
+       * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+       * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+       * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+       * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+       * </pre>
+       *
+       * <code>string call_id = 12;</code>
+       * @return The callId.
+       */
+      public java.lang.String getCallId() {
+        java.lang.Object ref = callId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          callId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+       * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+       * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+       * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+       * </pre>
+       *
+       * <code>string call_id = 12;</code>
+       * @return The bytes for callId.
+       */
+      public com.google.protobuf.ByteString
+          getCallIdBytes() {
+        java.lang.Object ref = callId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          callId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+       * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+       * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+       * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+       * </pre>
+       *
+       * <code>string call_id = 12;</code>
+       * @param value The callId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCallId(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        callId_ = value;
+        bitField0_ |= 0x00000800;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+       * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+       * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+       * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+       * </pre>
+       *
+       * <code>string call_id = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCallId() {
+        callId_ = getDefaultInstance().getCallId();
+        bitField0_ = (bitField0_ & ~0x00000800);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the ongoing call, minted per call: the value of the &lt;code&gt;X-ondewo-vtsi-caller-call-id&lt;/code&gt; header of
+       * an outgoing call when present, otherwise a random UUID. Empty when no call is ongoing. Set on every status of the
+       * call, including the entries of &lt;code&gt;SipGetSipStatusHistory&lt;/code&gt;. Clients send it back as the
+       * &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; metadatum to scope a request to this call
+       * </pre>
+       *
+       * <code>string call_id = 12;</code>
+       * @param value The bytes for callId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCallIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        callId_ = value;
+        bitField0_ |= 0x00000800;
+        onChanged();
+        return this;
+      }
+
+      private boolean botMuted_ ;
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt; while the bot is muted by an operator, a conference participant policy or a TALK take-over of
+       * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt; / &lt;code&gt;SipStreamCallAudio&lt;/code&gt;. Not the bot's own pipeline mute
+       * (&lt;code&gt;MICROPHONE_MUTED&lt;/code&gt;). Cleared when the call ends
+       * </pre>
+       *
+       * <code>bool bot_muted = 13;</code>
+       * @return The botMuted.
+       */
+      @java.lang.Override
+      public boolean getBotMuted() {
+        return botMuted_;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt; while the bot is muted by an operator, a conference participant policy or a TALK take-over of
+       * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt; / &lt;code&gt;SipStreamCallAudio&lt;/code&gt;. Not the bot's own pipeline mute
+       * (&lt;code&gt;MICROPHONE_MUTED&lt;/code&gt;). Cleared when the call ends
+       * </pre>
+       *
+       * <code>bool bot_muted = 13;</code>
+       * @param value The botMuted to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBotMuted(boolean value) {
+
+        botMuted_ = value;
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt; while the bot is muted by an operator, a conference participant policy or a TALK take-over of
+       * &lt;code&gt;SipSetCallMediaControl&lt;/code&gt; / &lt;code&gt;SipStreamCallAudio&lt;/code&gt;. Not the bot's own pipeline mute
+       * (&lt;code&gt;MICROPHONE_MUTED&lt;/code&gt;). Cleared when the call ends
+       * </pre>
+       *
+       * <code>bool bot_muted = 13;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBotMuted() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        botMuted_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean listeningPaused_ ;
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt; while the bot does not listen to the caller (see &lt;code&gt;bot_muted&lt;/code&gt; for who sets it). Cleared
+       * when the call ends
+       * </pre>
+       *
+       * <code>bool listening_paused = 14;</code>
+       * @return The listeningPaused.
+       */
+      @java.lang.Override
+      public boolean getListeningPaused() {
+        return listeningPaused_;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt; while the bot does not listen to the caller (see &lt;code&gt;bot_muted&lt;/code&gt; for who sets it). Cleared
+       * when the call ends
+       * </pre>
+       *
+       * <code>bool listening_paused = 14;</code>
+       * @param value The listeningPaused to set.
+       * @return This builder for chaining.
+       */
+      public Builder setListeningPaused(boolean value) {
+
+        listeningPaused_ = value;
+        bitField0_ |= 0x00002000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt; while the bot does not listen to the caller (see &lt;code&gt;bot_muted&lt;/code&gt; for who sets it). Cleared
+       * when the call ends
+       * </pre>
+       *
+       * <code>bool listening_paused = 14;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearListeningPaused() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        listeningPaused_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int callAudioStreams_ ;
+      /**
+       * <pre>
+       * Number of connected &lt;code&gt;SipStreamCallAudio&lt;/code&gt; streams of the ongoing call
+       * </pre>
+       *
+       * <code>int32 call_audio_streams = 15;</code>
+       * @return The callAudioStreams.
+       */
+      @java.lang.Override
+      public int getCallAudioStreams() {
+        return callAudioStreams_;
+      }
+      /**
+       * <pre>
+       * Number of connected &lt;code&gt;SipStreamCallAudio&lt;/code&gt; streams of the ongoing call
+       * </pre>
+       *
+       * <code>int32 call_audio_streams = 15;</code>
+       * @param value The callAudioStreams to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCallAudioStreams(int value) {
+
+        callAudioStreams_ = value;
+        bitField0_ |= 0x00004000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Number of connected &lt;code&gt;SipStreamCallAudio&lt;/code&gt; streams of the ongoing call
+       * </pre>
+       *
+       * <code>int32 call_audio_streams = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCallAudioStreams() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        callAudioStreams_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int sipResponseCode_ ;
+      /**
+       * <pre>
+       * SIP response code of the last transfer attempt of the ongoing call (&lt;code&gt;202&lt;/code&gt; when accepted, the refusal code
+       * otherwise, &lt;code&gt;0&lt;/code&gt; when unknown). Call-scoped
+       * </pre>
+       *
+       * <code>int32 sip_response_code = 16;</code>
+       * @return The sipResponseCode.
+       */
+      @java.lang.Override
+      public int getSipResponseCode() {
+        return sipResponseCode_;
+      }
+      /**
+       * <pre>
+       * SIP response code of the last transfer attempt of the ongoing call (&lt;code&gt;202&lt;/code&gt; when accepted, the refusal code
+       * otherwise, &lt;code&gt;0&lt;/code&gt; when unknown). Call-scoped
+       * </pre>
+       *
+       * <code>int32 sip_response_code = 16;</code>
+       * @param value The sipResponseCode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSipResponseCode(int value) {
+
+        sipResponseCode_ = value;
+        bitField0_ |= 0x00008000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * SIP response code of the last transfer attempt of the ongoing call (&lt;code&gt;202&lt;/code&gt; when accepted, the refusal code
+       * otherwise, &lt;code&gt;0&lt;/code&gt; when unknown). Call-scoped
+       * </pre>
+       *
+       * <code>int32 sip_response_code = 16;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSipResponseCode() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        sipResponseCode_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:ondewo.sip.SipStatus)
     }
 
@@ -7909,6 +13350,7690 @@ java.lang.String defaultValue) {
 
   }
 
+  public interface SipSetCallMediaControlRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipSetCallMediaControlRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+     * @return The enum numeric value on the wire for botVoice.
+     */
+    int getBotVoiceValue();
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+     * @return The botVoice.
+     */
+    ondewo.sip.SipOuterClass.MediaControlSetting getBotVoice();
+
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+     * listening is paused
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+     * @return The enum numeric value on the wire for botListening.
+     */
+    int getBotListeningValue();
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+     * listening is paused
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+     * @return The botListening.
+     */
+    ondewo.sip.SipOuterClass.MediaControlSetting getBotListening();
+
+    /**
+     * <pre>
+     * Owner whose hold is set
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+     * @return The enum numeric value on the wire for owner.
+     */
+    int getOwnerValue();
+    /**
+     * <pre>
+     * Owner whose hold is set
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+     * @return The owner.
+     */
+    ondewo.sip.SipOuterClass.MediaControlOwner getOwner();
+
+    /**
+     * <pre>
+     * &lt;p&gt;Only for &lt;code&gt;MEDIA_CONTROL_OWNER_PARTICIPANT&lt;/code&gt;, ignored for every other owner: whether at least one
+     * invited participant is ringing or joined. Every participant request carries the full value, so the request that
+     * reports the last participant gone sends &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;While participants are present (this flag, or a mute or pause held by the participant owner)
+     * &lt;code&gt;SipTransferCall&lt;/code&gt; is refused with &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt;, because a REFER
+     * into a conference bridge transfers every party in it. A request that would mark participants present while a
+     * transfer of the call is in flight is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt; and changes
+     * nothing. Cleared when the call ends&lt;/p&gt;
+     * </pre>
+     *
+     * <code>bool participants_present = 4;</code>
+     * @return The participantsPresent.
+     */
+    boolean getParticipantsPresent();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Request of &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipSetCallMediaControlRequest}
+   */
+  public static final class SipSetCallMediaControlRequest extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipSetCallMediaControlRequest)
+      SipSetCallMediaControlRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipSetCallMediaControlRequest.class.getName());
+    }
+    // Use SipSetCallMediaControlRequest.newBuilder() to construct.
+    private SipSetCallMediaControlRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipSetCallMediaControlRequest() {
+      botVoice_ = 0;
+      botListening_ = 0;
+      owner_ = 0;
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipSetCallMediaControlRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipSetCallMediaControlRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.class, ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.Builder.class);
+    }
+
+    public static final int BOT_VOICE_FIELD_NUMBER = 1;
+    private int botVoice_ = 0;
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+     * @return The enum numeric value on the wire for botVoice.
+     */
+    @java.lang.Override public int getBotVoiceValue() {
+      return botVoice_;
+    }
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+     * @return The botVoice.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.MediaControlSetting getBotVoice() {
+      ondewo.sip.SipOuterClass.MediaControlSetting result = ondewo.sip.SipOuterClass.MediaControlSetting.forNumber(botVoice_);
+      return result == null ? ondewo.sip.SipOuterClass.MediaControlSetting.UNRECOGNIZED : result;
+    }
+
+    public static final int BOT_LISTENING_FIELD_NUMBER = 2;
+    private int botListening_ = 0;
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+     * listening is paused
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+     * @return The enum numeric value on the wire for botListening.
+     */
+    @java.lang.Override public int getBotListeningValue() {
+      return botListening_;
+    }
+    /**
+     * <pre>
+     * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+     * listening is paused
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+     * @return The botListening.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.MediaControlSetting getBotListening() {
+      ondewo.sip.SipOuterClass.MediaControlSetting result = ondewo.sip.SipOuterClass.MediaControlSetting.forNumber(botListening_);
+      return result == null ? ondewo.sip.SipOuterClass.MediaControlSetting.UNRECOGNIZED : result;
+    }
+
+    public static final int OWNER_FIELD_NUMBER = 3;
+    private int owner_ = 0;
+    /**
+     * <pre>
+     * Owner whose hold is set
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+     * @return The enum numeric value on the wire for owner.
+     */
+    @java.lang.Override public int getOwnerValue() {
+      return owner_;
+    }
+    /**
+     * <pre>
+     * Owner whose hold is set
+     * </pre>
+     *
+     * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+     * @return The owner.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.MediaControlOwner getOwner() {
+      ondewo.sip.SipOuterClass.MediaControlOwner result = ondewo.sip.SipOuterClass.MediaControlOwner.forNumber(owner_);
+      return result == null ? ondewo.sip.SipOuterClass.MediaControlOwner.UNRECOGNIZED : result;
+    }
+
+    public static final int PARTICIPANTS_PRESENT_FIELD_NUMBER = 4;
+    private boolean participantsPresent_ = false;
+    /**
+     * <pre>
+     * &lt;p&gt;Only for &lt;code&gt;MEDIA_CONTROL_OWNER_PARTICIPANT&lt;/code&gt;, ignored for every other owner: whether at least one
+     * invited participant is ringing or joined. Every participant request carries the full value, so the request that
+     * reports the last participant gone sends &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+     * &lt;p&gt;While participants are present (this flag, or a mute or pause held by the participant owner)
+     * &lt;code&gt;SipTransferCall&lt;/code&gt; is refused with &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt;, because a REFER
+     * into a conference bridge transfers every party in it. A request that would mark participants present while a
+     * transfer of the call is in flight is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt; and changes
+     * nothing. Cleared when the call ends&lt;/p&gt;
+     * </pre>
+     *
+     * <code>bool participants_present = 4;</code>
+     * @return The participantsPresent.
+     */
+    @java.lang.Override
+    public boolean getParticipantsPresent() {
+      return participantsPresent_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (botVoice_ != ondewo.sip.SipOuterClass.MediaControlSetting.MEDIA_CONTROL_SETTING_UNCHANGED.getNumber()) {
+        output.writeEnum(1, botVoice_);
+      }
+      if (botListening_ != ondewo.sip.SipOuterClass.MediaControlSetting.MEDIA_CONTROL_SETTING_UNCHANGED.getNumber()) {
+        output.writeEnum(2, botListening_);
+      }
+      if (owner_ != ondewo.sip.SipOuterClass.MediaControlOwner.MEDIA_CONTROL_OWNER_UNSPECIFIED.getNumber()) {
+        output.writeEnum(3, owner_);
+      }
+      if (participantsPresent_ != false) {
+        output.writeBool(4, participantsPresent_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (botVoice_ != ondewo.sip.SipOuterClass.MediaControlSetting.MEDIA_CONTROL_SETTING_UNCHANGED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, botVoice_);
+      }
+      if (botListening_ != ondewo.sip.SipOuterClass.MediaControlSetting.MEDIA_CONTROL_SETTING_UNCHANGED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, botListening_);
+      }
+      if (owner_ != ondewo.sip.SipOuterClass.MediaControlOwner.MEDIA_CONTROL_OWNER_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, owner_);
+      }
+      if (participantsPresent_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, participantsPresent_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest other = (ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest) obj;
+
+      if (botVoice_ != other.botVoice_) return false;
+      if (botListening_ != other.botListening_) return false;
+      if (owner_ != other.owner_) return false;
+      if (getParticipantsPresent()
+          != other.getParticipantsPresent()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BOT_VOICE_FIELD_NUMBER;
+      hash = (53 * hash) + botVoice_;
+      hash = (37 * hash) + BOT_LISTENING_FIELD_NUMBER;
+      hash = (53 * hash) + botListening_;
+      hash = (37 * hash) + OWNER_FIELD_NUMBER;
+      hash = (53 * hash) + owner_;
+      hash = (37 * hash) + PARTICIPANTS_PRESENT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getParticipantsPresent());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Request of &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipSetCallMediaControlRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipSetCallMediaControlRequest)
+        ondewo.sip.SipOuterClass.SipSetCallMediaControlRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipSetCallMediaControlRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipSetCallMediaControlRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.class, ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        botVoice_ = 0;
+        botListening_ = 0;
+        owner_ = 0;
+        participantsPresent_ = false;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipSetCallMediaControlRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest build() {
+        ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest buildPartial() {
+        ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest result = new ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.botVoice_ = botVoice_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.botListening_ = botListening_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.owner_ = owner_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.participantsPresent_ = participantsPresent_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest other) {
+        if (other == ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest.getDefaultInstance()) return this;
+        if (other.botVoice_ != 0) {
+          setBotVoiceValue(other.getBotVoiceValue());
+        }
+        if (other.botListening_ != 0) {
+          setBotListeningValue(other.getBotListeningValue());
+        }
+        if (other.owner_ != 0) {
+          setOwnerValue(other.getOwnerValue());
+        }
+        if (other.getParticipantsPresent() != false) {
+          setParticipantsPresent(other.getParticipantsPresent());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                botVoice_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                botListening_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                owner_ = input.readEnum();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                participantsPresent_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int botVoice_ = 0;
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+       * @return The enum numeric value on the wire for botVoice.
+       */
+      @java.lang.Override public int getBotVoiceValue() {
+        return botVoice_;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+       * @param value The enum numeric value on the wire for botVoice to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBotVoiceValue(int value) {
+        botVoice_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+       * @return The botVoice.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.MediaControlSetting getBotVoice() {
+        ondewo.sip.SipOuterClass.MediaControlSetting result = ondewo.sip.SipOuterClass.MediaControlSetting.forNumber(botVoice_);
+        return result == null ? ondewo.sip.SipOuterClass.MediaControlSetting.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+       * @param value The botVoice to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBotVoice(ondewo.sip.SipOuterClass.MediaControlSetting value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000001;
+        botVoice_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: the bot speaks. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;: the bot is muted
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_voice = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBotVoice() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        botVoice_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int botListening_ = 0;
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+       * listening is paused
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+       * @return The enum numeric value on the wire for botListening.
+       */
+      @java.lang.Override public int getBotListeningValue() {
+        return botListening_;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+       * listening is paused
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+       * @param value The enum numeric value on the wire for botListening to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBotListeningValue(int value) {
+        botListening_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+       * listening is paused
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+       * @return The botListening.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.MediaControlSetting getBotListening() {
+        ondewo.sip.SipOuterClass.MediaControlSetting result = ondewo.sip.SipOuterClass.MediaControlSetting.forNumber(botListening_);
+        return result == null ? ondewo.sip.SipOuterClass.MediaControlSetting.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+       * listening is paused
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+       * @param value The botListening to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBotListening(ondewo.sip.SipOuterClass.MediaControlSetting value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000002;
+        botListening_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;MEDIA_CONTROL_SETTING_ON&lt;/code&gt;: caller audio reaches speech-to-text. &lt;code&gt;MEDIA_CONTROL_SETTING_OFF&lt;/code&gt;:
+       * listening is paused
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlSetting bot_listening = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBotListening() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        botListening_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int owner_ = 0;
+      /**
+       * <pre>
+       * Owner whose hold is set
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+       * @return The enum numeric value on the wire for owner.
+       */
+      @java.lang.Override public int getOwnerValue() {
+        return owner_;
+      }
+      /**
+       * <pre>
+       * Owner whose hold is set
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+       * @param value The enum numeric value on the wire for owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwnerValue(int value) {
+        owner_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Owner whose hold is set
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+       * @return The owner.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.MediaControlOwner getOwner() {
+        ondewo.sip.SipOuterClass.MediaControlOwner result = ondewo.sip.SipOuterClass.MediaControlOwner.forNumber(owner_);
+        return result == null ? ondewo.sip.SipOuterClass.MediaControlOwner.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Owner whose hold is set
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+       * @param value The owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwner(ondewo.sip.SipOuterClass.MediaControlOwner value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000004;
+        owner_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Owner whose hold is set
+       * </pre>
+       *
+       * <code>.ondewo.sip.MediaControlOwner owner = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOwner() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        owner_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean participantsPresent_ ;
+      /**
+       * <pre>
+       * &lt;p&gt;Only for &lt;code&gt;MEDIA_CONTROL_OWNER_PARTICIPANT&lt;/code&gt;, ignored for every other owner: whether at least one
+       * invited participant is ringing or joined. Every participant request carries the full value, so the request that
+       * reports the last participant gone sends &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+       * &lt;p&gt;While participants are present (this flag, or a mute or pause held by the participant owner)
+       * &lt;code&gt;SipTransferCall&lt;/code&gt; is refused with &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt;, because a REFER
+       * into a conference bridge transfers every party in it. A request that would mark participants present while a
+       * transfer of the call is in flight is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt; and changes
+       * nothing. Cleared when the call ends&lt;/p&gt;
+       * </pre>
+       *
+       * <code>bool participants_present = 4;</code>
+       * @return The participantsPresent.
+       */
+      @java.lang.Override
+      public boolean getParticipantsPresent() {
+        return participantsPresent_;
+      }
+      /**
+       * <pre>
+       * &lt;p&gt;Only for &lt;code&gt;MEDIA_CONTROL_OWNER_PARTICIPANT&lt;/code&gt;, ignored for every other owner: whether at least one
+       * invited participant is ringing or joined. Every participant request carries the full value, so the request that
+       * reports the last participant gone sends &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+       * &lt;p&gt;While participants are present (this flag, or a mute or pause held by the participant owner)
+       * &lt;code&gt;SipTransferCall&lt;/code&gt; is refused with &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt;, because a REFER
+       * into a conference bridge transfers every party in it. A request that would mark participants present while a
+       * transfer of the call is in flight is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt; and changes
+       * nothing. Cleared when the call ends&lt;/p&gt;
+       * </pre>
+       *
+       * <code>bool participants_present = 4;</code>
+       * @param value The participantsPresent to set.
+       * @return This builder for chaining.
+       */
+      public Builder setParticipantsPresent(boolean value) {
+
+        participantsPresent_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;p&gt;Only for &lt;code&gt;MEDIA_CONTROL_OWNER_PARTICIPANT&lt;/code&gt;, ignored for every other owner: whether at least one
+       * invited participant is ringing or joined. Every participant request carries the full value, so the request that
+       * reports the last participant gone sends &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+       * &lt;p&gt;While participants are present (this flag, or a mute or pause held by the participant owner)
+       * &lt;code&gt;SipTransferCall&lt;/code&gt; is refused with &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt;, because a REFER
+       * into a conference bridge transfers every party in it. A request that would mark participants present while a
+       * transfer of the call is in flight is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt; and changes
+       * nothing. Cleared when the call ends&lt;/p&gt;
+       * </pre>
+       *
+       * <code>bool participants_present = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearParticipantsPresent() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        participantsPresent_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipSetCallMediaControlRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipSetCallMediaControlRequest)
+    private static final ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipSetCallMediaControlRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SipSetCallMediaControlRequest>() {
+      @java.lang.Override
+      public SipSetCallMediaControlRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipSetCallMediaControlRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipSetCallMediaControlRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioConfigOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioConfig)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Mode of the stream. Unspecified means LISTEN
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+     * @return The enum numeric value on the wire for mode.
+     */
+    int getModeValue();
+    /**
+     * <pre>
+     * Mode of the stream. Unspecified means LISTEN
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+     * @return The mode.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioMode getMode();
+
+    /**
+     * <pre>
+     * Sample rate in Hz of the audio in both directions: &lt;code&gt;8000&lt;/code&gt; or &lt;code&gt;16000&lt;/code&gt;. &lt;code&gt;0&lt;/code&gt; means
+     * &lt;code&gt;16000&lt;/code&gt;
+     * </pre>
+     *
+     * <code>int32 sample_rate_hz = 2;</code>
+     * @return The sampleRateHz.
+     */
+    int getSampleRateHz();
+
+    /**
+     * <pre>
+     * Frame length in milliseconds. Only &lt;code&gt;20&lt;/code&gt; is supported; &lt;code&gt;0&lt;/code&gt; means &lt;code&gt;20&lt;/code&gt;
+     * </pre>
+     *
+     * <code>int32 frame_ms = 3;</code>
+     * @return The frameMs.
+     */
+    int getFrameMs();
+
+    /**
+     * <pre>
+     * REQUIRED for TALK: the bot is muted and does not listen while the stream is connected. Released when the stream
+     * ends
+     * </pre>
+     *
+     * <code>bool take_over = 4;</code>
+     * @return The takeOver.
+     */
+    boolean getTakeOver();
+
+    /**
+     * <pre>
+     * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+     * </pre>
+     *
+     * <code>string stream_id = 5;</code>
+     * @return The streamId.
+     */
+    java.lang.String getStreamId();
+    /**
+     * <pre>
+     * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+     * </pre>
+     *
+     * <code>string stream_id = 5;</code>
+     * @return The bytes for streamId.
+     */
+    com.google.protobuf.ByteString
+        getStreamIdBytes();
+
+    /**
+     * <pre>
+     * Maximum duration of the stream in seconds. &lt;code&gt;0&lt;/code&gt; means the server default (3600)
+     * </pre>
+     *
+     * <code>int32 max_duration_s = 6;</code>
+     * @return The maxDurationS.
+     */
+    int getMaxDurationS();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Configuration of a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream. Must be the first request of the stream&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioConfig}
+   */
+  public static final class SipCallAudioConfig extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioConfig)
+      SipCallAudioConfigOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioConfig.class.getName());
+    }
+    // Use SipCallAudioConfig.newBuilder() to construct.
+    private SipCallAudioConfig(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioConfig() {
+      mode_ = 0;
+      streamId_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioConfig_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioConfig_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioConfig.class, ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder.class);
+    }
+
+    public static final int MODE_FIELD_NUMBER = 1;
+    private int mode_ = 0;
+    /**
+     * <pre>
+     * Mode of the stream. Unspecified means LISTEN
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+     * @return The enum numeric value on the wire for mode.
+     */
+    @java.lang.Override public int getModeValue() {
+      return mode_;
+    }
+    /**
+     * <pre>
+     * Mode of the stream. Unspecified means LISTEN
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+     * @return The mode.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.SipCallAudioMode getMode() {
+      ondewo.sip.SipOuterClass.SipCallAudioMode result = ondewo.sip.SipOuterClass.SipCallAudioMode.forNumber(mode_);
+      return result == null ? ondewo.sip.SipOuterClass.SipCallAudioMode.UNRECOGNIZED : result;
+    }
+
+    public static final int SAMPLE_RATE_HZ_FIELD_NUMBER = 2;
+    private int sampleRateHz_ = 0;
+    /**
+     * <pre>
+     * Sample rate in Hz of the audio in both directions: &lt;code&gt;8000&lt;/code&gt; or &lt;code&gt;16000&lt;/code&gt;. &lt;code&gt;0&lt;/code&gt; means
+     * &lt;code&gt;16000&lt;/code&gt;
+     * </pre>
+     *
+     * <code>int32 sample_rate_hz = 2;</code>
+     * @return The sampleRateHz.
+     */
+    @java.lang.Override
+    public int getSampleRateHz() {
+      return sampleRateHz_;
+    }
+
+    public static final int FRAME_MS_FIELD_NUMBER = 3;
+    private int frameMs_ = 0;
+    /**
+     * <pre>
+     * Frame length in milliseconds. Only &lt;code&gt;20&lt;/code&gt; is supported; &lt;code&gt;0&lt;/code&gt; means &lt;code&gt;20&lt;/code&gt;
+     * </pre>
+     *
+     * <code>int32 frame_ms = 3;</code>
+     * @return The frameMs.
+     */
+    @java.lang.Override
+    public int getFrameMs() {
+      return frameMs_;
+    }
+
+    public static final int TAKE_OVER_FIELD_NUMBER = 4;
+    private boolean takeOver_ = false;
+    /**
+     * <pre>
+     * REQUIRED for TALK: the bot is muted and does not listen while the stream is connected. Released when the stream
+     * ends
+     * </pre>
+     *
+     * <code>bool take_over = 4;</code>
+     * @return The takeOver.
+     */
+    @java.lang.Override
+    public boolean getTakeOver() {
+      return takeOver_;
+    }
+
+    public static final int STREAM_ID_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object streamId_ = "";
+    /**
+     * <pre>
+     * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+     * </pre>
+     *
+     * <code>string stream_id = 5;</code>
+     * @return The streamId.
+     */
+    @java.lang.Override
+    public java.lang.String getStreamId() {
+      java.lang.Object ref = streamId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        streamId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+     * </pre>
+     *
+     * <code>string stream_id = 5;</code>
+     * @return The bytes for streamId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getStreamIdBytes() {
+      java.lang.Object ref = streamId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        streamId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MAX_DURATION_S_FIELD_NUMBER = 6;
+    private int maxDurationS_ = 0;
+    /**
+     * <pre>
+     * Maximum duration of the stream in seconds. &lt;code&gt;0&lt;/code&gt; means the server default (3600)
+     * </pre>
+     *
+     * <code>int32 max_duration_s = 6;</code>
+     * @return The maxDurationS.
+     */
+    @java.lang.Override
+    public int getMaxDurationS() {
+      return maxDurationS_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (mode_ != ondewo.sip.SipOuterClass.SipCallAudioMode.SIP_CALL_AUDIO_MODE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, mode_);
+      }
+      if (sampleRateHz_ != 0) {
+        output.writeInt32(2, sampleRateHz_);
+      }
+      if (frameMs_ != 0) {
+        output.writeInt32(3, frameMs_);
+      }
+      if (takeOver_ != false) {
+        output.writeBool(4, takeOver_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(streamId_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, streamId_);
+      }
+      if (maxDurationS_ != 0) {
+        output.writeInt32(6, maxDurationS_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (mode_ != ondewo.sip.SipOuterClass.SipCallAudioMode.SIP_CALL_AUDIO_MODE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, mode_);
+      }
+      if (sampleRateHz_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, sampleRateHz_);
+      }
+      if (frameMs_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, frameMs_);
+      }
+      if (takeOver_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, takeOver_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(streamId_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, streamId_);
+      }
+      if (maxDurationS_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, maxDurationS_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioConfig)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioConfig other = (ondewo.sip.SipOuterClass.SipCallAudioConfig) obj;
+
+      if (mode_ != other.mode_) return false;
+      if (getSampleRateHz()
+          != other.getSampleRateHz()) return false;
+      if (getFrameMs()
+          != other.getFrameMs()) return false;
+      if (getTakeOver()
+          != other.getTakeOver()) return false;
+      if (!getStreamId()
+          .equals(other.getStreamId())) return false;
+      if (getMaxDurationS()
+          != other.getMaxDurationS()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MODE_FIELD_NUMBER;
+      hash = (53 * hash) + mode_;
+      hash = (37 * hash) + SAMPLE_RATE_HZ_FIELD_NUMBER;
+      hash = (53 * hash) + getSampleRateHz();
+      hash = (37 * hash) + FRAME_MS_FIELD_NUMBER;
+      hash = (53 * hash) + getFrameMs();
+      hash = (37 * hash) + TAKE_OVER_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getTakeOver());
+      hash = (37 * hash) + STREAM_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getStreamId().hashCode();
+      hash = (37 * hash) + MAX_DURATION_S_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxDurationS();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioConfig prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Configuration of a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream. Must be the first request of the stream&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioConfig}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioConfig)
+        ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioConfig_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioConfig_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioConfig.class, ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioConfig.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        mode_ = 0;
+        sampleRateHz_ = 0;
+        frameMs_ = 0;
+        takeOver_ = false;
+        streamId_ = "";
+        maxDurationS_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioConfig_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioConfig getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioConfig build() {
+        ondewo.sip.SipOuterClass.SipCallAudioConfig result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioConfig buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioConfig result = new ondewo.sip.SipOuterClass.SipCallAudioConfig(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.mode_ = mode_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sampleRateHz_ = sampleRateHz_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.frameMs_ = frameMs_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.takeOver_ = takeOver_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.streamId_ = streamId_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.maxDurationS_ = maxDurationS_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioConfig) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioConfig)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioConfig other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance()) return this;
+        if (other.mode_ != 0) {
+          setModeValue(other.getModeValue());
+        }
+        if (other.getSampleRateHz() != 0) {
+          setSampleRateHz(other.getSampleRateHz());
+        }
+        if (other.getFrameMs() != 0) {
+          setFrameMs(other.getFrameMs());
+        }
+        if (other.getTakeOver() != false) {
+          setTakeOver(other.getTakeOver());
+        }
+        if (!other.getStreamId().isEmpty()) {
+          streamId_ = other.streamId_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        if (other.getMaxDurationS() != 0) {
+          setMaxDurationS(other.getMaxDurationS());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                mode_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                sampleRateHz_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                frameMs_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                takeOver_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                streamId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 48: {
+                maxDurationS_ = input.readInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int mode_ = 0;
+      /**
+       * <pre>
+       * Mode of the stream. Unspecified means LISTEN
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+       * @return The enum numeric value on the wire for mode.
+       */
+      @java.lang.Override public int getModeValue() {
+        return mode_;
+      }
+      /**
+       * <pre>
+       * Mode of the stream. Unspecified means LISTEN
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+       * @param value The enum numeric value on the wire for mode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setModeValue(int value) {
+        mode_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Mode of the stream. Unspecified means LISTEN
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+       * @return The mode.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioMode getMode() {
+        ondewo.sip.SipOuterClass.SipCallAudioMode result = ondewo.sip.SipOuterClass.SipCallAudioMode.forNumber(mode_);
+        return result == null ? ondewo.sip.SipOuterClass.SipCallAudioMode.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Mode of the stream. Unspecified means LISTEN
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+       * @param value The mode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMode(ondewo.sip.SipOuterClass.SipCallAudioMode value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000001;
+        mode_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Mode of the stream. Unspecified means LISTEN
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMode() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        mode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int sampleRateHz_ ;
+      /**
+       * <pre>
+       * Sample rate in Hz of the audio in both directions: &lt;code&gt;8000&lt;/code&gt; or &lt;code&gt;16000&lt;/code&gt;. &lt;code&gt;0&lt;/code&gt; means
+       * &lt;code&gt;16000&lt;/code&gt;
+       * </pre>
+       *
+       * <code>int32 sample_rate_hz = 2;</code>
+       * @return The sampleRateHz.
+       */
+      @java.lang.Override
+      public int getSampleRateHz() {
+        return sampleRateHz_;
+      }
+      /**
+       * <pre>
+       * Sample rate in Hz of the audio in both directions: &lt;code&gt;8000&lt;/code&gt; or &lt;code&gt;16000&lt;/code&gt;. &lt;code&gt;0&lt;/code&gt; means
+       * &lt;code&gt;16000&lt;/code&gt;
+       * </pre>
+       *
+       * <code>int32 sample_rate_hz = 2;</code>
+       * @param value The sampleRateHz to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSampleRateHz(int value) {
+
+        sampleRateHz_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Sample rate in Hz of the audio in both directions: &lt;code&gt;8000&lt;/code&gt; or &lt;code&gt;16000&lt;/code&gt;. &lt;code&gt;0&lt;/code&gt; means
+       * &lt;code&gt;16000&lt;/code&gt;
+       * </pre>
+       *
+       * <code>int32 sample_rate_hz = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSampleRateHz() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        sampleRateHz_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int frameMs_ ;
+      /**
+       * <pre>
+       * Frame length in milliseconds. Only &lt;code&gt;20&lt;/code&gt; is supported; &lt;code&gt;0&lt;/code&gt; means &lt;code&gt;20&lt;/code&gt;
+       * </pre>
+       *
+       * <code>int32 frame_ms = 3;</code>
+       * @return The frameMs.
+       */
+      @java.lang.Override
+      public int getFrameMs() {
+        return frameMs_;
+      }
+      /**
+       * <pre>
+       * Frame length in milliseconds. Only &lt;code&gt;20&lt;/code&gt; is supported; &lt;code&gt;0&lt;/code&gt; means &lt;code&gt;20&lt;/code&gt;
+       * </pre>
+       *
+       * <code>int32 frame_ms = 3;</code>
+       * @param value The frameMs to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFrameMs(int value) {
+
+        frameMs_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frame length in milliseconds. Only &lt;code&gt;20&lt;/code&gt; is supported; &lt;code&gt;0&lt;/code&gt; means &lt;code&gt;20&lt;/code&gt;
+       * </pre>
+       *
+       * <code>int32 frame_ms = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFrameMs() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        frameMs_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean takeOver_ ;
+      /**
+       * <pre>
+       * REQUIRED for TALK: the bot is muted and does not listen while the stream is connected. Released when the stream
+       * ends
+       * </pre>
+       *
+       * <code>bool take_over = 4;</code>
+       * @return The takeOver.
+       */
+      @java.lang.Override
+      public boolean getTakeOver() {
+        return takeOver_;
+      }
+      /**
+       * <pre>
+       * REQUIRED for TALK: the bot is muted and does not listen while the stream is connected. Released when the stream
+       * ends
+       * </pre>
+       *
+       * <code>bool take_over = 4;</code>
+       * @param value The takeOver to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTakeOver(boolean value) {
+
+        takeOver_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * REQUIRED for TALK: the bot is muted and does not listen while the stream is connected. Released when the stream
+       * ends
+       * </pre>
+       *
+       * <code>bool take_over = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTakeOver() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        takeOver_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object streamId_ = "";
+      /**
+       * <pre>
+       * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+       * </pre>
+       *
+       * <code>string stream_id = 5;</code>
+       * @return The streamId.
+       */
+      public java.lang.String getStreamId() {
+        java.lang.Object ref = streamId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          streamId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+       * </pre>
+       *
+       * <code>string stream_id = 5;</code>
+       * @return The bytes for streamId.
+       */
+      public com.google.protobuf.ByteString
+          getStreamIdBytes() {
+        java.lang.Object ref = streamId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          streamId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+       * </pre>
+       *
+       * <code>string stream_id = 5;</code>
+       * @param value The streamId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStreamId(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        streamId_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+       * </pre>
+       *
+       * <code>string stream_id = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStreamId() {
+        streamId_ = getDefaultInstance().getStreamId();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the stream for logs and audit correlation, minted by the client (a UUID)
+       * </pre>
+       *
+       * <code>string stream_id = 5;</code>
+       * @param value The bytes for streamId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStreamIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        streamId_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      private int maxDurationS_ ;
+      /**
+       * <pre>
+       * Maximum duration of the stream in seconds. &lt;code&gt;0&lt;/code&gt; means the server default (3600)
+       * </pre>
+       *
+       * <code>int32 max_duration_s = 6;</code>
+       * @return The maxDurationS.
+       */
+      @java.lang.Override
+      public int getMaxDurationS() {
+        return maxDurationS_;
+      }
+      /**
+       * <pre>
+       * Maximum duration of the stream in seconds. &lt;code&gt;0&lt;/code&gt; means the server default (3600)
+       * </pre>
+       *
+       * <code>int32 max_duration_s = 6;</code>
+       * @param value The maxDurationS to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMaxDurationS(int value) {
+
+        maxDurationS_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Maximum duration of the stream in seconds. &lt;code&gt;0&lt;/code&gt; means the server default (3600)
+       * </pre>
+       *
+       * <code>int32 max_duration_s = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMaxDurationS() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        maxDurationS_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioConfig)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioConfig)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioConfig DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioConfig();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioConfig getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioConfig>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioConfig>() {
+      @java.lang.Override
+      public SipCallAudioConfig parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioConfig> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioConfig> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioConfig getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioFrameOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioFrame)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * LINEAR16 little-endian mono samples of one frame, i.e. &lt;code&gt;sample_rate_hz * frame_ms / 1000 * 2&lt;/code&gt; bytes
+     * </pre>
+     *
+     * <code>bytes pcm_s16le = 1;</code>
+     * @return The pcmS16le.
+     */
+    com.google.protobuf.ByteString getPcmS16Le();
+
+    /**
+     * <pre>
+     * Monotonic sequence number of the frame within its direction of the stream
+     * </pre>
+     *
+     * <code>uint64 sequence = 2;</code>
+     * @return The sequence.
+     */
+    long getSequence();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;One frame of call audio&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioFrame}
+   */
+  public static final class SipCallAudioFrame extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioFrame)
+      SipCallAudioFrameOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioFrame.class.getName());
+    }
+    // Use SipCallAudioFrame.newBuilder() to construct.
+    private SipCallAudioFrame(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioFrame() {
+      pcmS16Le_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioFrame_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioFrame_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioFrame.class, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder.class);
+    }
+
+    public static final int PCM_S16LE_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString pcmS16Le_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * LINEAR16 little-endian mono samples of one frame, i.e. &lt;code&gt;sample_rate_hz * frame_ms / 1000 * 2&lt;/code&gt; bytes
+     * </pre>
+     *
+     * <code>bytes pcm_s16le = 1;</code>
+     * @return The pcmS16le.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getPcmS16Le() {
+      return pcmS16Le_;
+    }
+
+    public static final int SEQUENCE_FIELD_NUMBER = 2;
+    private long sequence_ = 0L;
+    /**
+     * <pre>
+     * Monotonic sequence number of the frame within its direction of the stream
+     * </pre>
+     *
+     * <code>uint64 sequence = 2;</code>
+     * @return The sequence.
+     */
+    @java.lang.Override
+    public long getSequence() {
+      return sequence_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!pcmS16Le_.isEmpty()) {
+        output.writeBytes(1, pcmS16Le_);
+      }
+      if (sequence_ != 0L) {
+        output.writeUInt64(2, sequence_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!pcmS16Le_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, pcmS16Le_);
+      }
+      if (sequence_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(2, sequence_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioFrame)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioFrame other = (ondewo.sip.SipOuterClass.SipCallAudioFrame) obj;
+
+      if (!getPcmS16Le()
+          .equals(other.getPcmS16Le())) return false;
+      if (getSequence()
+          != other.getSequence()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PCM_S16LE_FIELD_NUMBER;
+      hash = (53 * hash) + getPcmS16Le().hashCode();
+      hash = (37 * hash) + SEQUENCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSequence());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioFrame prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;One frame of call audio&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioFrame}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioFrame)
+        ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioFrame_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioFrame_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioFrame.class, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioFrame.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        pcmS16Le_ = com.google.protobuf.ByteString.EMPTY;
+        sequence_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioFrame_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame build() {
+        ondewo.sip.SipOuterClass.SipCallAudioFrame result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioFrame result = new ondewo.sip.SipOuterClass.SipCallAudioFrame(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioFrame result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.pcmS16Le_ = pcmS16Le_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sequence_ = sequence_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioFrame) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioFrame)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioFrame other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance()) return this;
+        if (!other.getPcmS16Le().isEmpty()) {
+          setPcmS16Le(other.getPcmS16Le());
+        }
+        if (other.getSequence() != 0L) {
+          setSequence(other.getSequence());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                pcmS16Le_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                sequence_ = input.readUInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.ByteString pcmS16Le_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * LINEAR16 little-endian mono samples of one frame, i.e. &lt;code&gt;sample_rate_hz * frame_ms / 1000 * 2&lt;/code&gt; bytes
+       * </pre>
+       *
+       * <code>bytes pcm_s16le = 1;</code>
+       * @return The pcmS16le.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getPcmS16Le() {
+        return pcmS16Le_;
+      }
+      /**
+       * <pre>
+       * LINEAR16 little-endian mono samples of one frame, i.e. &lt;code&gt;sample_rate_hz * frame_ms / 1000 * 2&lt;/code&gt; bytes
+       * </pre>
+       *
+       * <code>bytes pcm_s16le = 1;</code>
+       * @param value The pcmS16le to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPcmS16Le(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        pcmS16Le_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * LINEAR16 little-endian mono samples of one frame, i.e. &lt;code&gt;sample_rate_hz * frame_ms / 1000 * 2&lt;/code&gt; bytes
+       * </pre>
+       *
+       * <code>bytes pcm_s16le = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPcmS16Le() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pcmS16Le_ = getDefaultInstance().getPcmS16Le();
+        onChanged();
+        return this;
+      }
+
+      private long sequence_ ;
+      /**
+       * <pre>
+       * Monotonic sequence number of the frame within its direction of the stream
+       * </pre>
+       *
+       * <code>uint64 sequence = 2;</code>
+       * @return The sequence.
+       */
+      @java.lang.Override
+      public long getSequence() {
+        return sequence_;
+      }
+      /**
+       * <pre>
+       * Monotonic sequence number of the frame within its direction of the stream
+       * </pre>
+       *
+       * <code>uint64 sequence = 2;</code>
+       * @param value The sequence to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSequence(long value) {
+
+        sequence_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Monotonic sequence number of the frame within its direction of the stream
+       * </pre>
+       *
+       * <code>uint64 sequence = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSequence() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        sequence_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioFrame)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioFrame)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioFrame DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioFrame();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioFrame getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioFrame>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioFrame>() {
+      @java.lang.Override
+      public SipCallAudioFrame parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioFrame> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioFrame> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioFrame getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Configuration; must be the first request and is accepted only once
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+     * @return Whether the config field is set.
+     */
+    boolean hasConfig();
+    /**
+     * <pre>
+     * Configuration; must be the first request and is accepted only once
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+     * @return The config.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioConfig getConfig();
+    /**
+     * <pre>
+     * Configuration; must be the first request and is accepted only once
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder getConfigOrBuilder();
+
+    /**
+     * <pre>
+     * Agent audio to send to the caller (TALK only)
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return Whether the audio field is set.
+     */
+    boolean hasAudio();
+    /**
+     * <pre>
+     * Agent audio to send to the caller (TALK only)
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return The audio.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioFrame getAudio();
+    /**
+     * <pre>
+     * Agent audio to send to the caller (TALK only)
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder getAudioOrBuilder();
+
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+     * </pre>
+     *
+     * <code>bool agent_muted = 3;</code>
+     * @return Whether the agentMuted field is set.
+     */
+    boolean hasAgentMuted();
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+     * </pre>
+     *
+     * <code>bool agent_muted = 3;</code>
+     * @return The agentMuted.
+     */
+    boolean getAgentMuted();
+
+    ondewo.sip.SipOuterClass.SipCallAudioRequest.RequestCase getRequestCase();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Request of &lt;code&gt;SipStreamCallAudio&lt;/code&gt;&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioRequest}
+   */
+  public static final class SipCallAudioRequest extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioRequest)
+      SipCallAudioRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioRequest.class.getName());
+    }
+    // Use SipCallAudioRequest.newBuilder() to construct.
+    private SipCallAudioRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioRequest() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioRequest.class, ondewo.sip.SipOuterClass.SipCallAudioRequest.Builder.class);
+    }
+
+    private int requestCase_ = 0;
+    @SuppressWarnings("serial")
+    private java.lang.Object request_;
+    public enum RequestCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      CONFIG(1),
+      AUDIO(2),
+      AGENT_MUTED(3),
+      REQUEST_NOT_SET(0);
+      private final int value;
+      private RequestCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static RequestCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static RequestCase forNumber(int value) {
+        switch (value) {
+          case 1: return CONFIG;
+          case 2: return AUDIO;
+          case 3: return AGENT_MUTED;
+          case 0: return REQUEST_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public RequestCase
+    getRequestCase() {
+      return RequestCase.forNumber(
+          requestCase_);
+    }
+
+    public static final int CONFIG_FIELD_NUMBER = 1;
+    /**
+     * <pre>
+     * Configuration; must be the first request and is accepted only once
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+     * @return Whether the config field is set.
+     */
+    @java.lang.Override
+    public boolean hasConfig() {
+      return requestCase_ == 1;
+    }
+    /**
+     * <pre>
+     * Configuration; must be the first request and is accepted only once
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+     * @return The config.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioConfig getConfig() {
+      if (requestCase_ == 1) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * Configuration; must be the first request and is accepted only once
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder getConfigOrBuilder() {
+      if (requestCase_ == 1) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+    }
+
+    public static final int AUDIO_FIELD_NUMBER = 2;
+    /**
+     * <pre>
+     * Agent audio to send to the caller (TALK only)
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return Whether the audio field is set.
+     */
+    @java.lang.Override
+    public boolean hasAudio() {
+      return requestCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Agent audio to send to the caller (TALK only)
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return The audio.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioFrame getAudio() {
+      if (requestCase_ == 2) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * Agent audio to send to the caller (TALK only)
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder getAudioOrBuilder() {
+      if (requestCase_ == 2) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+    }
+
+    public static final int AGENT_MUTED_FIELD_NUMBER = 3;
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+     * </pre>
+     *
+     * <code>bool agent_muted = 3;</code>
+     * @return Whether the agentMuted field is set.
+     */
+    @java.lang.Override
+    public boolean hasAgentMuted() {
+      return requestCase_ == 3;
+    }
+    /**
+     * <pre>
+     * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+     * </pre>
+     *
+     * <code>bool agent_muted = 3;</code>
+     * @return The agentMuted.
+     */
+    @java.lang.Override
+    public boolean getAgentMuted() {
+      if (requestCase_ == 3) {
+        return (java.lang.Boolean) request_;
+      }
+      return false;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (requestCase_ == 1) {
+        output.writeMessage(1, (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_);
+      }
+      if (requestCase_ == 2) {
+        output.writeMessage(2, (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_);
+      }
+      if (requestCase_ == 3) {
+        output.writeBool(
+            3, (boolean)((java.lang.Boolean) request_));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (requestCase_ == 1) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_);
+      }
+      if (requestCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_);
+      }
+      if (requestCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(
+              3, (boolean)((java.lang.Boolean) request_));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioRequest)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioRequest other = (ondewo.sip.SipOuterClass.SipCallAudioRequest) obj;
+
+      if (!getRequestCase().equals(other.getRequestCase())) return false;
+      switch (requestCase_) {
+        case 1:
+          if (!getConfig()
+              .equals(other.getConfig())) return false;
+          break;
+        case 2:
+          if (!getAudio()
+              .equals(other.getAudio())) return false;
+          break;
+        case 3:
+          if (getAgentMuted()
+              != other.getAgentMuted()) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      switch (requestCase_) {
+        case 1:
+          hash = (37 * hash) + CONFIG_FIELD_NUMBER;
+          hash = (53 * hash) + getConfig().hashCode();
+          break;
+        case 2:
+          hash = (37 * hash) + AUDIO_FIELD_NUMBER;
+          hash = (53 * hash) + getAudio().hashCode();
+          break;
+        case 3:
+          hash = (37 * hash) + AGENT_MUTED_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+              getAgentMuted());
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Request of &lt;code&gt;SipStreamCallAudio&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioRequest)
+        ondewo.sip.SipOuterClass.SipCallAudioRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioRequest.class, ondewo.sip.SipOuterClass.SipCallAudioRequest.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (configBuilder_ != null) {
+          configBuilder_.clear();
+        }
+        if (audioBuilder_ != null) {
+          audioBuilder_.clear();
+        }
+        requestCase_ = 0;
+        request_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioRequest getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioRequest build() {
+        ondewo.sip.SipOuterClass.SipCallAudioRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioRequest buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioRequest result = new ondewo.sip.SipOuterClass.SipCallAudioRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioRequest result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(ondewo.sip.SipOuterClass.SipCallAudioRequest result) {
+        result.requestCase_ = requestCase_;
+        result.request_ = this.request_;
+        if (requestCase_ == 1 &&
+            configBuilder_ != null) {
+          result.request_ = configBuilder_.build();
+        }
+        if (requestCase_ == 2 &&
+            audioBuilder_ != null) {
+          result.request_ = audioBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioRequest) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioRequest other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioRequest.getDefaultInstance()) return this;
+        switch (other.getRequestCase()) {
+          case CONFIG: {
+            mergeConfig(other.getConfig());
+            break;
+          }
+          case AUDIO: {
+            mergeAudio(other.getAudio());
+            break;
+          }
+          case AGENT_MUTED: {
+            setAgentMuted(other.getAgentMuted());
+            break;
+          }
+          case REQUEST_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    internalGetConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                requestCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    internalGetAudioFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                requestCase_ = 2;
+                break;
+              } // case 18
+              case 24: {
+                request_ = input.readBool();
+                requestCase_ = 3;
+                break;
+              } // case 24
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int requestCase_ = 0;
+      private java.lang.Object request_;
+      public RequestCase
+          getRequestCase() {
+        return RequestCase.forNumber(
+            requestCase_);
+      }
+
+      public Builder clearRequest() {
+        requestCase_ = 0;
+        request_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioConfig, ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder, ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder> configBuilder_;
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       * @return Whether the config field is set.
+       */
+      @java.lang.Override
+      public boolean hasConfig() {
+        return requestCase_ == 1;
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       * @return The config.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioConfig getConfig() {
+        if (configBuilder_ == null) {
+          if (requestCase_ == 1) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+        } else {
+          if (requestCase_ == 1) {
+            return configBuilder_.getMessage();
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      public Builder setConfig(ondewo.sip.SipOuterClass.SipCallAudioConfig value) {
+        if (configBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          request_ = value;
+          onChanged();
+        } else {
+          configBuilder_.setMessage(value);
+        }
+        requestCase_ = 1;
+        return this;
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      public Builder setConfig(
+          ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder builderForValue) {
+        if (configBuilder_ == null) {
+          request_ = builderForValue.build();
+          onChanged();
+        } else {
+          configBuilder_.setMessage(builderForValue.build());
+        }
+        requestCase_ = 1;
+        return this;
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      public Builder mergeConfig(ondewo.sip.SipOuterClass.SipCallAudioConfig value) {
+        if (configBuilder_ == null) {
+          if (requestCase_ == 1 &&
+              request_ != ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance()) {
+            request_ = ondewo.sip.SipOuterClass.SipCallAudioConfig.newBuilder((ondewo.sip.SipOuterClass.SipCallAudioConfig) request_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            request_ = value;
+          }
+          onChanged();
+        } else {
+          if (requestCase_ == 1) {
+            configBuilder_.mergeFrom(value);
+          } else {
+            configBuilder_.setMessage(value);
+          }
+        }
+        requestCase_ = 1;
+        return this;
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      public Builder clearConfig() {
+        if (configBuilder_ == null) {
+          if (requestCase_ == 1) {
+            requestCase_ = 0;
+            request_ = null;
+            onChanged();
+          }
+        } else {
+          if (requestCase_ == 1) {
+            requestCase_ = 0;
+            request_ = null;
+          }
+          configBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      public ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder getConfigBuilder() {
+        return internalGetConfigFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder getConfigOrBuilder() {
+        if ((requestCase_ == 1) && (configBuilder_ != null)) {
+          return configBuilder_.getMessageOrBuilder();
+        } else {
+          if (requestCase_ == 1) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Configuration; must be the first request and is accepted only once
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioConfig config = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioConfig, ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder, ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder> 
+          internalGetConfigFieldBuilder() {
+        if (configBuilder_ == null) {
+          if (!(requestCase_ == 1)) {
+            request_ = ondewo.sip.SipOuterClass.SipCallAudioConfig.getDefaultInstance();
+          }
+          configBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.SipCallAudioConfig, ondewo.sip.SipOuterClass.SipCallAudioConfig.Builder, ondewo.sip.SipOuterClass.SipCallAudioConfigOrBuilder>(
+                  (ondewo.sip.SipOuterClass.SipCallAudioConfig) request_,
+                  getParentForChildren(),
+                  isClean());
+          request_ = null;
+        }
+        requestCase_ = 1;
+        onChanged();
+        return configBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioFrame, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder, ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder> audioBuilder_;
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       * @return Whether the audio field is set.
+       */
+      @java.lang.Override
+      public boolean hasAudio() {
+        return requestCase_ == 2;
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       * @return The audio.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame getAudio() {
+        if (audioBuilder_ == null) {
+          if (requestCase_ == 2) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+        } else {
+          if (requestCase_ == 2) {
+            return audioBuilder_.getMessage();
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder setAudio(ondewo.sip.SipOuterClass.SipCallAudioFrame value) {
+        if (audioBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          request_ = value;
+          onChanged();
+        } else {
+          audioBuilder_.setMessage(value);
+        }
+        requestCase_ = 2;
+        return this;
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder setAudio(
+          ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder builderForValue) {
+        if (audioBuilder_ == null) {
+          request_ = builderForValue.build();
+          onChanged();
+        } else {
+          audioBuilder_.setMessage(builderForValue.build());
+        }
+        requestCase_ = 2;
+        return this;
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder mergeAudio(ondewo.sip.SipOuterClass.SipCallAudioFrame value) {
+        if (audioBuilder_ == null) {
+          if (requestCase_ == 2 &&
+              request_ != ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance()) {
+            request_ = ondewo.sip.SipOuterClass.SipCallAudioFrame.newBuilder((ondewo.sip.SipOuterClass.SipCallAudioFrame) request_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            request_ = value;
+          }
+          onChanged();
+        } else {
+          if (requestCase_ == 2) {
+            audioBuilder_.mergeFrom(value);
+          } else {
+            audioBuilder_.setMessage(value);
+          }
+        }
+        requestCase_ = 2;
+        return this;
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder clearAudio() {
+        if (audioBuilder_ == null) {
+          if (requestCase_ == 2) {
+            requestCase_ = 0;
+            request_ = null;
+            onChanged();
+          }
+        } else {
+          if (requestCase_ == 2) {
+            requestCase_ = 0;
+            request_ = null;
+          }
+          audioBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder getAudioBuilder() {
+        return internalGetAudioFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder getAudioOrBuilder() {
+        if ((requestCase_ == 2) && (audioBuilder_ != null)) {
+          return audioBuilder_.getMessageOrBuilder();
+        } else {
+          if (requestCase_ == 2) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Agent audio to send to the caller (TALK only)
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioFrame, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder, ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder> 
+          internalGetAudioFieldBuilder() {
+        if (audioBuilder_ == null) {
+          if (!(requestCase_ == 2)) {
+            request_ = ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+          }
+          audioBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.SipCallAudioFrame, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder, ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder>(
+                  (ondewo.sip.SipOuterClass.SipCallAudioFrame) request_,
+                  getParentForChildren(),
+                  isClean());
+          request_ = null;
+        }
+        requestCase_ = 2;
+        onChanged();
+        return audioBuilder_;
+      }
+
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+       * </pre>
+       *
+       * <code>bool agent_muted = 3;</code>
+       * @return Whether the agentMuted field is set.
+       */
+      public boolean hasAgentMuted() {
+        return requestCase_ == 3;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+       * </pre>
+       *
+       * <code>bool agent_muted = 3;</code>
+       * @return The agentMuted.
+       */
+      public boolean getAgentMuted() {
+        if (requestCase_ == 3) {
+          return (java.lang.Boolean) request_;
+        }
+        return false;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+       * </pre>
+       *
+       * <code>bool agent_muted = 3;</code>
+       * @param value The agentMuted to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAgentMuted(boolean value) {
+
+        requestCase_ = 3;
+        request_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * &lt;code&gt;true&lt;/code&gt;: the agent's audio is not sent to the caller (silence instead) until set to &lt;code&gt;false&lt;/code&gt;
+       * </pre>
+       *
+       * <code>bool agent_muted = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAgentMuted() {
+        if (requestCase_ == 3) {
+          requestCase_ = 0;
+          request_ = null;
+          onChanged();
+        }
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioRequest)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioRequest();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioRequest>() {
+      @java.lang.Override
+      public SipCallAudioRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioStartedOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioStarted)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Identifier of the stream
+     * </pre>
+     *
+     * <code>string stream_id = 1;</code>
+     * @return The streamId.
+     */
+    java.lang.String getStreamId();
+    /**
+     * <pre>
+     * Identifier of the stream
+     * </pre>
+     *
+     * <code>string stream_id = 1;</code>
+     * @return The bytes for streamId.
+     */
+    com.google.protobuf.ByteString
+        getStreamIdBytes();
+
+    /**
+     * <pre>
+     * Sample rate in Hz of the audio in both directions
+     * </pre>
+     *
+     * <code>int32 sample_rate_hz = 2;</code>
+     * @return The sampleRateHz.
+     */
+    int getSampleRateHz();
+
+    /**
+     * <pre>
+     * Frame length in milliseconds
+     * </pre>
+     *
+     * <code>int32 frame_ms = 3;</code>
+     * @return The frameMs.
+     */
+    int getFrameMs();
+
+    /**
+     * <pre>
+     * Mode of the stream
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+     * @return The enum numeric value on the wire for mode.
+     */
+    int getModeValue();
+    /**
+     * <pre>
+     * Mode of the stream
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+     * @return The mode.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioMode getMode();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Sent once when a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream is connected&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioStarted}
+   */
+  public static final class SipCallAudioStarted extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioStarted)
+      SipCallAudioStartedOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioStarted.class.getName());
+    }
+    // Use SipCallAudioStarted.newBuilder() to construct.
+    private SipCallAudioStarted(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioStarted() {
+      streamId_ = "";
+      mode_ = 0;
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStarted_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStarted_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioStarted.class, ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder.class);
+    }
+
+    public static final int STREAM_ID_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object streamId_ = "";
+    /**
+     * <pre>
+     * Identifier of the stream
+     * </pre>
+     *
+     * <code>string stream_id = 1;</code>
+     * @return The streamId.
+     */
+    @java.lang.Override
+    public java.lang.String getStreamId() {
+      java.lang.Object ref = streamId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        streamId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Identifier of the stream
+     * </pre>
+     *
+     * <code>string stream_id = 1;</code>
+     * @return The bytes for streamId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getStreamIdBytes() {
+      java.lang.Object ref = streamId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        streamId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SAMPLE_RATE_HZ_FIELD_NUMBER = 2;
+    private int sampleRateHz_ = 0;
+    /**
+     * <pre>
+     * Sample rate in Hz of the audio in both directions
+     * </pre>
+     *
+     * <code>int32 sample_rate_hz = 2;</code>
+     * @return The sampleRateHz.
+     */
+    @java.lang.Override
+    public int getSampleRateHz() {
+      return sampleRateHz_;
+    }
+
+    public static final int FRAME_MS_FIELD_NUMBER = 3;
+    private int frameMs_ = 0;
+    /**
+     * <pre>
+     * Frame length in milliseconds
+     * </pre>
+     *
+     * <code>int32 frame_ms = 3;</code>
+     * @return The frameMs.
+     */
+    @java.lang.Override
+    public int getFrameMs() {
+      return frameMs_;
+    }
+
+    public static final int MODE_FIELD_NUMBER = 4;
+    private int mode_ = 0;
+    /**
+     * <pre>
+     * Mode of the stream
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+     * @return The enum numeric value on the wire for mode.
+     */
+    @java.lang.Override public int getModeValue() {
+      return mode_;
+    }
+    /**
+     * <pre>
+     * Mode of the stream
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+     * @return The mode.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.SipCallAudioMode getMode() {
+      ondewo.sip.SipOuterClass.SipCallAudioMode result = ondewo.sip.SipOuterClass.SipCallAudioMode.forNumber(mode_);
+      return result == null ? ondewo.sip.SipOuterClass.SipCallAudioMode.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(streamId_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, streamId_);
+      }
+      if (sampleRateHz_ != 0) {
+        output.writeInt32(2, sampleRateHz_);
+      }
+      if (frameMs_ != 0) {
+        output.writeInt32(3, frameMs_);
+      }
+      if (mode_ != ondewo.sip.SipOuterClass.SipCallAudioMode.SIP_CALL_AUDIO_MODE_UNSPECIFIED.getNumber()) {
+        output.writeEnum(4, mode_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(streamId_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, streamId_);
+      }
+      if (sampleRateHz_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, sampleRateHz_);
+      }
+      if (frameMs_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, frameMs_);
+      }
+      if (mode_ != ondewo.sip.SipOuterClass.SipCallAudioMode.SIP_CALL_AUDIO_MODE_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, mode_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioStarted)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioStarted other = (ondewo.sip.SipOuterClass.SipCallAudioStarted) obj;
+
+      if (!getStreamId()
+          .equals(other.getStreamId())) return false;
+      if (getSampleRateHz()
+          != other.getSampleRateHz()) return false;
+      if (getFrameMs()
+          != other.getFrameMs()) return false;
+      if (mode_ != other.mode_) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STREAM_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getStreamId().hashCode();
+      hash = (37 * hash) + SAMPLE_RATE_HZ_FIELD_NUMBER;
+      hash = (53 * hash) + getSampleRateHz();
+      hash = (37 * hash) + FRAME_MS_FIELD_NUMBER;
+      hash = (53 * hash) + getFrameMs();
+      hash = (37 * hash) + MODE_FIELD_NUMBER;
+      hash = (53 * hash) + mode_;
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioStarted prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Sent once when a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream is connected&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioStarted}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioStarted)
+        ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStarted_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStarted_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioStarted.class, ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioStarted.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        streamId_ = "";
+        sampleRateHz_ = 0;
+        frameMs_ = 0;
+        mode_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStarted_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStarted getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStarted build() {
+        ondewo.sip.SipOuterClass.SipCallAudioStarted result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStarted buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioStarted result = new ondewo.sip.SipOuterClass.SipCallAudioStarted(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioStarted result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.streamId_ = streamId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sampleRateHz_ = sampleRateHz_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.frameMs_ = frameMs_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.mode_ = mode_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioStarted) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioStarted)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioStarted other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance()) return this;
+        if (!other.getStreamId().isEmpty()) {
+          streamId_ = other.streamId_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (other.getSampleRateHz() != 0) {
+          setSampleRateHz(other.getSampleRateHz());
+        }
+        if (other.getFrameMs() != 0) {
+          setFrameMs(other.getFrameMs());
+        }
+        if (other.mode_ != 0) {
+          setModeValue(other.getModeValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                streamId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                sampleRateHz_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                frameMs_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                mode_ = input.readEnum();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object streamId_ = "";
+      /**
+       * <pre>
+       * Identifier of the stream
+       * </pre>
+       *
+       * <code>string stream_id = 1;</code>
+       * @return The streamId.
+       */
+      public java.lang.String getStreamId() {
+        java.lang.Object ref = streamId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          streamId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the stream
+       * </pre>
+       *
+       * <code>string stream_id = 1;</code>
+       * @return The bytes for streamId.
+       */
+      public com.google.protobuf.ByteString
+          getStreamIdBytes() {
+        java.lang.Object ref = streamId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          streamId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Identifier of the stream
+       * </pre>
+       *
+       * <code>string stream_id = 1;</code>
+       * @param value The streamId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStreamId(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        streamId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the stream
+       * </pre>
+       *
+       * <code>string stream_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStreamId() {
+        streamId_ = getDefaultInstance().getStreamId();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Identifier of the stream
+       * </pre>
+       *
+       * <code>string stream_id = 1;</code>
+       * @param value The bytes for streamId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStreamIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        streamId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private int sampleRateHz_ ;
+      /**
+       * <pre>
+       * Sample rate in Hz of the audio in both directions
+       * </pre>
+       *
+       * <code>int32 sample_rate_hz = 2;</code>
+       * @return The sampleRateHz.
+       */
+      @java.lang.Override
+      public int getSampleRateHz() {
+        return sampleRateHz_;
+      }
+      /**
+       * <pre>
+       * Sample rate in Hz of the audio in both directions
+       * </pre>
+       *
+       * <code>int32 sample_rate_hz = 2;</code>
+       * @param value The sampleRateHz to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSampleRateHz(int value) {
+
+        sampleRateHz_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Sample rate in Hz of the audio in both directions
+       * </pre>
+       *
+       * <code>int32 sample_rate_hz = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSampleRateHz() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        sampleRateHz_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int frameMs_ ;
+      /**
+       * <pre>
+       * Frame length in milliseconds
+       * </pre>
+       *
+       * <code>int32 frame_ms = 3;</code>
+       * @return The frameMs.
+       */
+      @java.lang.Override
+      public int getFrameMs() {
+        return frameMs_;
+      }
+      /**
+       * <pre>
+       * Frame length in milliseconds
+       * </pre>
+       *
+       * <code>int32 frame_ms = 3;</code>
+       * @param value The frameMs to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFrameMs(int value) {
+
+        frameMs_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frame length in milliseconds
+       * </pre>
+       *
+       * <code>int32 frame_ms = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFrameMs() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        frameMs_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int mode_ = 0;
+      /**
+       * <pre>
+       * Mode of the stream
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+       * @return The enum numeric value on the wire for mode.
+       */
+      @java.lang.Override public int getModeValue() {
+        return mode_;
+      }
+      /**
+       * <pre>
+       * Mode of the stream
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+       * @param value The enum numeric value on the wire for mode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setModeValue(int value) {
+        mode_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Mode of the stream
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+       * @return The mode.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioMode getMode() {
+        ondewo.sip.SipOuterClass.SipCallAudioMode result = ondewo.sip.SipOuterClass.SipCallAudioMode.forNumber(mode_);
+        return result == null ? ondewo.sip.SipOuterClass.SipCallAudioMode.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Mode of the stream
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+       * @param value The mode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMode(ondewo.sip.SipOuterClass.SipCallAudioMode value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000008;
+        mode_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Mode of the stream
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioMode mode = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMode() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        mode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioStarted)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioStarted)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioStarted DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioStarted();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStarted getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioStarted>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioStarted>() {
+      @java.lang.Override
+      public SipCallAudioStarted parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioStarted> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioStarted> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioStarted getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioStatsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioStats)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Frames sent to the client
+     * </pre>
+     *
+     * <code>uint64 frames_sent = 1;</code>
+     * @return The framesSent.
+     */
+    long getFramesSent();
+
+    /**
+     * <pre>
+     * Frames to the client dropped because the client read too slowly
+     * </pre>
+     *
+     * <code>uint64 frames_dropped = 2;</code>
+     * @return The framesDropped.
+     */
+    long getFramesDropped();
+
+    /**
+     * <pre>
+     * Frames received from the client
+     * </pre>
+     *
+     * <code>uint64 frames_received = 3;</code>
+     * @return The framesReceived.
+     */
+    long getFramesReceived();
+
+    /**
+     * <pre>
+     * Playback underruns of the agent audio (silence was played)
+     * </pre>
+     *
+     * <code>uint64 underruns = 4;</code>
+     * @return The underruns.
+     */
+    long getUnderruns();
+
+    /**
+     * <pre>
+     * Frames from the client discarded because the playback buffer was full
+     * </pre>
+     *
+     * <code>uint64 frames_discarded = 5;</code>
+     * @return The framesDiscarded.
+     */
+    long getFramesDiscarded();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Counters of a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream, sent periodically&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioStats}
+   */
+  public static final class SipCallAudioStats extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioStats)
+      SipCallAudioStatsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioStats.class.getName());
+    }
+    // Use SipCallAudioStats.newBuilder() to construct.
+    private SipCallAudioStats(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioStats() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStats_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStats_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioStats.class, ondewo.sip.SipOuterClass.SipCallAudioStats.Builder.class);
+    }
+
+    public static final int FRAMES_SENT_FIELD_NUMBER = 1;
+    private long framesSent_ = 0L;
+    /**
+     * <pre>
+     * Frames sent to the client
+     * </pre>
+     *
+     * <code>uint64 frames_sent = 1;</code>
+     * @return The framesSent.
+     */
+    @java.lang.Override
+    public long getFramesSent() {
+      return framesSent_;
+    }
+
+    public static final int FRAMES_DROPPED_FIELD_NUMBER = 2;
+    private long framesDropped_ = 0L;
+    /**
+     * <pre>
+     * Frames to the client dropped because the client read too slowly
+     * </pre>
+     *
+     * <code>uint64 frames_dropped = 2;</code>
+     * @return The framesDropped.
+     */
+    @java.lang.Override
+    public long getFramesDropped() {
+      return framesDropped_;
+    }
+
+    public static final int FRAMES_RECEIVED_FIELD_NUMBER = 3;
+    private long framesReceived_ = 0L;
+    /**
+     * <pre>
+     * Frames received from the client
+     * </pre>
+     *
+     * <code>uint64 frames_received = 3;</code>
+     * @return The framesReceived.
+     */
+    @java.lang.Override
+    public long getFramesReceived() {
+      return framesReceived_;
+    }
+
+    public static final int UNDERRUNS_FIELD_NUMBER = 4;
+    private long underruns_ = 0L;
+    /**
+     * <pre>
+     * Playback underruns of the agent audio (silence was played)
+     * </pre>
+     *
+     * <code>uint64 underruns = 4;</code>
+     * @return The underruns.
+     */
+    @java.lang.Override
+    public long getUnderruns() {
+      return underruns_;
+    }
+
+    public static final int FRAMES_DISCARDED_FIELD_NUMBER = 5;
+    private long framesDiscarded_ = 0L;
+    /**
+     * <pre>
+     * Frames from the client discarded because the playback buffer was full
+     * </pre>
+     *
+     * <code>uint64 frames_discarded = 5;</code>
+     * @return The framesDiscarded.
+     */
+    @java.lang.Override
+    public long getFramesDiscarded() {
+      return framesDiscarded_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (framesSent_ != 0L) {
+        output.writeUInt64(1, framesSent_);
+      }
+      if (framesDropped_ != 0L) {
+        output.writeUInt64(2, framesDropped_);
+      }
+      if (framesReceived_ != 0L) {
+        output.writeUInt64(3, framesReceived_);
+      }
+      if (underruns_ != 0L) {
+        output.writeUInt64(4, underruns_);
+      }
+      if (framesDiscarded_ != 0L) {
+        output.writeUInt64(5, framesDiscarded_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (framesSent_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, framesSent_);
+      }
+      if (framesDropped_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(2, framesDropped_);
+      }
+      if (framesReceived_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, framesReceived_);
+      }
+      if (underruns_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(4, underruns_);
+      }
+      if (framesDiscarded_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(5, framesDiscarded_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioStats)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioStats other = (ondewo.sip.SipOuterClass.SipCallAudioStats) obj;
+
+      if (getFramesSent()
+          != other.getFramesSent()) return false;
+      if (getFramesDropped()
+          != other.getFramesDropped()) return false;
+      if (getFramesReceived()
+          != other.getFramesReceived()) return false;
+      if (getUnderruns()
+          != other.getUnderruns()) return false;
+      if (getFramesDiscarded()
+          != other.getFramesDiscarded()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FRAMES_SENT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFramesSent());
+      hash = (37 * hash) + FRAMES_DROPPED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFramesDropped());
+      hash = (37 * hash) + FRAMES_RECEIVED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFramesReceived());
+      hash = (37 * hash) + UNDERRUNS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUnderruns());
+      hash = (37 * hash) + FRAMES_DISCARDED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFramesDiscarded());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioStats prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Counters of a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream, sent periodically&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioStats}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioStats)
+        ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStats_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStats_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioStats.class, ondewo.sip.SipOuterClass.SipCallAudioStats.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioStats.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        framesSent_ = 0L;
+        framesDropped_ = 0L;
+        framesReceived_ = 0L;
+        underruns_ = 0L;
+        framesDiscarded_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioStats_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStats getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStats build() {
+        ondewo.sip.SipOuterClass.SipCallAudioStats result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStats buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioStats result = new ondewo.sip.SipOuterClass.SipCallAudioStats(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioStats result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.framesSent_ = framesSent_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.framesDropped_ = framesDropped_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.framesReceived_ = framesReceived_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.underruns_ = underruns_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.framesDiscarded_ = framesDiscarded_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioStats) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioStats)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioStats other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance()) return this;
+        if (other.getFramesSent() != 0L) {
+          setFramesSent(other.getFramesSent());
+        }
+        if (other.getFramesDropped() != 0L) {
+          setFramesDropped(other.getFramesDropped());
+        }
+        if (other.getFramesReceived() != 0L) {
+          setFramesReceived(other.getFramesReceived());
+        }
+        if (other.getUnderruns() != 0L) {
+          setUnderruns(other.getUnderruns());
+        }
+        if (other.getFramesDiscarded() != 0L) {
+          setFramesDiscarded(other.getFramesDiscarded());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                framesSent_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                framesDropped_ = input.readUInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                framesReceived_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                underruns_ = input.readUInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                framesDiscarded_ = input.readUInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private long framesSent_ ;
+      /**
+       * <pre>
+       * Frames sent to the client
+       * </pre>
+       *
+       * <code>uint64 frames_sent = 1;</code>
+       * @return The framesSent.
+       */
+      @java.lang.Override
+      public long getFramesSent() {
+        return framesSent_;
+      }
+      /**
+       * <pre>
+       * Frames sent to the client
+       * </pre>
+       *
+       * <code>uint64 frames_sent = 1;</code>
+       * @param value The framesSent to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFramesSent(long value) {
+
+        framesSent_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frames sent to the client
+       * </pre>
+       *
+       * <code>uint64 frames_sent = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFramesSent() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        framesSent_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long framesDropped_ ;
+      /**
+       * <pre>
+       * Frames to the client dropped because the client read too slowly
+       * </pre>
+       *
+       * <code>uint64 frames_dropped = 2;</code>
+       * @return The framesDropped.
+       */
+      @java.lang.Override
+      public long getFramesDropped() {
+        return framesDropped_;
+      }
+      /**
+       * <pre>
+       * Frames to the client dropped because the client read too slowly
+       * </pre>
+       *
+       * <code>uint64 frames_dropped = 2;</code>
+       * @param value The framesDropped to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFramesDropped(long value) {
+
+        framesDropped_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frames to the client dropped because the client read too slowly
+       * </pre>
+       *
+       * <code>uint64 frames_dropped = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFramesDropped() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        framesDropped_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long framesReceived_ ;
+      /**
+       * <pre>
+       * Frames received from the client
+       * </pre>
+       *
+       * <code>uint64 frames_received = 3;</code>
+       * @return The framesReceived.
+       */
+      @java.lang.Override
+      public long getFramesReceived() {
+        return framesReceived_;
+      }
+      /**
+       * <pre>
+       * Frames received from the client
+       * </pre>
+       *
+       * <code>uint64 frames_received = 3;</code>
+       * @param value The framesReceived to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFramesReceived(long value) {
+
+        framesReceived_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frames received from the client
+       * </pre>
+       *
+       * <code>uint64 frames_received = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFramesReceived() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        framesReceived_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long underruns_ ;
+      /**
+       * <pre>
+       * Playback underruns of the agent audio (silence was played)
+       * </pre>
+       *
+       * <code>uint64 underruns = 4;</code>
+       * @return The underruns.
+       */
+      @java.lang.Override
+      public long getUnderruns() {
+        return underruns_;
+      }
+      /**
+       * <pre>
+       * Playback underruns of the agent audio (silence was played)
+       * </pre>
+       *
+       * <code>uint64 underruns = 4;</code>
+       * @param value The underruns to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUnderruns(long value) {
+
+        underruns_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Playback underruns of the agent audio (silence was played)
+       * </pre>
+       *
+       * <code>uint64 underruns = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUnderruns() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        underruns_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long framesDiscarded_ ;
+      /**
+       * <pre>
+       * Frames from the client discarded because the playback buffer was full
+       * </pre>
+       *
+       * <code>uint64 frames_discarded = 5;</code>
+       * @return The framesDiscarded.
+       */
+      @java.lang.Override
+      public long getFramesDiscarded() {
+        return framesDiscarded_;
+      }
+      /**
+       * <pre>
+       * Frames from the client discarded because the playback buffer was full
+       * </pre>
+       *
+       * <code>uint64 frames_discarded = 5;</code>
+       * @param value The framesDiscarded to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFramesDiscarded(long value) {
+
+        framesDiscarded_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frames from the client discarded because the playback buffer was full
+       * </pre>
+       *
+       * <code>uint64 frames_discarded = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFramesDiscarded() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        framesDiscarded_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioStats)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioStats)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioStats DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioStats();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioStats getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioStats>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioStats>() {
+      @java.lang.Override
+      public SipCallAudioStats parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioStats> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioStats> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioStats getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioEndedOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioEnded)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Why the stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+     * @return The enum numeric value on the wire for reason.
+     */
+    int getReasonValue();
+    /**
+     * <pre>
+     * Why the stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+     * @return The reason.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioEndReason getReason();
+
+    /**
+     * <pre>
+     * Optional detail, a stable token
+     * </pre>
+     *
+     * <code>string detail = 2;</code>
+     * @return The detail.
+     */
+    java.lang.String getDetail();
+    /**
+     * <pre>
+     * Optional detail, a stable token
+     * </pre>
+     *
+     * <code>string detail = 2;</code>
+     * @return The bytes for detail.
+     */
+    com.google.protobuf.ByteString
+        getDetailBytes();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Sent once when a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream ends normally&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioEnded}
+   */
+  public static final class SipCallAudioEnded extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioEnded)
+      SipCallAudioEndedOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioEnded.class.getName());
+    }
+    // Use SipCallAudioEnded.newBuilder() to construct.
+    private SipCallAudioEnded(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioEnded() {
+      reason_ = 0;
+      detail_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioEnded_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioEnded_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioEnded.class, ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder.class);
+    }
+
+    public static final int REASON_FIELD_NUMBER = 1;
+    private int reason_ = 0;
+    /**
+     * <pre>
+     * Why the stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+     * @return The enum numeric value on the wire for reason.
+     */
+    @java.lang.Override public int getReasonValue() {
+      return reason_;
+    }
+    /**
+     * <pre>
+     * Why the stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+     * @return The reason.
+     */
+    @java.lang.Override public ondewo.sip.SipOuterClass.SipCallAudioEndReason getReason() {
+      ondewo.sip.SipOuterClass.SipCallAudioEndReason result = ondewo.sip.SipOuterClass.SipCallAudioEndReason.forNumber(reason_);
+      return result == null ? ondewo.sip.SipOuterClass.SipCallAudioEndReason.UNRECOGNIZED : result;
+    }
+
+    public static final int DETAIL_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object detail_ = "";
+    /**
+     * <pre>
+     * Optional detail, a stable token
+     * </pre>
+     *
+     * <code>string detail = 2;</code>
+     * @return The detail.
+     */
+    @java.lang.Override
+    public java.lang.String getDetail() {
+      java.lang.Object ref = detail_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        detail_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Optional detail, a stable token
+     * </pre>
+     *
+     * <code>string detail = 2;</code>
+     * @return The bytes for detail.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDetailBytes() {
+      java.lang.Object ref = detail_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        detail_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (reason_ != ondewo.sip.SipOuterClass.SipCallAudioEndReason.SIP_CALL_AUDIO_END_REASON_UNSPECIFIED.getNumber()) {
+        output.writeEnum(1, reason_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(detail_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, detail_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (reason_ != ondewo.sip.SipOuterClass.SipCallAudioEndReason.SIP_CALL_AUDIO_END_REASON_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, reason_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(detail_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, detail_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioEnded)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioEnded other = (ondewo.sip.SipOuterClass.SipCallAudioEnded) obj;
+
+      if (reason_ != other.reason_) return false;
+      if (!getDetail()
+          .equals(other.getDetail())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REASON_FIELD_NUMBER;
+      hash = (53 * hash) + reason_;
+      hash = (37 * hash) + DETAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getDetail().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioEnded prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Sent once when a &lt;code&gt;SipStreamCallAudio&lt;/code&gt; stream ends normally&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioEnded}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioEnded)
+        ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioEnded_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioEnded_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioEnded.class, ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioEnded.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        reason_ = 0;
+        detail_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioEnded_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioEnded getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioEnded build() {
+        ondewo.sip.SipOuterClass.SipCallAudioEnded result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioEnded buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioEnded result = new ondewo.sip.SipOuterClass.SipCallAudioEnded(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioEnded result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.reason_ = reason_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.detail_ = detail_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioEnded) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioEnded)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioEnded other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance()) return this;
+        if (other.reason_ != 0) {
+          setReasonValue(other.getReasonValue());
+        }
+        if (!other.getDetail().isEmpty()) {
+          detail_ = other.detail_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                reason_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                detail_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int reason_ = 0;
+      /**
+       * <pre>
+       * Why the stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+       * @return The enum numeric value on the wire for reason.
+       */
+      @java.lang.Override public int getReasonValue() {
+        return reason_;
+      }
+      /**
+       * <pre>
+       * Why the stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+       * @param value The enum numeric value on the wire for reason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReasonValue(int value) {
+        reason_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Why the stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+       * @return The reason.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioEndReason getReason() {
+        ondewo.sip.SipOuterClass.SipCallAudioEndReason result = ondewo.sip.SipOuterClass.SipCallAudioEndReason.forNumber(reason_);
+        return result == null ? ondewo.sip.SipOuterClass.SipCallAudioEndReason.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Why the stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+       * @param value The reason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReason(ondewo.sip.SipOuterClass.SipCallAudioEndReason value) {
+        if (value == null) { throw new NullPointerException(); }
+        bitField0_ |= 0x00000001;
+        reason_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Why the stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEndReason reason = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReason() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        reason_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object detail_ = "";
+      /**
+       * <pre>
+       * Optional detail, a stable token
+       * </pre>
+       *
+       * <code>string detail = 2;</code>
+       * @return The detail.
+       */
+      public java.lang.String getDetail() {
+        java.lang.Object ref = detail_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          detail_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Optional detail, a stable token
+       * </pre>
+       *
+       * <code>string detail = 2;</code>
+       * @return The bytes for detail.
+       */
+      public com.google.protobuf.ByteString
+          getDetailBytes() {
+        java.lang.Object ref = detail_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          detail_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Optional detail, a stable token
+       * </pre>
+       *
+       * <code>string detail = 2;</code>
+       * @param value The detail to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDetail(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        detail_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional detail, a stable token
+       * </pre>
+       *
+       * <code>string detail = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDetail() {
+        detail_ = getDefaultInstance().getDetail();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional detail, a stable token
+       * </pre>
+       *
+       * <code>string detail = 2;</code>
+       * @param value The bytes for detail to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDetailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        detail_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioEnded)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioEnded)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioEnded DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioEnded();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioEnded getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioEnded>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioEnded>() {
+      @java.lang.Override
+      public SipCallAudioEnded parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioEnded> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioEnded> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioEnded getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SipCallAudioResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ondewo.sip.SipCallAudioResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * The stream is connected
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+     * @return Whether the started field is set.
+     */
+    boolean hasStarted();
+    /**
+     * <pre>
+     * The stream is connected
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+     * @return The started.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioStarted getStarted();
+    /**
+     * <pre>
+     * The stream is connected
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder getStartedOrBuilder();
+
+    /**
+     * <pre>
+     * Call audio
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return Whether the audio field is set.
+     */
+    boolean hasAudio();
+    /**
+     * <pre>
+     * Call audio
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return The audio.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioFrame getAudio();
+    /**
+     * <pre>
+     * Call audio
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder getAudioOrBuilder();
+
+    /**
+     * <pre>
+     * Stream counters
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+     * @return Whether the stats field is set.
+     */
+    boolean hasStats();
+    /**
+     * <pre>
+     * Stream counters
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+     * @return The stats.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioStats getStats();
+    /**
+     * <pre>
+     * Stream counters
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder getStatsOrBuilder();
+
+    /**
+     * <pre>
+     * The stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+     * @return Whether the ended field is set.
+     */
+    boolean hasEnded();
+    /**
+     * <pre>
+     * The stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+     * @return The ended.
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioEnded getEnded();
+    /**
+     * <pre>
+     * The stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+     */
+    ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder getEndedOrBuilder();
+
+    ondewo.sip.SipOuterClass.SipCallAudioResponse.ResponseCase getResponseCase();
+  }
+  /**
+   * <pre>
+   * &lt;p&gt;Response of &lt;code&gt;SipStreamCallAudio&lt;/code&gt;&lt;/p&gt;
+   * </pre>
+   *
+   * Protobuf type {@code ondewo.sip.SipCallAudioResponse}
+   */
+  public static final class SipCallAudioResponse extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ondewo.sip.SipCallAudioResponse)
+      SipCallAudioResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 32,
+        /* patch= */ 0,
+        /* suffix= */ "",
+        SipCallAudioResponse.class.getName());
+    }
+    // Use SipCallAudioResponse.newBuilder() to construct.
+    private SipCallAudioResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private SipCallAudioResponse() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ondewo.sip.SipOuterClass.SipCallAudioResponse.class, ondewo.sip.SipOuterClass.SipCallAudioResponse.Builder.class);
+    }
+
+    private int responseCase_ = 0;
+    @SuppressWarnings("serial")
+    private java.lang.Object response_;
+    public enum ResponseCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      STARTED(1),
+      AUDIO(2),
+      STATS(3),
+      ENDED(4),
+      RESPONSE_NOT_SET(0);
+      private final int value;
+      private ResponseCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ResponseCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ResponseCase forNumber(int value) {
+        switch (value) {
+          case 1: return STARTED;
+          case 2: return AUDIO;
+          case 3: return STATS;
+          case 4: return ENDED;
+          case 0: return RESPONSE_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public ResponseCase
+    getResponseCase() {
+      return ResponseCase.forNumber(
+          responseCase_);
+    }
+
+    public static final int STARTED_FIELD_NUMBER = 1;
+    /**
+     * <pre>
+     * The stream is connected
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+     * @return Whether the started field is set.
+     */
+    @java.lang.Override
+    public boolean hasStarted() {
+      return responseCase_ == 1;
+    }
+    /**
+     * <pre>
+     * The stream is connected
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+     * @return The started.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioStarted getStarted() {
+      if (responseCase_ == 1) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * The stream is connected
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder getStartedOrBuilder() {
+      if (responseCase_ == 1) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+    }
+
+    public static final int AUDIO_FIELD_NUMBER = 2;
+    /**
+     * <pre>
+     * Call audio
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return Whether the audio field is set.
+     */
+    @java.lang.Override
+    public boolean hasAudio() {
+      return responseCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Call audio
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     * @return The audio.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioFrame getAudio() {
+      if (responseCase_ == 2) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * Call audio
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder getAudioOrBuilder() {
+      if (responseCase_ == 2) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+    }
+
+    public static final int STATS_FIELD_NUMBER = 3;
+    /**
+     * <pre>
+     * Stream counters
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+     * @return Whether the stats field is set.
+     */
+    @java.lang.Override
+    public boolean hasStats() {
+      return responseCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Stream counters
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+     * @return The stats.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioStats getStats() {
+      if (responseCase_ == 3) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioStats) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * Stream counters
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder getStatsOrBuilder() {
+      if (responseCase_ == 3) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioStats) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+    }
+
+    public static final int ENDED_FIELD_NUMBER = 4;
+    /**
+     * <pre>
+     * The stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+     * @return Whether the ended field is set.
+     */
+    @java.lang.Override
+    public boolean hasEnded() {
+      return responseCase_ == 4;
+    }
+    /**
+     * <pre>
+     * The stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+     * @return The ended.
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioEnded getEnded() {
+      if (responseCase_ == 4) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * The stream ended
+     * </pre>
+     *
+     * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+     */
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder getEndedOrBuilder() {
+      if (responseCase_ == 4) {
+         return (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_;
+      }
+      return ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (responseCase_ == 1) {
+        output.writeMessage(1, (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_);
+      }
+      if (responseCase_ == 2) {
+        output.writeMessage(2, (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_);
+      }
+      if (responseCase_ == 3) {
+        output.writeMessage(3, (ondewo.sip.SipOuterClass.SipCallAudioStats) response_);
+      }
+      if (responseCase_ == 4) {
+        output.writeMessage(4, (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (responseCase_ == 1) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_);
+      }
+      if (responseCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_);
+      }
+      if (responseCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (ondewo.sip.SipOuterClass.SipCallAudioStats) response_);
+      }
+      if (responseCase_ == 4) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ondewo.sip.SipOuterClass.SipCallAudioResponse)) {
+        return super.equals(obj);
+      }
+      ondewo.sip.SipOuterClass.SipCallAudioResponse other = (ondewo.sip.SipOuterClass.SipCallAudioResponse) obj;
+
+      if (!getResponseCase().equals(other.getResponseCase())) return false;
+      switch (responseCase_) {
+        case 1:
+          if (!getStarted()
+              .equals(other.getStarted())) return false;
+          break;
+        case 2:
+          if (!getAudio()
+              .equals(other.getAudio())) return false;
+          break;
+        case 3:
+          if (!getStats()
+              .equals(other.getStats())) return false;
+          break;
+        case 4:
+          if (!getEnded()
+              .equals(other.getEnded())) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      switch (responseCase_) {
+        case 1:
+          hash = (37 * hash) + STARTED_FIELD_NUMBER;
+          hash = (53 * hash) + getStarted().hashCode();
+          break;
+        case 2:
+          hash = (37 * hash) + AUDIO_FIELD_NUMBER;
+          hash = (53 * hash) + getAudio().hashCode();
+          break;
+        case 3:
+          hash = (37 * hash) + STATS_FIELD_NUMBER;
+          hash = (53 * hash) + getStats().hashCode();
+          break;
+        case 4:
+          hash = (37 * hash) + ENDED_FIELD_NUMBER;
+          hash = (53 * hash) + getEnded().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ondewo.sip.SipOuterClass.SipCallAudioResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * &lt;p&gt;Response of &lt;code&gt;SipStreamCallAudio&lt;/code&gt;&lt;/p&gt;
+     * </pre>
+     *
+     * Protobuf type {@code ondewo.sip.SipCallAudioResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ondewo.sip.SipCallAudioResponse)
+        ondewo.sip.SipOuterClass.SipCallAudioResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ondewo.sip.SipOuterClass.SipCallAudioResponse.class, ondewo.sip.SipOuterClass.SipCallAudioResponse.Builder.class);
+      }
+
+      // Construct using ondewo.sip.SipOuterClass.SipCallAudioResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (startedBuilder_ != null) {
+          startedBuilder_.clear();
+        }
+        if (audioBuilder_ != null) {
+          audioBuilder_.clear();
+        }
+        if (statsBuilder_ != null) {
+          statsBuilder_.clear();
+        }
+        if (endedBuilder_ != null) {
+          endedBuilder_.clear();
+        }
+        responseCase_ = 0;
+        response_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ondewo.sip.SipOuterClass.internal_static_ondewo_sip_SipCallAudioResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioResponse getDefaultInstanceForType() {
+        return ondewo.sip.SipOuterClass.SipCallAudioResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioResponse build() {
+        ondewo.sip.SipOuterClass.SipCallAudioResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioResponse buildPartial() {
+        ondewo.sip.SipOuterClass.SipCallAudioResponse result = new ondewo.sip.SipOuterClass.SipCallAudioResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ondewo.sip.SipOuterClass.SipCallAudioResponse result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(ondewo.sip.SipOuterClass.SipCallAudioResponse result) {
+        result.responseCase_ = responseCase_;
+        result.response_ = this.response_;
+        if (responseCase_ == 1 &&
+            startedBuilder_ != null) {
+          result.response_ = startedBuilder_.build();
+        }
+        if (responseCase_ == 2 &&
+            audioBuilder_ != null) {
+          result.response_ = audioBuilder_.build();
+        }
+        if (responseCase_ == 3 &&
+            statsBuilder_ != null) {
+          result.response_ = statsBuilder_.build();
+        }
+        if (responseCase_ == 4 &&
+            endedBuilder_ != null) {
+          result.response_ = endedBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ondewo.sip.SipOuterClass.SipCallAudioResponse) {
+          return mergeFrom((ondewo.sip.SipOuterClass.SipCallAudioResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ondewo.sip.SipOuterClass.SipCallAudioResponse other) {
+        if (other == ondewo.sip.SipOuterClass.SipCallAudioResponse.getDefaultInstance()) return this;
+        switch (other.getResponseCase()) {
+          case STARTED: {
+            mergeStarted(other.getStarted());
+            break;
+          }
+          case AUDIO: {
+            mergeAudio(other.getAudio());
+            break;
+          }
+          case STATS: {
+            mergeStats(other.getStats());
+            break;
+          }
+          case ENDED: {
+            mergeEnded(other.getEnded());
+            break;
+          }
+          case RESPONSE_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    internalGetStartedFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                responseCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    internalGetAudioFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                responseCase_ = 2;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    internalGetStatsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                responseCase_ = 3;
+                break;
+              } // case 26
+              case 34: {
+                input.readMessage(
+                    internalGetEndedFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                responseCase_ = 4;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int responseCase_ = 0;
+      private java.lang.Object response_;
+      public ResponseCase
+          getResponseCase() {
+        return ResponseCase.forNumber(
+            responseCase_);
+      }
+
+      public Builder clearResponse() {
+        responseCase_ = 0;
+        response_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioStarted, ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder, ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder> startedBuilder_;
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       * @return Whether the started field is set.
+       */
+      @java.lang.Override
+      public boolean hasStarted() {
+        return responseCase_ == 1;
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       * @return The started.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStarted getStarted() {
+        if (startedBuilder_ == null) {
+          if (responseCase_ == 1) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+        } else {
+          if (responseCase_ == 1) {
+            return startedBuilder_.getMessage();
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      public Builder setStarted(ondewo.sip.SipOuterClass.SipCallAudioStarted value) {
+        if (startedBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          response_ = value;
+          onChanged();
+        } else {
+          startedBuilder_.setMessage(value);
+        }
+        responseCase_ = 1;
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      public Builder setStarted(
+          ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder builderForValue) {
+        if (startedBuilder_ == null) {
+          response_ = builderForValue.build();
+          onChanged();
+        } else {
+          startedBuilder_.setMessage(builderForValue.build());
+        }
+        responseCase_ = 1;
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      public Builder mergeStarted(ondewo.sip.SipOuterClass.SipCallAudioStarted value) {
+        if (startedBuilder_ == null) {
+          if (responseCase_ == 1 &&
+              response_ != ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance()) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioStarted.newBuilder((ondewo.sip.SipOuterClass.SipCallAudioStarted) response_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            response_ = value;
+          }
+          onChanged();
+        } else {
+          if (responseCase_ == 1) {
+            startedBuilder_.mergeFrom(value);
+          } else {
+            startedBuilder_.setMessage(value);
+          }
+        }
+        responseCase_ = 1;
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      public Builder clearStarted() {
+        if (startedBuilder_ == null) {
+          if (responseCase_ == 1) {
+            responseCase_ = 0;
+            response_ = null;
+            onChanged();
+          }
+        } else {
+          if (responseCase_ == 1) {
+            responseCase_ = 0;
+            response_ = null;
+          }
+          startedBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      public ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder getStartedBuilder() {
+        return internalGetStartedFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder getStartedOrBuilder() {
+        if ((responseCase_ == 1) && (startedBuilder_ != null)) {
+          return startedBuilder_.getMessageOrBuilder();
+        } else {
+          if (responseCase_ == 1) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * The stream is connected
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStarted started = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioStarted, ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder, ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder> 
+          internalGetStartedFieldBuilder() {
+        if (startedBuilder_ == null) {
+          if (!(responseCase_ == 1)) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioStarted.getDefaultInstance();
+          }
+          startedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.SipCallAudioStarted, ondewo.sip.SipOuterClass.SipCallAudioStarted.Builder, ondewo.sip.SipOuterClass.SipCallAudioStartedOrBuilder>(
+                  (ondewo.sip.SipOuterClass.SipCallAudioStarted) response_,
+                  getParentForChildren(),
+                  isClean());
+          response_ = null;
+        }
+        responseCase_ = 1;
+        onChanged();
+        return startedBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioFrame, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder, ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder> audioBuilder_;
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       * @return Whether the audio field is set.
+       */
+      @java.lang.Override
+      public boolean hasAudio() {
+        return responseCase_ == 2;
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       * @return The audio.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame getAudio() {
+        if (audioBuilder_ == null) {
+          if (responseCase_ == 2) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+        } else {
+          if (responseCase_ == 2) {
+            return audioBuilder_.getMessage();
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder setAudio(ondewo.sip.SipOuterClass.SipCallAudioFrame value) {
+        if (audioBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          response_ = value;
+          onChanged();
+        } else {
+          audioBuilder_.setMessage(value);
+        }
+        responseCase_ = 2;
+        return this;
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder setAudio(
+          ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder builderForValue) {
+        if (audioBuilder_ == null) {
+          response_ = builderForValue.build();
+          onChanged();
+        } else {
+          audioBuilder_.setMessage(builderForValue.build());
+        }
+        responseCase_ = 2;
+        return this;
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder mergeAudio(ondewo.sip.SipOuterClass.SipCallAudioFrame value) {
+        if (audioBuilder_ == null) {
+          if (responseCase_ == 2 &&
+              response_ != ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance()) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioFrame.newBuilder((ondewo.sip.SipOuterClass.SipCallAudioFrame) response_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            response_ = value;
+          }
+          onChanged();
+        } else {
+          if (responseCase_ == 2) {
+            audioBuilder_.mergeFrom(value);
+          } else {
+            audioBuilder_.setMessage(value);
+          }
+        }
+        responseCase_ = 2;
+        return this;
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public Builder clearAudio() {
+        if (audioBuilder_ == null) {
+          if (responseCase_ == 2) {
+            responseCase_ = 0;
+            response_ = null;
+            onChanged();
+          }
+        } else {
+          if (responseCase_ == 2) {
+            responseCase_ = 0;
+            response_ = null;
+          }
+          audioBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      public ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder getAudioBuilder() {
+        return internalGetAudioFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder getAudioOrBuilder() {
+        if ((responseCase_ == 2) && (audioBuilder_ != null)) {
+          return audioBuilder_.getMessageOrBuilder();
+        } else {
+          if (responseCase_ == 2) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Call audio
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioFrame audio = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioFrame, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder, ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder> 
+          internalGetAudioFieldBuilder() {
+        if (audioBuilder_ == null) {
+          if (!(responseCase_ == 2)) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioFrame.getDefaultInstance();
+          }
+          audioBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.SipCallAudioFrame, ondewo.sip.SipOuterClass.SipCallAudioFrame.Builder, ondewo.sip.SipOuterClass.SipCallAudioFrameOrBuilder>(
+                  (ondewo.sip.SipOuterClass.SipCallAudioFrame) response_,
+                  getParentForChildren(),
+                  isClean());
+          response_ = null;
+        }
+        responseCase_ = 2;
+        onChanged();
+        return audioBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioStats, ondewo.sip.SipOuterClass.SipCallAudioStats.Builder, ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder> statsBuilder_;
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       * @return Whether the stats field is set.
+       */
+      @java.lang.Override
+      public boolean hasStats() {
+        return responseCase_ == 3;
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       * @return The stats.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStats getStats() {
+        if (statsBuilder_ == null) {
+          if (responseCase_ == 3) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioStats) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+        } else {
+          if (responseCase_ == 3) {
+            return statsBuilder_.getMessage();
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      public Builder setStats(ondewo.sip.SipOuterClass.SipCallAudioStats value) {
+        if (statsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          response_ = value;
+          onChanged();
+        } else {
+          statsBuilder_.setMessage(value);
+        }
+        responseCase_ = 3;
+        return this;
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      public Builder setStats(
+          ondewo.sip.SipOuterClass.SipCallAudioStats.Builder builderForValue) {
+        if (statsBuilder_ == null) {
+          response_ = builderForValue.build();
+          onChanged();
+        } else {
+          statsBuilder_.setMessage(builderForValue.build());
+        }
+        responseCase_ = 3;
+        return this;
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      public Builder mergeStats(ondewo.sip.SipOuterClass.SipCallAudioStats value) {
+        if (statsBuilder_ == null) {
+          if (responseCase_ == 3 &&
+              response_ != ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance()) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioStats.newBuilder((ondewo.sip.SipOuterClass.SipCallAudioStats) response_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            response_ = value;
+          }
+          onChanged();
+        } else {
+          if (responseCase_ == 3) {
+            statsBuilder_.mergeFrom(value);
+          } else {
+            statsBuilder_.setMessage(value);
+          }
+        }
+        responseCase_ = 3;
+        return this;
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      public Builder clearStats() {
+        if (statsBuilder_ == null) {
+          if (responseCase_ == 3) {
+            responseCase_ = 0;
+            response_ = null;
+            onChanged();
+          }
+        } else {
+          if (responseCase_ == 3) {
+            responseCase_ = 0;
+            response_ = null;
+          }
+          statsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      public ondewo.sip.SipOuterClass.SipCallAudioStats.Builder getStatsBuilder() {
+        return internalGetStatsFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder getStatsOrBuilder() {
+        if ((responseCase_ == 3) && (statsBuilder_ != null)) {
+          return statsBuilder_.getMessageOrBuilder();
+        } else {
+          if (responseCase_ == 3) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioStats) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * Stream counters
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioStats stats = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioStats, ondewo.sip.SipOuterClass.SipCallAudioStats.Builder, ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder> 
+          internalGetStatsFieldBuilder() {
+        if (statsBuilder_ == null) {
+          if (!(responseCase_ == 3)) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioStats.getDefaultInstance();
+          }
+          statsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.SipCallAudioStats, ondewo.sip.SipOuterClass.SipCallAudioStats.Builder, ondewo.sip.SipOuterClass.SipCallAudioStatsOrBuilder>(
+                  (ondewo.sip.SipOuterClass.SipCallAudioStats) response_,
+                  getParentForChildren(),
+                  isClean());
+          response_ = null;
+        }
+        responseCase_ = 3;
+        onChanged();
+        return statsBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioEnded, ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder, ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder> endedBuilder_;
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       * @return Whether the ended field is set.
+       */
+      @java.lang.Override
+      public boolean hasEnded() {
+        return responseCase_ == 4;
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       * @return The ended.
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioEnded getEnded() {
+        if (endedBuilder_ == null) {
+          if (responseCase_ == 4) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+        } else {
+          if (responseCase_ == 4) {
+            return endedBuilder_.getMessage();
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      public Builder setEnded(ondewo.sip.SipOuterClass.SipCallAudioEnded value) {
+        if (endedBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          response_ = value;
+          onChanged();
+        } else {
+          endedBuilder_.setMessage(value);
+        }
+        responseCase_ = 4;
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      public Builder setEnded(
+          ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder builderForValue) {
+        if (endedBuilder_ == null) {
+          response_ = builderForValue.build();
+          onChanged();
+        } else {
+          endedBuilder_.setMessage(builderForValue.build());
+        }
+        responseCase_ = 4;
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      public Builder mergeEnded(ondewo.sip.SipOuterClass.SipCallAudioEnded value) {
+        if (endedBuilder_ == null) {
+          if (responseCase_ == 4 &&
+              response_ != ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance()) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioEnded.newBuilder((ondewo.sip.SipOuterClass.SipCallAudioEnded) response_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            response_ = value;
+          }
+          onChanged();
+        } else {
+          if (responseCase_ == 4) {
+            endedBuilder_.mergeFrom(value);
+          } else {
+            endedBuilder_.setMessage(value);
+          }
+        }
+        responseCase_ = 4;
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      public Builder clearEnded() {
+        if (endedBuilder_ == null) {
+          if (responseCase_ == 4) {
+            responseCase_ = 0;
+            response_ = null;
+            onChanged();
+          }
+        } else {
+          if (responseCase_ == 4) {
+            responseCase_ = 0;
+            response_ = null;
+          }
+          endedBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      public ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder getEndedBuilder() {
+        return internalGetEndedFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      @java.lang.Override
+      public ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder getEndedOrBuilder() {
+        if ((responseCase_ == 4) && (endedBuilder_ != null)) {
+          return endedBuilder_.getMessageOrBuilder();
+        } else {
+          if (responseCase_ == 4) {
+            return (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_;
+          }
+          return ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * The stream ended
+       * </pre>
+       *
+       * <code>.ondewo.sip.SipCallAudioEnded ended = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ondewo.sip.SipOuterClass.SipCallAudioEnded, ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder, ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder> 
+          internalGetEndedFieldBuilder() {
+        if (endedBuilder_ == null) {
+          if (!(responseCase_ == 4)) {
+            response_ = ondewo.sip.SipOuterClass.SipCallAudioEnded.getDefaultInstance();
+          }
+          endedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ondewo.sip.SipOuterClass.SipCallAudioEnded, ondewo.sip.SipOuterClass.SipCallAudioEnded.Builder, ondewo.sip.SipOuterClass.SipCallAudioEndedOrBuilder>(
+                  (ondewo.sip.SipOuterClass.SipCallAudioEnded) response_,
+                  getParentForChildren(),
+                  isClean());
+          response_ = null;
+        }
+        responseCase_ = 4;
+        onChanged();
+        return endedBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ondewo.sip.SipCallAudioResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:ondewo.sip.SipCallAudioResponse)
+    private static final ondewo.sip.SipOuterClass.SipCallAudioResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ondewo.sip.SipOuterClass.SipCallAudioResponse();
+    }
+
+    public static ondewo.sip.SipOuterClass.SipCallAudioResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SipCallAudioResponse>
+        PARSER = new com.google.protobuf.AbstractParser<SipCallAudioResponse>() {
+      @java.lang.Override
+      public SipCallAudioResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<SipCallAudioResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SipCallAudioResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ondewo.sip.SipOuterClass.SipCallAudioResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface SipPlayWavFilesRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ondewo.sip.SipPlayWavFilesRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -8508,6 +21633,16 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ondewo_sip_SipEndCallRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_AnsweringMachineDetectionResult_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_AnsweringMachineDetectionResult_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ondewo_sip_SipStartCallRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -8553,6 +21688,46 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ondewo_sip_SipStatusHistoryResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipSetCallMediaControlRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipSetCallMediaControlRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioConfig_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioConfig_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioFrame_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioFrame_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioStarted_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioStarted_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioStats_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioStats_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioEnded_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioEnded_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ondewo_sip_SipCallAudioResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ondewo_sip_SipCallAudioResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ondewo_sip_SipPlayWavFilesRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -8568,68 +21743,158 @@ java.lang.String defaultValue) {
     java.lang.String[] descriptorData = {
       "\n\024ondewo/sip/sip.proto\022\nondewo.sip\032\033goog" +
       "le/protobuf/empty.proto\032\037google/protobuf" +
-      "/timestamp.proto\"(\n\021SipEndCallRequest\022\023\n" +
-      "\013hard_hangup\030\001 \001(\010\"\227\001\n\023SipStartCallReque" +
-      "st\022\021\n\tcallee_id\030\001 \001(\t\022=\n\007headers\030\002 \003(\0132," +
-      ".ondewo.sip.SipStartCallRequest.HeadersE" +
-      "ntry\032.\n\014HeadersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val" +
-      "ue\030\002 \001(\t:\0028\001\"r\n\031SipRegisterAccountReques" +
-      "t\022\024\n\014account_name\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
-      "\t\022\025\n\rauth_username\030\003 \001(\t\022\026\n\016outbound_pro" +
-      "xy\030\004 \001(\t\"L\n\026SipStartSessionRequest\022\024\n\014ac" +
-      "count_name\030\001 \001(\t\022\034\n\024auto_answer_interval" +
-      "\030\002 \001(\005\"\237\001\n\026SipTransferCallRequest\022\023\n\013tra" +
-      "nsfer_id\030\001 \001(\t\022@\n\007headers\030\002 \003(\0132/.ondewo" +
-      ".sip.SipTransferCallRequest.HeadersEntry" +
-      "\032.\n\014HeadersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002" +
-      " \001(\t:\0028\001\"\261\007\n\tSipStatus\022\024\n\014account_name\030\001" +
-      " \001(\t\022-\n\ttimestamp\030\002 \001(\0132\032.google.protobu" +
-      "f.Timestamp\0225\n\013status_type\030\003 \001(\0162 .ondew" +
-      "o.sip.SipStatus.StatusType\022\021\n\tcallee_id\030" +
-      "\004 \001(\t\022\030\n\020transfer_call_id\030\005 \001(\t\0223\n\007heade" +
-      "rs\030\006 \003(\0132\".ondewo.sip.SipStatus.HeadersE" +
-      "ntry\022\023\n\013description\030\007 \001(\t\022\026\n\016exception_n" +
-      "ame\030\010 \001(\t\022\033\n\023exception_traceback\030\t \001(\t\022\030" +
-      "\n\020nlu_session_name\030\n \001(\t\032.\n\014HeadersEntry" +
-      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\261\004\n\nSta" +
-      "tusType\022\016\n\nNO_SESSION\020\000\022\016\n\nREGISTERED\020\001\022" +
-      "\t\n\005READY\020\002\022\033\n\027INCOMING_CALL_INITIATED\020\003\022" +
-      "\033\n\027OUTGOING_CALL_INITIATED\020\004\022\033\n\027OUTGOING" +
-      "_CALL_CONNECTED\020\005\022\033\n\027INCOMING_CALL_CONNE" +
-      "CTED\020\006\022\033\n\027TRANSFER_CALL_INITIATED\020\007\022\031\n\025S" +
-      "OFT_HANGUP_INITIATED\020\010\022\031\n\025HARD_HANGUP_IN" +
-      "ITIATED\020\t\022\030\n\024INCOMING_CALL_FAILED\020\n\022\030\n\024O" +
-      "UTGOING_CALL_FAILED\020\013\022\032\n\026INCOMING_CALL_F" +
-      "INISHED\020\014\022\032\n\026OUTGOING_CALL_FINISHED\020\r\022\037\n" +
-      "\033SESSION_REGISTRATION_FAILED\020\016\022\023\n\017SESSIO" +
-      "N_STARTED\020\017\022\021\n\rSESSION_ENDED\020\020\022\030\n\024TRANSF" +
-      "ER_CALL_FAILED\020\021\022\024\n\020MICROPHONE_MUTED\020\022\022\026" +
-      "\n\022MICROPHONE_UNMUTED\020\023\022\037\n\033MICROPHONE_WAV" +
-      "_FILES_PLAYED\020\024\022\023\n\017NO_ONGOING_CALL\020\025\"I\n\030" +
-      "SipStatusHistoryResponse\022-\n\016status_histo" +
-      "ry\030\001 \003(\0132\025.ondewo.sip.SipStatus\"+\n\026SipPl" +
-      "ayWavFilesRequest\022\021\n\twav_files\030\001 \003(\0142\265\006\n" +
-      "\003Sip\022N\n\017SipStartSession\022\".ondewo.sip.Sip" +
-      "StartSessionRequest\032\025.ondewo.sip.SipStat" +
-      "us\"\000\022@\n\rSipEndSession\022\026.google.protobuf." +
-      "Empty\032\025.ondewo.sip.SipStatus\"\000\022H\n\014SipSta" +
-      "rtCall\022\037.ondewo.sip.SipStartCallRequest\032" +
-      "\025.ondewo.sip.SipStatus\"\000\022D\n\nSipEndCall\022\035" +
-      ".ondewo.sip.SipEndCallRequest\032\025.ondewo.s" +
-      "ip.SipStatus\"\000\022N\n\017SipTransferCall\022\".onde" +
-      "wo.sip.SipTransferCallRequest\032\025.ondewo.s" +
-      "ip.SipStatus\"\000\022T\n\022SipRegisterAccount\022%.o" +
-      "ndewo.sip.SipRegisterAccountRequest\032\025.on" +
-      "dewo.sip.SipStatus\"\000\022B\n\017SipGetSipStatus\022" +
-      "\026.google.protobuf.Empty\032\025.ondewo.sip.Sip" +
-      "Status\"\000\022X\n\026SipGetSipStatusHistory\022\026.goo" +
-      "gle.protobuf.Empty\032$.ondewo.sip.SipStatu" +
-      "sHistoryResponse\"\000\022N\n\017SipPlayWavFiles\022\"." +
-      "ondewo.sip.SipPlayWavFilesRequest\032\025.onde" +
-      "wo.sip.SipStatus\"\000\022:\n\007SipMute\022\026.google.p" +
-      "rotobuf.Empty\032\025.ondewo.sip.SipStatus\"\000\022<" +
-      "\n\tSipUnMute\022\026.google.protobuf.Empty\032\025.on" +
-      "dewo.sip.SipStatus\"\000b\006proto3"
+      "/timestamp.proto\"\277\002\n\021SipEndCallRequest\022\023" +
+      "\n\013hard_hangup\030\001 \001(\010\022?\n\nend_reason\030\002 \001(\0162" +
+      "+.ondewo.sip.SipEndCallRequest.EndCallRe" +
+      "ason\022?\n\namd_result\030\003 \001(\0132+.ondewo.sip.An" +
+      "sweringMachineDetectionResult\"\222\001\n\rEndCal" +
+      "lReason\022\037\n\033END_CALL_REASON_UNSPECIFIED\020\000" +
+      "\022\025\n\021ANSWERING_MACHINE\020\001\022(\n$ANSWERING_MAC" +
+      "HINE_VOICE_MESSAGE_LEFT\020\002\022\037\n\033END_CALL_RE" +
+      "ASON_TRANSFERRED\020\003\"k\n(SipReportAnswering" +
+      "MachineDetectedRequest\022?\n\namd_result\030\001 \001" +
+      "(\0132+.ondewo.sip.AnsweringMachineDetectio" +
+      "nResult\"\377\005\n\037AnsweringMachineDetectionRes" +
+      "ult\022D\n\007verdict\030\001 \001(\01623.ondewo.sip.Answer" +
+      "ingMachineDetectionResult.Verdict\022@\n\005cau" +
+      "se\030\002 \001(\01621.ondewo.sip.AnsweringMachineDe" +
+      "tectionResult.Cause\022\022\n\nconfidence\030\003 \001(\002\022" +
+      "\023\n\013decision_ms\030\004 \001(\005\022\017\n\007rule_id\030\005 \001(\t\022\027\n" +
+      "\017matched_cue_ids\030\006 \003(\t\022M\n\014action_taken\030\007" +
+      " \001(\01627.ondewo.sip.AnsweringMachineDetect" +
+      "ionResult.ActionTaken\022\017\n\007call_id\030\010 \001(\t\"\226" +
+      "\001\n\007Verdict\022\027\n\023VERDICT_UNSPECIFIED\020\000\022\t\n\005H" +
+      "UMAN\020\001\022\013\n\007MACHINE\020\002\022\007\n\003IVR\020\003\022\007\n\003FAX\020\004\022\030\n" +
+      "\024NETWORK_ANNOUNCEMENT\020\005\022\022\n\016CALL_SCREENIN" +
+      "G\020\006\022\r\n\tNO_SPEECH\020\007\022\013\n\007UNKNOWN\020\010\"\225\001\n\005Caus" +
+      "e\022\025\n\021CAUSE_UNSPECIFIED\020\000\022\013\n\007CADENCE\020\001\022\013\n" +
+      "\007KEYWORD\020\002\022\010\n\004BEEP\020\003\022\010\n\004TONE\020\004\022\027\n\023CADENC" +
+      "E_AND_KEYWORD\020\005\022\024\n\020CADENCE_AND_BEEP\020\006\022\013\n" +
+      "\007TIMEOUT\020\007\022\013\n\007SILENCE\020\010\"p\n\013ActionTaken\022\034" +
+      "\n\030ACTION_TAKEN_UNSPECIFIED\020\000\022\013\n\007HUNG_UP\020" +
+      "\001\022\r\n\tCONTINUED\020\002\022\017\n\013DETECT_ONLY\020\003\022\026\n\022LEF" +
+      "T_VOICE_MESSAGE\020\004\"\227\001\n\023SipStartCallReques" +
+      "t\022\021\n\tcallee_id\030\001 \001(\t\022=\n\007headers\030\002 \003(\0132,." +
+      "ondewo.sip.SipStartCallRequest.HeadersEn" +
+      "try\032.\n\014HeadersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
+      "e\030\002 \001(\t:\0028\001\"r\n\031SipRegisterAccountRequest" +
+      "\022\024\n\014account_name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
+      "\022\025\n\rauth_username\030\003 \001(\t\022\026\n\016outbound_prox" +
+      "y\030\004 \001(\t\"L\n\026SipStartSessionRequest\022\024\n\014acc" +
+      "ount_name\030\001 \001(\t\022\034\n\024auto_answer_interval\030" +
+      "\002 \001(\005\"\273\001\n\026SipTransferCallRequest\022\023\n\013tran" +
+      "sfer_id\030\001 \001(\t\022@\n\007headers\030\002 \003(\0132/.ondewo." +
+      "sip.SipTransferCallRequest.HeadersEntry\022" +
+      "\032\n\022outcome_timeout_ms\030\003 \001(\r\032.\n\014HeadersEn" +
+      "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\225\t\n\t" +
+      "SipStatus\022\024\n\014account_name\030\001 \001(\t\022-\n\ttimes" +
+      "tamp\030\002 \001(\0132\032.google.protobuf.Timestamp\0225" +
+      "\n\013status_type\030\003 \001(\0162 .ondewo.sip.SipStat" +
+      "us.StatusType\022\021\n\tcallee_id\030\004 \001(\t\022\030\n\020tran" +
+      "sfer_call_id\030\005 \001(\t\0223\n\007headers\030\006 \003(\0132\".on" +
+      "dewo.sip.SipStatus.HeadersEntry\022\023\n\013descr" +
+      "iption\030\007 \001(\t\022\026\n\016exception_name\030\010 \001(\t\022\033\n\023" +
+      "exception_traceback\030\t \001(\t\022\030\n\020nlu_session" +
+      "_name\030\n \001(\t\022?\n\namd_result\030\013 \001(\0132+.ondewo" +
+      ".sip.AnsweringMachineDetectionResult\022\017\n\007" +
+      "call_id\030\014 \001(\t\022\021\n\tbot_muted\030\r \001(\010\022\030\n\020list" +
+      "ening_paused\030\016 \001(\010\022\032\n\022call_audio_streams" +
+      "\030\017 \001(\005\022\031\n\021sip_response_code\030\020 \001(\005\032.\n\014Hea" +
+      "dersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028" +
+      "\001\"\337\004\n\nStatusType\022\016\n\nNO_SESSION\020\000\022\016\n\nREGI" +
+      "STERED\020\001\022\t\n\005READY\020\002\022\033\n\027INCOMING_CALL_INI" +
+      "TIATED\020\003\022\033\n\027OUTGOING_CALL_INITIATED\020\004\022\033\n" +
+      "\027OUTGOING_CALL_CONNECTED\020\005\022\033\n\027INCOMING_C" +
+      "ALL_CONNECTED\020\006\022\033\n\027TRANSFER_CALL_INITIAT" +
+      "ED\020\007\022\031\n\025SOFT_HANGUP_INITIATED\020\010\022\031\n\025HARD_" +
+      "HANGUP_INITIATED\020\t\022\030\n\024INCOMING_CALL_FAIL" +
+      "ED\020\n\022\030\n\024OUTGOING_CALL_FAILED\020\013\022\032\n\026INCOMI" +
+      "NG_CALL_FINISHED\020\014\022\032\n\026OUTGOING_CALL_FINI" +
+      "SHED\020\r\022\037\n\033SESSION_REGISTRATION_FAILED\020\016\022" +
+      "\023\n\017SESSION_STARTED\020\017\022\021\n\rSESSION_ENDED\020\020\022" +
+      "\030\n\024TRANSFER_CALL_FAILED\020\021\022\024\n\020MICROPHONE_" +
+      "MUTED\020\022\022\026\n\022MICROPHONE_UNMUTED\020\023\022\037\n\033MICRO" +
+      "PHONE_WAV_FILES_PLAYED\020\024\022\023\n\017NO_ONGOING_C" +
+      "ALL\020\025\022,\n(OUTGOING_CALL_ANSWERING_MACHINE" +
+      "_DETECTED\020\026\"I\n\030SipStatusHistoryResponse\022" +
+      "-\n\016status_history\030\001 \003(\0132\025.ondewo.sip.Sip" +
+      "Status\"\327\001\n\035SipSetCallMediaControlRequest" +
+      "\0222\n\tbot_voice\030\001 \001(\0162\037.ondewo.sip.MediaCo" +
+      "ntrolSetting\0226\n\rbot_listening\030\002 \001(\0162\037.on" +
+      "dewo.sip.MediaControlSetting\022,\n\005owner\030\003 " +
+      "\001(\0162\035.ondewo.sip.MediaControlOwner\022\034\n\024pa" +
+      "rticipants_present\030\004 \001(\010\"\250\001\n\022SipCallAudi" +
+      "oConfig\022*\n\004mode\030\001 \001(\0162\034.ondewo.sip.SipCa" +
+      "llAudioMode\022\026\n\016sample_rate_hz\030\002 \001(\005\022\020\n\010f" +
+      "rame_ms\030\003 \001(\005\022\021\n\ttake_over\030\004 \001(\010\022\021\n\tstre" +
+      "am_id\030\005 \001(\t\022\026\n\016max_duration_s\030\006 \001(\005\"8\n\021S" +
+      "ipCallAudioFrame\022\021\n\tpcm_s16le\030\001 \001(\014\022\020\n\010s" +
+      "equence\030\002 \001(\004\"\231\001\n\023SipCallAudioRequest\0220\n" +
+      "\006config\030\001 \001(\0132\036.ondewo.sip.SipCallAudioC" +
+      "onfigH\000\022.\n\005audio\030\002 \001(\0132\035.ondewo.sip.SipC" +
+      "allAudioFrameH\000\022\025\n\013agent_muted\030\003 \001(\010H\000B\t" +
+      "\n\007request\"~\n\023SipCallAudioStarted\022\021\n\tstre" +
+      "am_id\030\001 \001(\t\022\026\n\016sample_rate_hz\030\002 \001(\005\022\020\n\010f" +
+      "rame_ms\030\003 \001(\005\022*\n\004mode\030\004 \001(\0162\034.ondewo.sip" +
+      ".SipCallAudioMode\"\206\001\n\021SipCallAudioStats\022" +
+      "\023\n\013frames_sent\030\001 \001(\004\022\026\n\016frames_dropped\030\002" +
+      " \001(\004\022\027\n\017frames_received\030\003 \001(\004\022\021\n\tunderru" +
+      "ns\030\004 \001(\004\022\030\n\020frames_discarded\030\005 \001(\004\"V\n\021Si" +
+      "pCallAudioEnded\0221\n\006reason\030\001 \001(\0162!.ondewo" +
+      ".sip.SipCallAudioEndReason\022\016\n\006detail\030\002 \001" +
+      "(\t\"\346\001\n\024SipCallAudioResponse\0222\n\007started\030\001" +
+      " \001(\0132\037.ondewo.sip.SipCallAudioStartedH\000\022" +
+      ".\n\005audio\030\002 \001(\0132\035.ondewo.sip.SipCallAudio" +
+      "FrameH\000\022.\n\005stats\030\003 \001(\0132\035.ondewo.sip.SipC" +
+      "allAudioStatsH\000\022.\n\005ended\030\004 \001(\0132\035.ondewo." +
+      "sip.SipCallAudioEndedH\000B\n\n\010response\"+\n\026S" +
+      "ipPlayWavFilesRequest\022\021\n\twav_files\030\001 \003(\014" +
+      "*w\n\023MediaControlSetting\022#\n\037MEDIA_CONTROL" +
+      "_SETTING_UNCHANGED\020\000\022\034\n\030MEDIA_CONTROL_SE" +
+      "TTING_ON\020\001\022\035\n\031MEDIA_CONTROL_SETTING_OFF\020" +
+      "\002*\177\n\021MediaControlOwner\022#\n\037MEDIA_CONTROL_" +
+      "OWNER_UNSPECIFIED\020\000\022 \n\034MEDIA_CONTROL_OWN" +
+      "ER_OPERATOR\020\001\022#\n\037MEDIA_CONTROL_OWNER_PAR" +
+      "TICIPANT\020\002*u\n\020SipCallAudioMode\022#\n\037SIP_CA" +
+      "LL_AUDIO_MODE_UNSPECIFIED\020\000\022\036\n\032SIP_CALL_" +
+      "AUDIO_MODE_LISTEN\020\001\022\034\n\030SIP_CALL_AUDIO_MO" +
+      "DE_TALK\020\002*\304\002\n\025SipCallAudioEndReason\022)\n%S" +
+      "IP_CALL_AUDIO_END_REASON_UNSPECIFIED\020\000\022+" +
+      "\n\'SIP_CALL_AUDIO_END_REASON_CLIENT_CLOSE" +
+      "D\020\001\022(\n$SIP_CALL_AUDIO_END_REASON_CALL_EN" +
+      "DED\020\002\022.\n*SIP_CALL_AUDIO_END_REASON_CALL_" +
+      "TRANSFERRED\020\003\022*\n&SIP_CALL_AUDIO_END_REAS" +
+      "ON_MAX_DURATION\020\004\022%\n!SIP_CALL_AUDIO_END_" +
+      "REASON_STALLED\020\005\022&\n\"SIP_CALL_AUDIO_END_R" +
+      "EASON_INTERNAL\020\0062\354\010\n\003Sip\022N\n\017SipStartSess" +
+      "ion\022\".ondewo.sip.SipStartSessionRequest\032" +
+      "\025.ondewo.sip.SipStatus\"\000\022@\n\rSipEndSessio" +
+      "n\022\026.google.protobuf.Empty\032\025.ondewo.sip.S" +
+      "ipStatus\"\000\022H\n\014SipStartCall\022\037.ondewo.sip." +
+      "SipStartCallRequest\032\025.ondewo.sip.SipStat" +
+      "us\"\000\022D\n\nSipEndCall\022\035.ondewo.sip.SipEndCa" +
+      "llRequest\032\025.ondewo.sip.SipStatus\"\000\022N\n\017Si" +
+      "pTransferCall\022\".ondewo.sip.SipTransferCa" +
+      "llRequest\032\025.ondewo.sip.SipStatus\"\000\022T\n\022Si" +
+      "pRegisterAccount\022%.ondewo.sip.SipRegiste" +
+      "rAccountRequest\032\025.ondewo.sip.SipStatus\"\000" +
+      "\022E\n\017SipGetSipStatus\022\026.google.protobuf.Em" +
+      "pty\032\025.ondewo.sip.SipStatus\"\003\220\002\001\022[\n\026SipGe" +
+      "tSipStatusHistory\022\026.google.protobuf.Empt" +
+      "y\032$.ondewo.sip.SipStatusHistoryResponse\"" +
+      "\003\220\002\001\022N\n\017SipPlayWavFiles\022\".ondewo.sip.Sip" +
+      "PlayWavFilesRequest\032\025.ondewo.sip.SipStat" +
+      "us\"\000\022:\n\007SipMute\022\026.google.protobuf.Empty\032" +
+      "\025.ondewo.sip.SipStatus\"\000\022<\n\tSipUnMute\022\026." +
+      "google.protobuf.Empty\032\025.ondewo.sip.SipSt" +
+      "atus\"\000\022r\n!SipReportAnsweringMachineDetec" +
+      "ted\0224.ondewo.sip.SipReportAnsweringMachi" +
+      "neDetectedRequest\032\025.ondewo.sip.SipStatus" +
+      "\"\000\022\\\n\026SipSetCallMediaControl\022).ondewo.si" +
+      "p.SipSetCallMediaControlRequest\032\025.ondewo" +
+      ".sip.SipStatus\"\000\022]\n\022SipStreamCallAudio\022\037" +
+      ".ondewo.sip.SipCallAudioRequest\032 .ondewo" +
+      ".sip.SipCallAudioResponse\"\000(\0010\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8642,9 +21907,21 @@ java.lang.String defaultValue) {
     internal_static_ondewo_sip_SipEndCallRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipEndCallRequest_descriptor,
-        new java.lang.String[] { "HardHangup", });
-    internal_static_ondewo_sip_SipStartCallRequest_descriptor =
+        new java.lang.String[] { "HardHangup", "EndReason", "AmdResult", });
+    internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipReportAnsweringMachineDetectedRequest_descriptor,
+        new java.lang.String[] { "AmdResult", });
+    internal_static_ondewo_sip_AnsweringMachineDetectionResult_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_ondewo_sip_AnsweringMachineDetectionResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_AnsweringMachineDetectionResult_descriptor,
+        new java.lang.String[] { "Verdict", "Cause", "Confidence", "DecisionMs", "RuleId", "MatchedCueIds", "ActionTaken", "CallId", });
+    internal_static_ondewo_sip_SipStartCallRequest_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_ondewo_sip_SipStartCallRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipStartCallRequest_descriptor,
@@ -8656,23 +21933,23 @@ java.lang.String defaultValue) {
         internal_static_ondewo_sip_SipStartCallRequest_HeadersEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_ondewo_sip_SipRegisterAccountRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_ondewo_sip_SipRegisterAccountRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipRegisterAccountRequest_descriptor,
         new java.lang.String[] { "AccountName", "Password", "AuthUsername", "OutboundProxy", });
     internal_static_ondewo_sip_SipStartSessionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_ondewo_sip_SipStartSessionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipStartSessionRequest_descriptor,
         new java.lang.String[] { "AccountName", "AutoAnswerInterval", });
     internal_static_ondewo_sip_SipTransferCallRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_ondewo_sip_SipTransferCallRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipTransferCallRequest_descriptor,
-        new java.lang.String[] { "TransferId", "Headers", });
+        new java.lang.String[] { "TransferId", "Headers", "OutcomeTimeoutMs", });
     internal_static_ondewo_sip_SipTransferCallRequest_HeadersEntry_descriptor =
       internal_static_ondewo_sip_SipTransferCallRequest_descriptor.getNestedTypes().get(0);
     internal_static_ondewo_sip_SipTransferCallRequest_HeadersEntry_fieldAccessorTable = new
@@ -8680,11 +21957,11 @@ java.lang.String defaultValue) {
         internal_static_ondewo_sip_SipTransferCallRequest_HeadersEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_ondewo_sip_SipStatus_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_ondewo_sip_SipStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipStatus_descriptor,
-        new java.lang.String[] { "AccountName", "Timestamp", "StatusType", "CalleeId", "TransferCallId", "Headers", "Description", "ExceptionName", "ExceptionTraceback", "NluSessionName", });
+        new java.lang.String[] { "AccountName", "Timestamp", "StatusType", "CalleeId", "TransferCallId", "Headers", "Description", "ExceptionName", "ExceptionTraceback", "NluSessionName", "AmdResult", "CallId", "BotMuted", "ListeningPaused", "CallAudioStreams", "SipResponseCode", });
     internal_static_ondewo_sip_SipStatus_HeadersEntry_descriptor =
       internal_static_ondewo_sip_SipStatus_descriptor.getNestedTypes().get(0);
     internal_static_ondewo_sip_SipStatus_HeadersEntry_fieldAccessorTable = new
@@ -8692,13 +21969,61 @@ java.lang.String defaultValue) {
         internal_static_ondewo_sip_SipStatus_HeadersEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_ondewo_sip_SipStatusHistoryResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_ondewo_sip_SipStatusHistoryResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipStatusHistoryResponse_descriptor,
         new java.lang.String[] { "StatusHistory", });
+    internal_static_ondewo_sip_SipSetCallMediaControlRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_ondewo_sip_SipSetCallMediaControlRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipSetCallMediaControlRequest_descriptor,
+        new java.lang.String[] { "BotVoice", "BotListening", "Owner", "ParticipantsPresent", });
+    internal_static_ondewo_sip_SipCallAudioConfig_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_ondewo_sip_SipCallAudioConfig_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioConfig_descriptor,
+        new java.lang.String[] { "Mode", "SampleRateHz", "FrameMs", "TakeOver", "StreamId", "MaxDurationS", });
+    internal_static_ondewo_sip_SipCallAudioFrame_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_ondewo_sip_SipCallAudioFrame_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioFrame_descriptor,
+        new java.lang.String[] { "PcmS16Le", "Sequence", });
+    internal_static_ondewo_sip_SipCallAudioRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_ondewo_sip_SipCallAudioRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioRequest_descriptor,
+        new java.lang.String[] { "Config", "Audio", "AgentMuted", "Request", });
+    internal_static_ondewo_sip_SipCallAudioStarted_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_ondewo_sip_SipCallAudioStarted_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioStarted_descriptor,
+        new java.lang.String[] { "StreamId", "SampleRateHz", "FrameMs", "Mode", });
+    internal_static_ondewo_sip_SipCallAudioStats_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_ondewo_sip_SipCallAudioStats_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioStats_descriptor,
+        new java.lang.String[] { "FramesSent", "FramesDropped", "FramesReceived", "Underruns", "FramesDiscarded", });
+    internal_static_ondewo_sip_SipCallAudioEnded_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_ondewo_sip_SipCallAudioEnded_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioEnded_descriptor,
+        new java.lang.String[] { "Reason", "Detail", });
+    internal_static_ondewo_sip_SipCallAudioResponse_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_ondewo_sip_SipCallAudioResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ondewo_sip_SipCallAudioResponse_descriptor,
+        new java.lang.String[] { "Started", "Audio", "Stats", "Ended", "Response", });
     internal_static_ondewo_sip_SipPlayWavFilesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_ondewo_sip_SipPlayWavFilesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ondewo_sip_SipPlayWavFilesRequest_descriptor,
