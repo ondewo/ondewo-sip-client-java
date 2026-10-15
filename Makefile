@@ -29,12 +29,15 @@ export
 # 2 - Update RELEASE.md
 # -------------- Release Process Steps (`make ondewo_release`, everything runs locally) --------------
 # CI builds and publishes nothing, and the credentials live ONLY in ondewo-devops-accounts.
-# 1 - Get Credentials from devops-accounts repo
-# 2 - Check that every credential is set AND accepted (GitHub, Maven Central, GPG) - read-only
-# 3 - Build, test and rehearse the signed Maven Central deployment
-# 4 - Commit, push, create and push the Release Branch and the Release Tag
-# 5 - Maven Central: upload, publish automatically, wait until Central reports it PUBLISHED
-# 6 - GitHub Release with the release notes, LAST
+# 1 - Get Credentials from devops-accounts repo, then DELETE that clone before anything else runs
+# 2 - release_preflight (read-only): host tools, every credential set AND accepted (GitHub, Maven
+#     Central, GPG), version absent from origin and Maven Central, RELEASE.md entry, branch up to date
+# 3 - Build, run the full test suite and rehearse the signed Maven Central deployment
+# 4 - Commit locally
+# 5 - Maven Central: upload, publish automatically, wait until Central reports it PUBLISHED and
+#     repo1.maven.org serves it
+# 6 - Push, create and push the Release Branch and the Release Tag
+# 7 - GitHub Release with the release notes, then release_verify (read-only)
 
 ########################################################
 # 		Variables
@@ -66,9 +69,9 @@ GITHUB_GH_TOKEN?=ENTER_YOUR_TOKEN_HERE
 MAVEN_CENTRAL_USERNAME?=ENTER_HERE_YOUR_MAVEN_CENTRAL_USERNAME
 MAVEN_CENTRAL_PASSWORD?=ENTER_HERE_YOUR_MAVEN_CENTRAL_PASSWORD
 # The PGP secret key Central verifies every artifact against, base64 of
-# `gpg --armor --export-secret-keys <fingerprint>`. Base64 because an account_*.env file and
-# the `make release VAR=...` hand-off below are both strictly one line per variable, and an
-# armored key is not. Its PUBLIC half has to be on a keyserver - see README.md.
+# `gpg --armor --export-secret-keys <fingerprint>`. Base64 because an account_*.env file is
+# strictly one line per variable (run_release_with_devops reads it line by line), and an armored
+# key is not. Its PUBLIC half has to be on a keyserver - see README.md.
 MAVEN_GPG_KEY_B64?=ENTER_HERE_YOUR_MAVEN_GPG_KEY_B64
 MAVEN_GPG_PASSPHRASE?=ENTER_HERE_YOUR_MAVEN_GPG_PASSPHRASE
 
@@ -116,17 +119,60 @@ MAVEN_CENTRAL_SETTINGS=maven-central-settings.xml
 
 # Terminate on the ***** separator that delimits release entries, NOT on /\*\*/ - that matches
 # the first markdown **bold** span inside the entry and silently truncates the notes there,
-# with no error from `gh release create`.
+# with no error from `gh release create`. The heading is matched as a WHOLE line with the version
+# quoted (\Q..\E): an unanchored `9.1.0` would also open the slice at a `19.1.0` or `9.1.0x` heading.
 CURRENT_RELEASE_NOTES=`cat RELEASE.md \
-	| perl -ne 'print if /Release ONDEWO SIP Java Client ${ONDEWO_SIP_VERSION}/../^\*{5}/'`
+	| perl -ne 'print if /^\#+ Release ONDEWO SIP Java Client \Q${ONDEWO_SIP_VERSION}\E$$/../^\*{5}/'`
 
 GH_REPO="https://github.com/ondewo/ondewo-sip-client-java"
 # <owner>/<repo>, the form the GitHub REST API addresses the repository by (check_gh_token_valid).
 GH_REPO_PATH=ondewo/ondewo-sip-client-java
 # The Central Portal's read-only "is this version published?" endpoint (check_maven_central_token_valid).
 MAVEN_CENTRAL_PUBLISHED_API=https://central.sonatype.com/api/v1/publisher/published?namespace=${MAVEN_GROUP_ID}&name=${MAVEN_ARTIFACT_ID}&version=${ONDEWO_SIP_VERSION}
-DEVOPS_ACCOUNT_GIT="ondewo-devops-accounts"
-DEVOPS_ACCOUNT_DIR="./${DEVOPS_ACCOUNT_GIT}"
+# What Maven Central SERVES - the CDN every consumer resolves from, as opposed to the Portal's
+# state above. release_preflight requires the pom to be absent there, release_verify present.
+MAVEN_REPO1_VERSION_URL=https://repo1.maven.org/maven2/$(subst .,/,${MAVEN_GROUP_ID})/${MAVEN_ARTIFACT_ID}/${ONDEWO_SIP_VERSION}
+MAVEN_REPO1_POM_URL=${MAVEN_REPO1_VERSION_URL}/${MAVEN_ARTIFACT_ID}-${ONDEWO_SIP_VERSION}.pom
+MAVEN_REPO1_JAR_URL=${MAVEN_REPO1_VERSION_URL}/${MAVEN_ARTIFACT_ID}-${ONDEWO_SIP_VERSION}.jar
+# release_verify polls repo1.maven.org this often, this far apart (20 x 30 s = 10 minutes): Central
+# reports PUBLISHED before every CDN node serves the files.
+# VERIFY_ATTEMPTS / VERIFY_INTERVAL_S are accepted as short aliases.
+RELEASE_VERIFY_ATTEMPTS?=$(or ${VERIFY_ATTEMPTS},20)
+RELEASE_VERIFY_INTERVAL_S?=$(or ${VERIFY_INTERVAL_S},30)
+# The only tools the release needs on the host; everything else runs in the utils image.
+RELEASE_HOST_TOOLS=docker git perl curl
+
+# --- ondewo-devops-accounts
+# DEVOPS_ACCOUNT_DIR is deliberately NOT defined here: when the caller's environment points it at an
+# existing directory (the single temp clone of ondewo-sip-api's release_all_clients - give an
+# ABSOLUTE path, `make -C` changes the directory), run_release_with_devops reads the credentials
+# from there and neither clones nor deletes it. Otherwise it clones DEVOPS_ACCOUNT_GIT_URL into
+# DEVOPS_ACCOUNT_CLONE_DIR and deletes that clone again before `make release` starts.
+DEVOPS_ACCOUNT_GIT=ondewo-devops-accounts
+DEVOPS_ACCOUNT_GIT_URL?=git@bitbucket.org:ondewo/${DEVOPS_ACCOUNT_GIT}.git
+DEVOPS_ACCOUNT_CLONE_DIR?=./${DEVOPS_ACCOUNT_GIT}
+# release_preflight and release_verify are also run STANDALONE by ondewo-sip-api's release driver,
+# with nothing but an absolute DEVOPS_ACCOUNT_DIR in the environment. This shell prefix fills every
+# credential that is unset or still a placeholder from $$DEVOPS_ACCOUNT_DIR/account_*.env (anchored
+# `^NAME=`, the last such line) into the environment of the ONE recipe line it prefixes - so only the
+# step that uses them gets them, nothing persists, and no value is ever on a command line or echoed
+# (every line it prefixes is @-silent). A value already in the environment always wins. Pinned by
+# ReleaseCredentialsFromDevopsAccountDirTest.
+WITH_DEVOPS_ACCOUNT_DIR_CREDENTIALS=if [ -n "$$DEVOPS_ACCOUNT_DIR" ] && [ -d "$$DEVOPS_ACCOUNT_DIR" ]; then \
+	for spec in account_github.env:GITHUB_GH_TOKEN \
+		account_maven_central.env:MAVEN_CENTRAL_USERNAME account_maven_central.env:MAVEN_CENTRAL_PASSWORD \
+		account_maven_central.env:MAVEN_GPG_KEY_B64 account_maven_central.env:MAVEN_GPG_PASSPHRASE; do \
+		file=$${spec%%:*}; name=$${spec\#*:}; \
+		eval "value=\"\$$$$name\""; \
+		case "$$value" in \
+			""|ENTER_*) line=$$(grep -hE "^$$name=" "$$DEVOPS_ACCOUNT_DIR/$$file" 2>/dev/null | tail -n 1); \
+				if [ -n "$$line" ]; then set -a; eval "$$line"; set +a; fi;; \
+		esac; \
+	done; \
+fi;
+
+# Non-empty under `make -n` (see run_release_with_devops).
+MAKE_DRY_RUN=$(findstring n,$(firstword -$(MAKEFLAGS)))
 
 # Console colors for [INFO] / [SUCCESS] / [ERROR] messages
 BLUE   := \033[1;34m
@@ -289,7 +335,10 @@ test_via_docker: build_utils_docker_image ## Run `make test` in the utils image 
 	${UTILS_DOCKER_RUN} ${IMAGE_UTILS_NAME} make test
 
 build_utils_docker_image: ## Build the utils image (maven, JDK, gpg, gh) the *_via_docker targets run in
-	docker build -f Dockerfile.utils -t ${IMAGE_UTILS_NAME} .
+# The Dockerfile arrives on stdin and there is NO build context: Dockerfile.utils copies nothing, and
+# a context of `.` would ship the whole checkout - an ondewo-devops-accounts clone included - to the
+# docker daemon. .dockerignore excludes that clone as well, for any other build that uses `.`.
+	docker build -t ${IMAGE_UTILS_NAME} - < Dockerfile.utils
 
 clean: ## Remove the local maven build output (never touches the generated sources)
 	rm -rf target
@@ -314,23 +363,18 @@ checkout_defined_submodule_versions: ## Check out the submodule versions pinned 
 #		Release
 
 release: ## Automate the entire release process - every step runs locally, CI publishes nothing
+# The ORDER is pinned by src/test/java/com/ondewo/sip/release/ReleaseOrderTest.java.
 	@echo "Start Release"
-# FIRST, before anything is built, branched or tagged. A credential that is only exercised by
-# the upload or the GitHub release is exercised far too late: by then the release branch and the
-# tag are on origin, a tag is not correctable, and `make spc` refuses every retry because that
-# branch and tag now exist. So every credential is proven here, while the whole thing is still a
-# no-op: first that it is set, then - read-only, in the utils image - that it is ACCEPTED.
-	make check_release_credentials
-	make validate_release_credentials_via_docker_image
-# Same reasoning for the notes: `gh release create -n ""` publishes an EMPTY release without
-# complaining, and the tag that named it can no longer be moved.
-	make check_release_notes
+# FIRST, before anything is built, committed or pushed: every credential is proven set AND accepted,
+# the version is proven absent from origin and from Maven Central, and RELEASE.md is proven to carry
+# its notes. All of it is read-only, so a failure here leaves nothing behind.
+	make release_preflight
 	make build
 	-make precommit_hooks_run_all_files
 	make check_build
-# Everything that can still fail for a build, test or packaging reason runs HERE, before the
-# first push. The dry run is the Maven Central deployment below minus the upload: the release
-# profile, the test suite and its coverage gate, javadoc, and signing (with a throwaway key).
+# The full suite + its coverage gate, then the Maven Central deployment minus the upload: the release
+# profile, the suite again, javadoc, and signing (with a throwaway key), online and offline.
+	make test_via_docker
 	make check_central_pom
 	make dry_run_maven_central_via_docker
 	git status
@@ -349,18 +393,119 @@ release: ## Automate the entire release process - every step runs locally, CI pu
 # Commit only when something is staged, but never swallow a REAL commit failure (e.g. no git
 # identity): the tag below would then silently name the previous commit.
 	git diff --cached --quiet || git commit --no-verify -m "Preparing for Release ${ONDEWO_SIP_VERSION}"
+# The ONLY upload to Maven Central, BEFORE anything reaches origin: a failed or rejected deployment
+# then leaves no branch, no tag and no GitHub release behind, and the release can simply be re-run.
+# The release profile sets autoPublish=true and waitUntil=published, so this returns once the Portal
+# reports the version PUBLISHED; verify_maven_central_serves_version then waits until
+# repo1.maven.org - what every consumer resolves from - serves the pom and the jar.
+	make push_to_maven_central_via_docker
+	make verify_maven_central_serves_version
+# Only now does anything reach origin. release_preflight proved the branch is not behind origin, so
+# this push is a fast-forward.
 	git push
 	make create_release_branch
 	make create_release_tag
-# The ONLY upload to Maven Central - no workflow publishes anything. The release profile sets
-# autoPublish=true and waitUntil=published, so this returns once Central reports the version
-# PUBLISHED, and fails when the Portal rejects the deployment or it is not published within
-# waitMaxTime: no human has to press Publish, and nothing below runs for an unpublished version.
-	make push_to_maven_central_via_docker
 # LAST, so that a GitHub release exists only for a version that is complete everywhere. It carries
 # the release notes; the jars are distributed by Maven Central.
 	make release_to_github_via_docker_image
+	make release_verify
 	@echo "Release Finished"
+
+release_preflight: ## Read-only: fail before anything is built, committed or pushed (tools, credentials, version, notes, branch)
+# Changes nothing anywhere - every probe is a GET or a local check; the only side effect is building
+# the local utils image the credential checks run in. Standalone, it reads the credentials from
+# DEVOPS_ACCOUNT_DIR (see WITH_DEVOPS_ACCOUNT_DIR_CREDENTIALS).
+	make check_release_host_tools
+	make check_no_devops_clone_in_workspace
+	@$(WITH_DEVOPS_ACCOUNT_DIR_CREDENTIALS) make check_release_credentials
+	@$(WITH_DEVOPS_ACCOUNT_DIR_CREDENTIALS) make validate_release_credentials_via_docker_image
+	make check_release_notes
+	make check_version_unreleased
+	make check_branch_up_to_date
+	@echo "$(GREEN)[SUCCESS]$(NC) release preflight passed for ${ONDEWO_SIP_VERSION}"
+
+release_verify: ## Read-only: fail unless the tag is on origin, the GitHub release has notes and repo1.maven.org serves the version
+	make check_tag_on_origin
+	make verify_maven_central_serves_version
+	@$(WITH_DEVOPS_ACCOUNT_DIR_CREDENTIALS) make verify_github_release_via_docker_image
+	@echo "$(GREEN)[SUCCESS]$(NC) ${ONDEWO_SIP_VERSION} is tagged, released on GitHub with notes, and served by Maven Central"
+
+check_release_host_tools: ## Assert the host has the only tools a release runs outside the utils image
+	@missing=""; \
+	for tool in ${RELEASE_HOST_TOOLS}; do command -v "$$tool" >/dev/null 2>&1 || missing="$$missing $$tool"; done; \
+	if [ -n "$$missing" ]; then echo "$(RED)[ERROR]$(NC) the release needs on the host:$$missing"; exit 1; fi
+	@docker info >/dev/null 2>&1 || { echo "$(RED)[ERROR]$(NC) the docker daemon is not reachable"; exit 1; }
+	@echo "$(GREEN)[SUCCESS]$(NC) host tools present: ${RELEASE_HOST_TOOLS} (docker daemon reachable)"
+
+check_no_devops_clone_in_workspace: ## Assert no ondewo-devops-accounts clone sits in the checkout the containers mount
+# Every *_via_docker target mounts this checkout into a container, so a credential clone inside it
+# would be readable there. run_release_with_devops deletes its clone before `make release` starts.
+	@if [ -e "${DEVOPS_ACCOUNT_CLONE_DIR}" ]; then \
+		echo "$(RED)[ERROR]$(NC) ${DEVOPS_ACCOUNT_CLONE_DIR} exists - the release mounts this checkout into containers; delete it first"; \
+		exit 1; \
+	fi
+	@echo "$(GREEN)[SUCCESS]$(NC) no ${DEVOPS_ACCOUNT_GIT} clone in the workspace"
+
+check_version_unreleased: ## Assert neither origin nor Maven Central has ${ONDEWO_SIP_VERSION} yet (read-only)
+# `git ls-remote --exit-code` exits 2 when no ref matches, 0 when one does, and 128 when origin cannot
+# be asked - which must fail too. A pattern matches a WHOLE trailing path, so refs/tags/9.1.0 never
+# matches refs/tags/19.1.0. 404 from repo1.maven.org is the only answer that lets the release go on.
+	@git ls-remote --exit-code origin "refs/tags/${ONDEWO_SIP_VERSION}" "refs/heads/release/${ONDEWO_SIP_VERSION}" >/dev/null; \
+	status=$$?; \
+	case $$status in \
+		0) echo "$(RED)[ERROR]$(NC) origin already has the tag ${ONDEWO_SIP_VERSION} or the branch release/${ONDEWO_SIP_VERSION}"; exit 1;; \
+		2) echo "$(GREEN)[SUCCESS]$(NC) origin has neither the tag ${ONDEWO_SIP_VERSION} nor the branch release/${ONDEWO_SIP_VERSION}";; \
+		*) echo "$(RED)[ERROR]$(NC) cannot ask origin for its refs (git ls-remote exit $$status)"; exit 1;; \
+	esac
+	@code=$$(curl -sS --connect-timeout 20 --max-time 60 -o /dev/null -w '%{http_code}' "${MAVEN_REPO1_POM_URL}") || code="no answer"; \
+	case "$$code" in \
+		404) echo "$(GREEN)[SUCCESS]$(NC) repo1.maven.org does not serve ${ONDEWO_SIP_VERSION} yet";; \
+		200) echo "$(RED)[ERROR]$(NC) repo1.maven.org already serves ${MAVEN_GROUP_ID}:${MAVEN_ARTIFACT_ID}:${ONDEWO_SIP_VERSION} - a published version can never be uploaded again"; exit 1;; \
+		*) echo "$(RED)[ERROR]$(NC) unexpected answer from repo1.maven.org (HTTP $$code) for ${MAVEN_REPO1_POM_URL}"; exit 1;; \
+	esac
+
+check_branch_up_to_date: ## Assert the current branch tracks origin and is not behind it, so the release push is a fast-forward
+# The release publishes to Maven Central BEFORE it pushes, so a push that origin rejects would leave a
+# published version without its tag. The tip origin reports must already be in the local history.
+	@branch=$$(git symbolic-ref -q --short HEAD) || { echo "$(RED)[ERROR]$(NC) HEAD is detached - release from a branch"; exit 1; }; \
+	git rev-parse -q --verify "$$branch@{upstream}" >/dev/null || { echo "$(RED)[ERROR]$(NC) $$branch has no upstream - 'git push' would refuse"; exit 1; }; \
+	remote_tip=$$(git ls-remote --exit-code origin "refs/heads/$$branch" | cut -f1) || { echo "$(RED)[ERROR]$(NC) origin has no branch $$branch"; exit 1; }; \
+	git merge-base --is-ancestor "$$remote_tip" HEAD 2>/dev/null || { echo "$(RED)[ERROR]$(NC) $$branch is behind origin ($$remote_tip is not in HEAD's history) - pull first"; exit 1; }; \
+	echo "$(GREEN)[SUCCESS]$(NC) $$branch contains origin's tip $$remote_tip"
+
+check_tag_on_origin: ## Assert origin has the tag ${ONDEWO_SIP_VERSION} (read-only)
+	@git ls-remote --exit-code origin "refs/tags/${ONDEWO_SIP_VERSION}" >/dev/null \
+		|| { echo "$(RED)[ERROR]$(NC) origin has no tag ${ONDEWO_SIP_VERSION}"; exit 1; }
+	@echo "$(GREEN)[SUCCESS]$(NC) origin has the tag ${ONDEWO_SIP_VERSION}"
+
+verify_maven_central_serves_version: ## Poll repo1.maven.org until it serves the pom and the jar of ${ONDEWO_SIP_VERSION} (read-only)
+# The Portal's PUBLISHED (waitUntil=published) is the Portal's state; consumers resolve from
+# repo1.maven.org, which lags it. RELEASE_VERIFY_ATTEMPTS x RELEASE_VERIFY_INTERVAL_S bound the wait.
+	@attempt=1; \
+	while :; do \
+		pom=$$(curl -sS --connect-timeout 20 --max-time 60 -o /dev/null -w '%{http_code}' "${MAVEN_REPO1_POM_URL}") || pom="no answer"; \
+		jar=$$(curl -sS --connect-timeout 20 --max-time 60 -o /dev/null -w '%{http_code}' -I "${MAVEN_REPO1_JAR_URL}") || jar="no answer"; \
+		if [ "$$pom" = 200 ] && [ "$$jar" = 200 ]; then break; fi; \
+		if [ $$attempt -ge ${RELEASE_VERIFY_ATTEMPTS} ]; then \
+			echo "$(RED)[ERROR]$(NC) repo1.maven.org does not serve ${ONDEWO_SIP_VERSION} after ${RELEASE_VERIFY_ATTEMPTS} attempts (pom HTTP $$pom, jar HTTP $$jar)"; \
+			exit 1; \
+		fi; \
+		echo "$(BLUE)[INFO]$(NC) repo1.maven.org: pom HTTP $$pom, jar HTTP $$jar - attempt $$attempt/${RELEASE_VERIFY_ATTEMPTS}, retrying in ${RELEASE_VERIFY_INTERVAL_S} s"; \
+		attempt=$$((attempt + 1)); \
+		sleep ${RELEASE_VERIFY_INTERVAL_S}; \
+	done
+	@echo "$(GREEN)[SUCCESS]$(NC) repo1.maven.org serves ${MAVEN_GROUP_ID}:${MAVEN_ARTIFACT_ID}:${ONDEWO_SIP_VERSION}"
+
+verify_github_release: check_gh_token ## Assert the GitHub release ${ONDEWO_SIP_VERSION} exists and has a non-empty body (read-only, needs gh)
+	@body=$$(GH_TOKEN="$$GITHUB_GH_TOKEN" gh release view "${ONDEWO_SIP_VERSION}" --repo "${GH_REPO_PATH}" --json body --jq .body) \
+		|| { echo "$(RED)[ERROR]$(NC) gh cannot read the GitHub release ${ONDEWO_SIP_VERSION}: GitHub refused GITHUB_GH_TOKEN (401) or the release does not exist (see the gh error above)"; exit 1; }; \
+	if [ -z "$$(printf '%s' "$$body" | tr -d '[:space:]')" ]; then \
+		echo "$(RED)[ERROR]$(NC) the GitHub release ${ONDEWO_SIP_VERSION} has an EMPTY body"; exit 1; \
+	fi
+	@echo "$(GREEN)[SUCCESS]$(NC) the GitHub release ${ONDEWO_SIP_VERSION} carries release notes"
+
+verify_github_release_via_docker_image: build_utils_docker_image check_gh_token ## Run `make verify_github_release` in the utils image - needs only docker
+	@${UTILS_DOCKER_RUN} -e GITHUB_GH_TOKEN ${IMAGE_UTILS_NAME} make verify_github_release
 
 create_release_branch: ## Create Release Branch and push it to origin
 	git checkout -b "release/${ONDEWO_SIP_VERSION}"
@@ -371,8 +516,8 @@ create_release_tag: ## Create Release Tag and push it to origin
 	git push origin ${ONDEWO_SIP_VERSION}
 
 check_gh_token: ## Fail loudly when GITHUB_GH_TOKEN is unset or still the placeholder
-# Without this, an unset token reaches `gh auth login --with-token` as an empty stdin and the
-# failure surfaces only in push_to_gh - after create_release_tag has already pushed the tag.
+# Without this, an unset token reaches gh as an empty GH_TOKEN and the failure surfaces only in
+# push_to_gh - after create_release_tag has already pushed the tag.
 # `$$GITHUB_GH_TOKEN`, not `${GITHUB_GH_TOKEN}`: make expands the latter BEFORE the shell runs, which
 # puts the token on the argv of `sh -c`, and /proc/<pid>/cmdline is readable by every user on the host.
 	@if [ -z "$$GITHUB_GH_TOKEN" ] || [ "$$GITHUB_GH_TOKEN" = "ENTER_YOUR_TOKEN_HERE" ]; then \
@@ -383,8 +528,9 @@ check_gh_token: ## Fail loudly when GITHUB_GH_TOKEN is unset or still the placeh
 
 check_gh_token_valid: check_gh_token ## Assert GitHub accepts GITHUB_GH_TOKEN and lets it push to this repository (read-only, needs gh)
 # GET /repos/<owner>/<repo> changes nothing. `.permissions` is only present for an authenticated
-# caller, and `push` is exactly what the release branch, the tag and the GitHub release need. GH_TOKEN
-# is set for this one command only: `gh auth login` in login_to_gh refuses to run while it is exported.
+# caller, and `push` is exactly what the release branch, the tag and the GitHub release need. Every gh
+# call gets the token as GH_TOKEN for that one command: nothing runs `gh auth login`, so the token is
+# never persisted in a gh config file, and a GH_TOKEN/GITHUB_TOKEN of the caller is never used instead.
 	@push=$$(GH_TOKEN="$$GITHUB_GH_TOKEN" gh api "repos/${GH_REPO_PATH}" --jq .permissions.push) \
 		|| { echo "$(RED)[ERROR]$(NC) GitHub refused GITHUB_GH_TOKEN (see the gh error above)"; exit 1; }; \
 	if [ "$$push" != "true" ]; then \
@@ -393,28 +539,27 @@ check_gh_token_valid: check_gh_token ## Assert GitHub accepts GITHUB_GH_TOKEN an
 	fi
 	@echo "$(GREEN)[SUCCESS]$(NC) GitHub accepts GITHUB_GH_TOKEN and it may push to ${GH_REPO_PATH}"
 
-login_to_gh: check_gh_token ## Login to Github CLI with Access Token
-# The token reaches gh on stdin, expanded by the shell from the environment (echo is a builtin).
-	@echo "$$GITHUB_GH_TOKEN" | gh auth login -p ssh --with-token
-
-check_release_notes: ## Assert RELEASE.md carries an entry for ONDEWO_SIP_VERSION
+check_release_notes: ## Assert RELEASE.md carries a non-empty entry for ONDEWO_SIP_VERSION
 # `gh release create -n ""` succeeds and publishes an EMPTY release, so an entry that was
 # forgotten - or a heading whose wording drifted away from what the CURRENT_RELEASE_NOTES
 # flip-flop greps for - is otherwise only noticed by whoever reads the release page afterwards.
+# A heading followed directly by its ***** separator is as empty as no heading at all, so the body
+# is what is counted: the slice minus its heading and separator lines, minus blank lines.
 	@notes="$(CURRENT_RELEASE_NOTES)"; \
-	if [ -z "$$notes" ]; then \
-		echo "$(RED)[ERROR]$(NC) RELEASE.md has no 'Release ONDEWO SIP Java Client ${ONDEWO_SIP_VERSION}' entry"; \
+	body=$$(printf '%s\n' "$$notes" | grep -vE '^(#+ Release ONDEWO SIP Java Client |\*{5})' | grep -c '[^[:space:]]'); \
+	if [ "$$body" -eq 0 ]; then \
+		echo "$(RED)[ERROR]$(NC) RELEASE.md has no non-empty '## Release ONDEWO SIP Java Client ${ONDEWO_SIP_VERSION}' entry"; \
 		echo "        The GitHub release would be created with empty notes - add the entry first."; \
 		exit 1; \
 	fi; \
-	echo "$(GREEN)[SUCCESS]$(NC) RELEASE.md has release notes for ${ONDEWO_SIP_VERSION}"
+	echo "$(GREEN)[SUCCESS]$(NC) RELEASE.md has release notes for ${ONDEWO_SIP_VERSION} ($$body non-blank lines)"
 
-build_gh_release: check_release_notes ## Create the GitHub release with the release notes
-	gh release create --repo $(GH_REPO) "$(ONDEWO_SIP_VERSION)" \
+build_gh_release: check_gh_token check_release_notes ## Create the GitHub release with the release notes
+	GH_TOKEN="$$GITHUB_GH_TOKEN" gh release create --repo $(GH_REPO) "$(ONDEWO_SIP_VERSION)" \
 		-n "$(CURRENT_RELEASE_NOTES)" \
 		-t "Release ${ONDEWO_SIP_VERSION}"
 
-push_to_gh: login_to_gh build_gh_release ## Logs into GitHub CLI and Releases
+push_to_gh: build_gh_release ## Create the GitHub release (the token reaches gh as GH_TOKEN, never through `gh auth login`)
 	@echo 'Released to Github'
 
 release_to_github_via_docker_image: build_utils_docker_image check_gh_token ## Run `make push_to_gh` in the utils image - needs only docker
@@ -606,14 +751,9 @@ push_to_maven_central_via_docker: build_utils_docker_image check_central_pom che
 ########################################################
 #		DEVOPS-ACCOUNTS
 
-ondewo_release: update_pom_version spc clone_devops_accounts run_release_with_devops ## Release with credentials from devops-accounts repo
-	@rm -rf ${DEVOPS_ACCOUNT_GIT}
+ondewo_release: update_pom_version spc run_release_with_devops ## Release with credentials from devops-accounts repo
 
-clone_devops_accounts: ## Clones devops-accounts repo
-	if [ -d $(DEVOPS_ACCOUNT_GIT) ]; then rm -Rf $(DEVOPS_ACCOUNT_GIT); fi
-	git clone git@bitbucket.org:ondewo/${DEVOPS_ACCOUNT_GIT}.git
-
-run_release_with_devops: ## Gets Credentials from devops-repo and run release command with them
+run_release_with_devops: ## Load the credentials from devops-accounts, delete the clone, then run `make release`
 # Exactly the five variables this client needs, each matched as `^NAME=` - ANCHORED, because the
 # account_*.env files open with '#' comment lines that mention the same names (the comments of
 # account_maven_central.env name MAVEN_GPG_KEY_B64 twice).
@@ -622,19 +762,48 @@ run_release_with_devops: ## Gets Credentials from devops-repo and run release co
 # The values are exported into the ENVIRONMENT of the sub-make (`set -a`), never passed as
 # `make release NAME=<value>`: make's argv - like every argv - is world-readable in
 # /proc/<pid>/cmdline. Below, docker gets them with bare `-e NAME` forwards for the same reason.
-	@set -a \
-		&& eval "$$(grep -hE '^GITHUB_GH_TOKEN=' ${DEVOPS_ACCOUNT_DIR}/account_github.env; \
-			grep -hE '^(MAVEN_CENTRAL_USERNAME|MAVEN_CENTRAL_PASSWORD|MAVEN_GPG_KEY_B64|MAVEN_GPG_PASSPHRASE)=' \
-				${DEVOPS_ACCOUNT_DIR}/account_maven_central.env)" \
-		&& set +a \
-		&& $(MAKE) release
+# The clone is DELETED as soon as the values are in the environment - before `$(MAKE) release`, so no
+# container that mounts this checkout can ever see it - and the trap deletes it on every other exit
+# (a failed clone or load, Ctrl-C). A DEVOPS_ACCOUNT_DIR handed in by the caller is the caller's to
+# delete. The ORDER is pinned by ReleaseOrderTest.
+# make RUNS a recipe line that contains $(MAKE) even under `make -n`, so a dry run would clone and load
+# the real credentials just to print `make release`; MAKE_DRY_RUN skips straight to the printing.
+	@set -e; \
+	if [ -n "${MAKE_DRY_RUN}" ]; then \
+		echo "$(BLUE)[INFO]$(NC) make -n: not cloning or reading ${DEVOPS_ACCOUNT_GIT}"; \
+		$(MAKE) release; exit 0; \
+	fi; \
+	if [ -n "$$DEVOPS_ACCOUNT_DIR" ] && [ -d "$$DEVOPS_ACCOUNT_DIR" ]; then \
+		accounts="$$DEVOPS_ACCOUNT_DIR"; own_clone=; \
+		echo "$(BLUE)[INFO]$(NC) reading the credentials from DEVOPS_ACCOUNT_DIR (not cloned, not deleted here)"; \
+	else \
+		accounts="${DEVOPS_ACCOUNT_CLONE_DIR}"; own_clone=1; \
+		trap 'rm -rf "$$accounts"' EXIT; \
+		trap 'exit 130' INT TERM HUP; \
+		rm -rf "$$accounts"; \
+		git clone -q --depth 1 "${DEVOPS_ACCOUNT_GIT_URL}" "$$accounts"; \
+	fi; \
+	for file in account_github.env account_maven_central.env; do \
+		test -f "$$accounts/$$file" || { echo "$(RED)[ERROR]$(NC) $$file is missing from ${DEVOPS_ACCOUNT_GIT}"; exit 1; }; \
+	done; \
+	set -a; \
+	eval "$$(grep -hE '^GITHUB_GH_TOKEN=' "$$accounts/account_github.env"; \
+		grep -hE '^(MAVEN_CENTRAL_USERNAME|MAVEN_CENTRAL_PASSWORD|MAVEN_GPG_KEY_B64|MAVEN_GPG_PASSPHRASE)=' \
+			"$$accounts/account_maven_central.env")"; \
+	set +a; \
+	if [ -n "$$own_clone" ]; then rm -rf "$$accounts"; fi; \
+	$(MAKE) release
 
 spc: ## Checks if the Release Branch, Tag and pom.xml version already exist
-	$(eval filtered_branches:= $(shell git branch --all | grep "release/${ONDEWO_SIP_VERSION}"))
-	$(eval filtered_tags:= $(shell git tag --list | grep "${ONDEWO_SIP_VERSION}"))
-	$(eval pom_version:= $(shell test -f pom.xml && sed -n 's|.*<version>\(.*\)</version>.*|\1|p' pom.xml | head -n 1))
-	@if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!"; exit 1; else echo "-- Test 1: Branch is fine"; fi
-	@if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!"; exit 1; else echo "-- Test 2: Tag is fine"; fi
-	@if test "$(pom_version)" != "" && test "$(pom_version)" != "${ONDEWO_SIP_VERSION}"; then \
-		echo "-- Test 3: pom.xml is at '$(pom_version)', not ${ONDEWO_SIP_VERSION} - run 'make build'!!"; exit 1; \
+# Exact ref names, never a substring grep: `grep 9.1.0` also matches 19.1.0 and 9.1.0-rc1.
+	@if git show-ref -q --verify "refs/heads/release/${ONDEWO_SIP_VERSION}" \
+		|| git show-ref -q --verify "refs/remotes/origin/release/${ONDEWO_SIP_VERSION}"; then \
+		echo "-- Test 1: Branch exists!!"; exit 1; \
+	else echo "-- Test 1: Branch is fine"; fi
+	@if git rev-parse -q --verify "refs/tags/${ONDEWO_SIP_VERSION}" >/dev/null; then \
+		echo "-- Test 2: Tag exists!!"; exit 1; \
+	else echo "-- Test 2: Tag is fine"; fi
+	@pom_version=$$(test -f pom.xml && sed -n 's|^  <version>\(.*\)</version>$$|\1|p' pom.xml | head -n 1); \
+	if test "$$pom_version" != "" && test "$$pom_version" != "${ONDEWO_SIP_VERSION}"; then \
+		echo "-- Test 3: pom.xml is at '$$pom_version', not ${ONDEWO_SIP_VERSION} - run 'make build'!!"; exit 1; \
 	else echo "-- Test 3: pom.xml is fine"; fi

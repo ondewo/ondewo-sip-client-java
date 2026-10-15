@@ -19,8 +19,9 @@ import java.util.stream.Collectors;
 
 /**
  * The GitHub release body is sliced out of RELEASE.md by the Makefile's
- * {@code CURRENT_RELEASE_NOTES}: from {@code Release ONDEWO SIP Java Client <version>} to the
- * next {@code *****} line. A heading spelled any other way gives an empty slice, and
+ * {@code CURRENT_RELEASE_NOTES}: from the WHOLE heading line
+ * {@code ## Release ONDEWO SIP Java Client <version>} (any heading level, version matched literally)
+ * to the next {@code *****} line. A heading spelled any other way gives an empty slice, and
  * {@code gh release create -n ""} then publishes a release without notes and without an error.
  */
 class ReleaseNotesTest {
@@ -37,12 +38,14 @@ class ReleaseNotesTest {
         makefile = new String(Files.readAllBytes(Paths.get("Makefile")), StandardCharsets.UTF_8);
     }
 
-    /** Reproduces the Makefile's perl range {@code /Release ... <version>/../^\*{5}/}. */
+    /** Reproduces the Makefile's perl range {@code /^#+ Release ... \Q<version>\E$/../^\*{5}/}. */
     private static List<String> slice(final String version) {
+        final Pattern heading =
+                Pattern.compile("^#+ Release ONDEWO SIP Java Client " + Pattern.quote(version) + "$");
         final List<String> sliced = new ArrayList<>();
         boolean inside = false;
         for (final String line : releaseNotes) {
-            if (!inside && line.contains("Release ONDEWO SIP Java Client " + version)) {
+            if (!inside && heading.matcher(line).matches()) {
                 inside = true;
             }
             if (inside) {
@@ -59,9 +62,25 @@ class ReleaseNotesTest {
     void theMakefileSlicesTheHeadingThisTestChecks() {
         assertTrue(
                 makefile.contains(
-                        "perl -ne 'print if /Release ONDEWO SIP Java Client"
-                                + " ${ONDEWO_SIP_VERSION}/../^\\*{5}/'"),
+                        "perl -ne 'print if /^\\#+ Release ONDEWO SIP Java Client"
+                                + " \\Q${ONDEWO_SIP_VERSION}\\E$$/../^\\*{5}/'"),
                 "CURRENT_RELEASE_NOTES no longer uses the perl range this test reproduces");
+    }
+
+    /**
+     * The slice is anchored: a version never opens the section of a longer one ({@code 9.1}
+     * would open {@code 9.1.0}, {@code 9.1.0} would open {@code 19.1.0}).
+     */
+    @Test
+    void aVersionNeverOpensTheSectionOfALongerVersion() {
+        final Matcher version =
+                Pattern.compile("^ONDEWO_SIP_VERSION=(\\S+)$", Pattern.MULTILINE)
+                        .matcher(makefile);
+        assertTrue(version.find());
+        final String[] parts = version.group(1).split("\\.");
+        assertTrue(
+                slice(parts[0] + "." + parts[1]).isEmpty(),
+                "the MAJOR.MINOR prefix of the version opened its section");
     }
 
     @Test

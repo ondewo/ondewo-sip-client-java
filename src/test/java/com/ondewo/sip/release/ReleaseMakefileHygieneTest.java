@@ -114,6 +114,36 @@ class ReleaseMakefileHygieneTest {
         }
     }
 
+    /**
+     * gh gets the release token as {@code GH_TOKEN} for one command at a time: {@code gh auth login}
+     * would persist it in a config file on the host, and a gh call without the prefix would use
+     * whatever GH_TOKEN / GITHUB_TOKEN / login the caller happens to have.
+     */
+    @Test
+    void everyGhCallGetsTheReleaseTokenForThatCallOnly() {
+        final Pattern ghCall = Pattern.compile("(?:^|[\\s(;&|])gh (?:api|auth|release|repo|run)\\b");
+        final List<String> calls =
+                recipeLines().stream()
+                        .filter(line -> ghCall.matcher(line).find())
+                        .collect(Collectors.toList());
+        assertFalse(calls.isEmpty(), "found no gh call at all");
+        assertEquals(
+                List.of(),
+                calls.stream()
+                        .filter(line -> line.contains("gh auth") || !line.contains("GH_TOKEN=\"$$GITHUB_GH_TOKEN\" gh "))
+                        .collect(Collectors.toList()));
+    }
+
+    /** The utils image is built from stdin, without the checkout (and a credential clone) as context. */
+    @Test
+    void theUtilsImageIsBuiltWithoutABuildContext() throws IOException {
+        assertTrue(makefile.contains("docker build -t ${IMAGE_UTILS_NAME} - < Dockerfile.utils"));
+        assertTrue(
+                Files.readAllLines(Paths.get(".dockerignore"), StandardCharsets.UTF_8)
+                        .contains("ondewo-devops-accounts"),
+                ".dockerignore does not exclude the devops-accounts clone");
+    }
+
     @Test
     void workflowsNeverInterpolateASecretIntoACommandLine() {
         final Pattern envMapping = Pattern.compile("^\\s*[A-Za-z_][A-Za-z0-9_]*:\\s*\\$\\{\\{\\s*secrets\\.");

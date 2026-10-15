@@ -1,0 +1,11 @@
+# Every image of this repository is built either from its own directory (the proto compiler, in
+# ondewo-proto-compiler/java) or with NO context at all (Dockerfile.utils, fed on stdin). This file is
+# the belt to that brace: a build that does use the repository root as its context never ships the
+# release credentials, the git history or the build output to the docker daemon.
+ondewo-devops-accounts
+.git
+.m2
+target
+node_modules
+ondewo-sip-api
+ondewo-proto-compiler
