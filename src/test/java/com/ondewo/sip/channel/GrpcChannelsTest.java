@@ -78,6 +78,7 @@ class GrpcChannelsTest {
     private final List<ManagedChannel> channels = new ArrayList<>();
     private final AtomicReference<String> clientSubject = new AtomicReference<>();
     private Server server;
+    private Handler warningCapture;
 
     @BeforeAll
     static void generatePki() throws Exception {
@@ -91,6 +92,11 @@ class GrpcChannelsTest {
         }
         if (server != null) {
             server.shutdownNow().awaitTermination(10, TimeUnit.SECONDS);
+        }
+        if (warningCapture != null) {
+            final Logger logger = Logger.getLogger(GrpcChannels.class.getName());
+            logger.removeHandler(warningCapture);
+            logger.setUseParentHandlers(true);
         }
     }
 
@@ -442,10 +448,16 @@ class GrpcChannelsTest {
         }
     }
 
-    private static List<LogRecord> captureWarnings() {
+    /**
+     * Captures the warnings {@link GrpcChannels} logs during one test. The records stop at the
+     * capture (no console output): the warning is this test's expected result, and printed to the
+     * build log it reads as a real problem. {@link #shutDown()} restores the logger.
+     */
+    private List<LogRecord> captureWarnings() {
         final List<LogRecord> records = new ArrayList<>();
         final Logger logger = Logger.getLogger(GrpcChannels.class.getName());
-        logger.addHandler(
+        logger.setUseParentHandlers(false);
+        warningCapture =
                 new Handler() {
                     @Override
                     public void publish(final LogRecord record) {
@@ -457,7 +469,8 @@ class GrpcChannelsTest {
 
                     @Override
                     public void close() {}
-                });
+                };
+        logger.addHandler(warningCapture);
         return records;
     }
 
