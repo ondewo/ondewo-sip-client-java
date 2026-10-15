@@ -1,9 +1,19 @@
 name: ci
 
+# master, the release branches and the release tags - the tag run is the record that the tagged tree
+# itself is green. Feature branches are covered by their pull request; workflow_dispatch re-runs any ref.
 on:
   push:
-    branches: ["**"]
+    branches: [master, "release/**"]
+    tags: ["*"]
   pull_request:
+  workflow_dispatch:
+
+# One run per ref: a newer push to the same pull request cancels the older run. master, release
+# branches and tags are never cancelled, so every commit that lands there keeps its own result.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 # The default GITHUB_TOKEN is read-write. Nothing here writes to the repository - these jobs only
 # read the tree, lint and test it and upload the coverage report - so they run with the least
@@ -14,8 +24,15 @@ permissions:
 jobs:
   lint:
     name: pre-commit (markdown + hygiene)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
+      # actions/checkout runs `git init`, which prints a multi-line "default branch name" hint on
+      # every job; naming the default up front is what silences it. master is this repository's
+      # default branch anyway.
+      - name: Name git's default branch
+        run: git config --global init.defaultBranch master
+
       - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
@@ -32,7 +49,8 @@ jobs:
 
   build:
     name: build + test (JDK ${{ matrix.java-version }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -40,9 +58,19 @@ jobs:
         # image itself ships - the jar has to build on both.
         java-version: ["11", "21"]
     steps:
-      # No `submodules:` - the stubs are committed, so neither ondewo-sip-api nor
-      # ondewo-proto-compiler is needed to compile and test them.
+      # actions/checkout runs `git init`, which prints a multi-line "default branch name" hint on
+      # every job; naming the default up front is what silences it. master is this repository's
+      # default branch anyway.
+      - name: Name git's default branch
+        run: git config --global init.defaultBranch master
+
+      # The stubs are committed, so compiling them needs no submodule. ondewo-sip-api is checked
+      # out (and only it - not ondewo-proto-compiler) because GeneratedServicesTest compares the
+      # committed stubs with the `service` / `rpc` lines of its protos.
       - uses: actions/checkout@v7
+
+      - name: Check out the ondewo-sip-api submodule (the protos the stubs are generated from)
+        run: git submodule update --init ondewo-sip-api
 
       - uses: actions/setup-java@v6
         with:
@@ -53,8 +81,8 @@ jobs:
       # A hard gate, not a guard: an empty scaffold must turn this job RED, because every
       # step after it would otherwise pass vacuously. The floor is 2, not the pilot's 100:
       # this api is the single proto ondewo/sip/sip.proto, from which protoc emits exactly
-      # one outer class plus one *Grpc class. EXPECTED_SERVICE_COUNT in GeneratedServicesTest
-      # carries the real precision - this step only catches an empty or half-committed tree.
+      # one outer class plus one *Grpc class. GeneratedServicesTest compares the stubs with the
+      # protos service by service - this step only catches an empty or half-committed tree.
       - name: Assert the generated client is committed
         run: |
           set -euo pipefail
