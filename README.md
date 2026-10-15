@@ -331,7 +331,8 @@ A failed handshake surfaces as `StatusRuntimeException` with status `UNAVAILABLE
 ├── target/                   <----- build output (git-ignored)
 ├── .m2/                      <----- maven cache of the utils image (git-ignored)
 ├── Makefile                  <----- every workflow: build, test, release
-├── Dockerfile.utils          <----- the utils image: maven, JDK, gpg, gh
+├── Dockerfile.utils          <----- the utils image: maven, JDK, gpg, gh (pinned by digest / version)
+├── .dockerignore             <----- keeps the devops-accounts clone, .git and build output out of any build context
 ├── maven-central-settings.xml <---- publishing settings; holds env references, no credential
 ├── RELEASE.md
 └── README.md
@@ -426,11 +427,14 @@ compiler image and never runs protoc:
 | Test class | What it proves |
 | --- | --- |
 | `com.ondewo.sip.stubs.GeneratedMessagesTest` | messages nested in the outer class `ondewo.sip.SipOuterClass` survive a serialize/parse round trip — scalars, a map field, a `google.protobuf.Timestamp` and a repeated message — every enum starts at its declared zero value, and the proto package in the descriptor is untouched by the `java_package` rewrite. `sip.proto` declares no `optional` scalar, so there is no explicit-presence case to assert |
-| `com.ondewo.sip.stubs.GeneratedServicesTest` | the generated `SipGrpc` class (found on the compiled classpath, not listed by hand) exposes a usable `ServiceDescriptor`, a unary `SipStartSession` call runs end to end over the in-process transport and the real generated marshallers, and all three stub flavours build against a plain target channel. the rpcs added in ondewo-sip-api 5.5.0 are present and `SipStreamCallAudio` is a bidirectional streaming method |
+| `com.ondewo.sip.stubs.GeneratedServicesTest` | every service declared by a compiled proto has a generated `*Grpc` class with exactly its rpcs, and — when the `ondewo-sip-api` submodule is checked out, as in CI — the stubs serve exactly the services and rpcs of the `service` / `rpc` lines of its protos; nothing is counted or listed by hand except `ondewo.sip.Sip`, which must always be there; the rpcs added in ondewo-sip-api 5.5.0 are present and `SipStreamCallAudio` is a bidirectional streaming method; a unary `SipStartSession` call runs end to end over the in-process transport and the real generated marshallers; all three stub flavours build against a plain target channel |
 | `com.ondewo.sip.auth.BearerTokenTest` | the hand-written `BearerToken` — validation, header shape, stub immutability |
 | `com.ondewo.sip.channel.ClientConfigTest` | `ClientConfig` validation (host, port, both-or-neither client identity, no identity on plaintext), IPv6 target bracketing, and that neither an error message nor `toString()` renders a PEM or the key |
 | `com.ondewo.sip.channel.GrpcChannelsTest` | real TLS handshakes against a Netty server on a loopback socket with a PKI generated at test time: TLS with a custom CA, mutual TLS (the server sees the client certificate), CRLF PEMs, IPv6 `[::1]`, empty identity = plain TLS; refused handshakes (no client certificate, client from an unrelated CA, wrong CA, JVM trust store against a test CA) end in `UNAVAILABLE`; plaintext logs a warning naming `host:port`; non-PEM material is refused without being echoed |
-| `com.ondewo.sip.release.ReleaseNotesTest` | every `RELEASE.md` heading uses the spelling `CURRENT_RELEASE_NOTES` slices, every section ends at its `*****` separator, and the current version has non-empty notes - so a GitHub release is never published without a body |
+| `com.ondewo.sip.release.ReleaseNotesTest` | every `RELEASE.md` heading uses the spelling `CURRENT_RELEASE_NOTES` slices (anchored: `5.5` never opens the `5.5.0` section), every section ends at its `*****` separator, and the current version has non-empty notes - so a GitHub release is never published without a body |
+| `com.ondewo.sip.release.ReleaseOrderTest` | the order of `make release` (preflight → build → tests → commit → Maven Central → served on repo1 → push → branch → tag → GitHub release → verify), the checks inside `release_preflight` and `release_verify`, and — by running `run_release_with_devops` against a local fixture repository with a stand-in for `make release` — that the devops-accounts clone is gone before `make release` starts, also when loading or releasing fails, and that a caller's `DEVOPS_ACCOUNT_DIR` is read but neither cloned nor deleted |
+| `com.ondewo.sip.release.ReleaseCredentialsFromDevopsAccountDirTest` | a standalone `make release_preflight` / `make release_verify` with only an absolute `DEVOPS_ACCOUNT_DIR` set reads its credentials from that directory |
+| `com.ondewo.sip.release.ReleaseMakefileHygieneTest` | no credential is ever expanded into a command line (make, docker, workflows), every `gh` call gets the token as `GH_TOKEN` for that call only (no `gh auth login`), and the utils image is built without a build context |
 
 Coverage is measured with **JaCoCo over the hand-written sources only**
 (`com/ondewo/sip/auth/**` and `com/ondewo/sip/channel/**`). Generated stubs are machine output and are excluded from the metric,
@@ -438,9 +442,11 @@ but they are exercised by the two test classes above. The gate is bound to `veri
 build below **100 %** instruction, branch and method coverage; the HTML report lands in
 `target/site/jacoco/`.
 
-CI runs the whole thing on `ubuntu-latest` for JDK 11 and JDK 21 on every push and pull request
-— see `.github/workflows/ci.yml`. No step is conditional: a missing or truncated client turns the
-run red instead of skipping.
+CI runs the whole thing on `ubuntu-24.04` for JDK 11 and JDK 21 on every push to `master`, to a
+`release/**` branch and of a tag, on every pull request, and on demand (`workflow_dispatch`) — see
+`.github/workflows/ci.yml`. It checks out the `ondewo-sip-api` submodule so the stubs are compared
+with the protos. No step is conditional: a missing or truncated client turns the run red instead of
+skipping.
 
 ## Release
 
@@ -462,60 +468,96 @@ Versions are defined once, in the `Makefile`: `ONDEWO_SIP_VERSION` must match th
 the repository, inserts a generated `RELEASE.md` entry, rewrites the version and the submodule
 pins in the `Makefile`, and runs `make ondewo_release`.
 
-`make ondewo_release` stops at the first failure, and everything that can be checked in advance
-runs before the first push:
+`make ondewo_release` stops at the first failure. Everything that can be checked in advance is
+checked before anything is built, and nothing reaches origin before Maven Central serves the
+version. The order is pinned by `ReleaseOrderTest`.
 
-1. `update_pom_version`, then `spc`: the release branch and tag must not exist yet, and `pom.xml`
-   must carry the version.
-1. `clone_devops_accounts` + `run_release_with_devops`: reads exactly `GITHUB_GH_TOKEN` from
-   `account_github.env` and `MAVEN_CENTRAL_USERNAME`, `MAVEN_CENTRAL_PASSWORD`,
+1. `update_pom_version`, then `spc`: the release branch and tag must not exist locally (exact ref
+   names — `5.5.0` never matches `15.5.0`), and `pom.xml` must carry the version.
+1. `run_release_with_devops`: clones `ondewo-devops-accounts`, reads exactly `GITHUB_GH_TOKEN`
+   from `account_github.env` and `MAVEN_CENTRAL_USERNAME`, `MAVEN_CENTRAL_PASSWORD`,
    `MAVEN_GPG_KEY_B64` and `MAVEN_GPG_PASSPHRASE` from `account_maven_central.env` (anchored
-   `^NAME=` matches, so the comment lines of those files never leak in), and hands them to
-   `make release`.
+   `^NAME=` matches, so the comment lines of those files never leak in) into the environment,
+   **deletes the clone**, and only then runs `make release`. A trap deletes it on every other exit
+   too. When `DEVOPS_ACCOUNT_DIR` names an existing directory (an absolute path; `make release_all_clients`
+   in `ondewo-sip-api` passes its own single clone), the credentials are read from there and that
+   directory is neither cloned nor deleted here.
 1. `make release`:
-   1. every credential is set: not empty, not a placeholder (`check_release_credentials`);
-   1. every credential is accepted, proven read-only in the utils image
-      (`validate_release_credentials_via_docker_image`): GitHub reports `permissions.push=true` on
-      this repository for the token; the Central Portal accepts the user token and reports this
-      version as not yet published; the signing key decodes to an ASCII-armoured secret key that
-      signs a probe file with the passphrase;
-   1. `RELEASE.md` has an entry for the version;
-   1. `make build`, the pre-commit hooks, `check_build`, `check_central_pom` and the Maven
-      Central dry run (see below);
-   1. commit, push `master`, then push the branch `release/<version>` and the tag `<version>`;
+   1. `release_preflight` — read-only, changes nothing anywhere:
+      * `check_release_host_tools`: `docker`, `git`, `perl` and `curl` are on the host and the
+        docker daemon answers;
+      * `check_no_devops_clone_in_workspace`: no credential clone sits in the checkout the
+        containers mount;
+      * `check_release_credentials`: every credential is set, not a placeholder;
+      * `validate_release_credentials_via_docker_image`, in the utils image: GitHub reports
+        `permissions.push=true` on this repository for the token (`gh api repos/<repo>`); the
+        Central Portal accepts the user token (`GET /api/v1/publisher/published`, which proves the
+        token authenticates — not that it may publish this namespace; the namespace is verified
+        once, see below) and reports the version as not yet published; the signing key decodes to
+        an ASCII-armoured secret key that signs and verifies a probe file with the passphrase
+        (which proves key, passphrase and expiry — not that the public key is on a keyserver);
+      * `check_release_notes`: `RELEASE.md` has a section whose heading is exactly
+        `## Release ONDEWO SIP Java Client <version>` (any heading level) with a non-blank body;
+      * `check_version_unreleased`: origin has neither the tag nor the branch
+        (`git ls-remote --exit-code`, exact refs), and `repo1.maven.org` answers 404 for the pom;
+      * `check_branch_up_to_date`: the branch tracks origin and contains origin's tip, so the
+        push after the upload is a fast-forward.
+   1. `make build`, the pre-commit hooks, `check_build`, the full test suite with its coverage gate
+      (`test_via_docker`), `check_central_pom` and the Maven Central dry run (see below);
+   1. a local commit `Preparing for Release <version>` (only when something is staged; a failing
+      commit fails the release);
    1. the Maven Central deployment (`push_to_maven_central_via_docker`), the only upload there is:
-      signed with the release key, published automatically, and waited for until Central reports
-      it `PUBLISHED`;
-   1. the GitHub release with the release notes, **last** (the jars are distributed by Maven
-      Central). A GitHub release therefore always means the version is complete everywhere.
+      signed with the release key, published automatically, waited for until the Portal reports it
+      `PUBLISHED` — and then `verify_maven_central_serves_version` polls `repo1.maven.org` (20 × 30 s)
+      until it serves the pom and the jar;
+   1. push the branch, then push `release/<version>` and the tag `<version>`;
+   1. the GitHub release with the release notes (the jars are distributed by Maven Central);
+   1. `release_verify` — read-only: the tag is on origin, `repo1.maven.org` serves the version,
+      and `gh release view <version>` has a non-empty body. It can be run on its own at any time.
 
-Every step that needs maven, the JDK, gpg, curl or the GitHub CLI runs in the
-`ondewo-sip-client-utils-java` image (`Dockerfile.utils`, built by `make build_utils_docker_image`),
-with the repository mounted and as the invoking user, so the release host needs only GNU Make,
-git with ssh access to GitHub and Bitbucket, Docker and perl.
+`release_preflight` and `release_verify` can also run standalone, as `make release_all_clients` in
+`ondewo-sip-api` runs them: with only an absolute `DEVOPS_ACCOUNT_DIR` in the environment, each
+step that needs a credential reads every one that is unset (or still a placeholder) from
+`$DEVOPS_ACCOUNT_DIR/account_*.env` into that step's environment only — never onto a command line
+or into the output; a value already in the environment wins. `VERIFY_ATTEMPTS` /
+`VERIFY_INTERVAL_S` are accepted for `RELEASE_VERIFY_ATTEMPTS` / `RELEASE_VERIFY_INTERVAL_S`.
+
+Every step that needs maven, the JDK, gpg or the GitHub CLI runs in the
+`ondewo-sip-client-utils-java` image (`Dockerfile.utils`: `maven:3.9.16-eclipse-temurin-21` pinned by
+digest, gh 2.100.0 checked against a recorded sha256), built by `make build_utils_docker_image`
+from stdin with no build context, run with the repository mounted and as the invoking user. The
+release host needs only GNU Make, git with ssh access to GitHub and Bitbucket, Docker, perl and curl —
+no JDK, no maven, no gh, no `sudo`. gh always gets the token as `GH_TOKEN` for the one command that
+uses it; nothing runs `gh auth login`, so no token is ever written to a gh config file. Credentials
+reach containers only as bare `docker run -e NAME` forwards, and only the containers that use them.
 
 `make release` is the step `run_release_with_devops` calls with those five values; run
 `make ondewo_release`, not `make release`.
 
-### If a release stops after the tag
+### If a release stops part-way
 
-Once the tag is pushed, `make spc` refuses to run the release again. Look at what exists, then
-run only the step that is still missing:
+Nothing reaches origin before Maven Central serves the version, so there are three cases:
 
 | Stopped in | What exists | What to do |
 | --- | --- | --- |
-| `push_to_maven_central_via_docker`: failed before the upload, or the Portal rejected the deployment (`FAILED`) | nothing on Maven Central | fix the cause and re-run that step, then the GitHub release step; a defect in the tagged tree needs a new patch version instead |
-| `push_to_maven_central_via_docker`: not `PUBLISHED` within `waitMaxTime` (3600 s) | the Portal may still publish it | wait until `https://repo1.maven.org/maven2/com/ondewo/ondewo-sip-client-java/<version>/` lists it, then run only the GitHub release step — never upload the version a second time |
-| `release_to_github_via_docker_image` | the version is on Maven Central, no GitHub release | re-run that step |
+| anything up to and including `push_to_maven_central_via_docker` failing before the upload or with a `FAILED` deployment | a local commit at most; nothing on origin or Maven Central | fix the cause and run `make ondewo_release` again |
+| `push_to_maven_central_via_docker` not `PUBLISHED` within `waitMaxTime` (3600 s), or `verify_maven_central_serves_version` timing out | the Portal may still publish it | wait until `https://repo1.maven.org/maven2/com/ondewo/ondewo-sip-client-java/<version>/` lists it — never upload the version a second time — then run the remaining steps below |
+| `git push`, `create_release_branch`, `create_release_tag`, `release_to_github_via_docker_image` or `release_verify` | the version is on Maven Central; part of the git side is missing | run the remaining steps below |
 
-Both steps take their credentials from `ondewo-devops-accounts`, exactly as
-`run_release_with_devops` does, from the checkout the release left behind:
+`make ondewo_release` refuses to run again once the version is on Maven Central. The remaining
+steps need only `GITHUB_GH_TOKEN`; load it into the environment of one subshell, never onto a
+command line, from a clone outside this checkout that is deleted right after it is read:
 
 ```bash
-make clone_devops_accounts
-make push_to_maven_central_via_docker $(grep -hE '^(MAVEN_CENTRAL_USERNAME|MAVEN_CENTRAL_PASSWORD|MAVEN_GPG_KEY_B64|MAVEN_GPG_PASSPHRASE)=' ondewo-devops-accounts/account_maven_central.env)
-make release_to_github_via_docker_image $(grep -hE '^GITHUB_GH_TOKEN=' ondewo-devops-accounts/account_github.env)
-rm -rf ondewo-devops-accounts
+accounts=$(mktemp -d)
+git clone -q --depth 1 git@bitbucket.org:ondewo/ondewo-devops-accounts.git "$accounts"
+(
+  set -a; eval "$(grep -hE '^GITHUB_GH_TOKEN=' "$accounts/account_github.env")"; set +a
+  rm -rf "$accounts"
+  git push   # skip each step that already happened
+  make create_release_branch create_release_tag release_to_github_via_docker_image release_verify
+)
+rm -rf "$accounts"
 ```
 
 ## Publishing to Maven Central
@@ -534,7 +576,7 @@ before the tag is pushed.
 | When | What |
 | --- | --- |
 | Every push (CI) | `mvn verify` on JDK 11 and 21 — the test suite, the coverage gate and the javadoc build. No credential, no signing, no upload. |
-| `make release`, before anything is pushed | `validate_release_credentials_via_docker_image` — the GitHub token may push, the Central user token is accepted and the version is not published yet, the signing key signs with its passphrase. `check_central_pom` — the pom carries every field the Portal validates. `dry_run_maven_central_via_docker` — builds with the `release` profile, signs everything with a throwaway key, verifies the signatures, and re-runs the whole build with maven offline. |
+| `make release`, before anything is pushed | `release_preflight`, which includes `validate_release_credentials_via_docker_image` — the GitHub token may push, the Central user token is accepted and the version is not published yet, the signing key signs with its passphrase. `check_central_pom` — the pom carries every field the Portal validates. `dry_run_maven_central_via_docker` — builds with the `release` profile, signs everything with a throwaway key, verifies the signatures, and re-runs the whole build with maven offline. |
 | The upload | `push_to_maven_central_via_docker` (`mvn -Prelease clean deploy` in the utils image) — the only upload: signs with the release key, uploads, publishes automatically and waits for `PUBLISHED`. |
 
 `make dry_run_maven_central` and `make dry_run_maven_central_via_docker` need no credential and
@@ -553,8 +595,8 @@ instead of publishing.
 | `MAVEN_GPG_KEY_B64` | The PGP **secret** key that signs the artifacts, ASCII-armoured, then base64 on a single line. | `gpg --armor --export-secret-keys <fingerprint> \| base64 -w0` |
 | `MAVEN_GPG_PASSPHRASE` | Passphrase of that key. | Chosen when the key is created. |
 
-`MAVEN_GPG_KEY_B64` is base64-encoded because both carriers are strictly one line per variable:
-an `account_*.env` line, and the `make release VAR=...` hand-off in `run_release_with_devops`. For
+`MAVEN_GPG_KEY_B64` is base64-encoded because an `account_*.env` file is strictly one line per
+variable, and `run_release_with_devops` reads it line by line into the environment. For
 the upload it is decoded into `MAVEN_GPG_KEY` in the process environment immediately before maven
 starts and is never written to disk. The `bc` signer of `maven-gpg-plugin` reads it from there, so
 no keyring, `gpg` binary or `gpg-agent` has to exist in the publishing container. Only the
