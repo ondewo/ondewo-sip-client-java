@@ -451,6 +451,37 @@ public final class SipGrpc {
     return getSipStreamCallAudioMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipSendDtmfRequest,
+      ondewo.sip.SipOuterClass.SipStatus> getSipSendDtmfMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SipSendDtmf",
+      requestType = ondewo.sip.SipOuterClass.SipSendDtmfRequest.class,
+      responseType = ondewo.sip.SipOuterClass.SipStatus.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipSendDtmfRequest,
+      ondewo.sip.SipOuterClass.SipStatus> getSipSendDtmfMethod() {
+    io.grpc.MethodDescriptor<ondewo.sip.SipOuterClass.SipSendDtmfRequest, ondewo.sip.SipOuterClass.SipStatus> getSipSendDtmfMethod;
+    if ((getSipSendDtmfMethod = SipGrpc.getSipSendDtmfMethod) == null) {
+      synchronized (SipGrpc.class) {
+        if ((getSipSendDtmfMethod = SipGrpc.getSipSendDtmfMethod) == null) {
+          SipGrpc.getSipSendDtmfMethod = getSipSendDtmfMethod =
+              io.grpc.MethodDescriptor.<ondewo.sip.SipOuterClass.SipSendDtmfRequest, ondewo.sip.SipOuterClass.SipStatus>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SipSendDtmf"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipSendDtmfRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ondewo.sip.SipOuterClass.SipStatus.getDefaultInstance()))
+              .setSchemaDescriptor(new SipMethodDescriptorSupplier("SipSendDtmf"))
+              .build();
+        }
+      }
+    }
+    return getSipSendDtmfMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -571,6 +602,15 @@ public final class SipGrpc {
      * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
      * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
      * is sent and the call is kept.&lt;/p&gt;
+     * &lt;p&gt;Transfer delegation (see &lt;code&gt;SipTransferDelegation&lt;/code&gt;): in a container started with
+     * &lt;code&gt;SIP_TRANSFER_DELEGATION_ACTIVE=True&lt;/code&gt; a transfer that the in-container speech-to-speech pipeline asks for
+     * on a connected call is not sent. It is parked in &lt;code&gt;SipStatus.delegated_transfer&lt;/code&gt; and RETURNED as
+     * &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with &lt;code&gt;exception_name=TransferDelegated&lt;/code&gt; and
+     * &lt;code&gt;description = reason=delegated-to-vtsi&lt;/code&gt;; the call is kept. A client (ONDEWO VTSI) then claims it with
+     * &lt;code&gt;delegation&lt;/code&gt; and &lt;code&gt;delegated_request_id&lt;/code&gt;. A second transfer of the pipeline while one is
+     * parked is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt;. Without that environment variable, and
+     * for every request with &lt;code&gt;delegation = SIP_TRANSFER_DELEGATION_UNSPECIFIED&lt;/code&gt; from any other peer, the
+     * transfer is sent as before.&lt;/p&gt;
      * </pre>
      */
     default void sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request,
@@ -671,6 +711,10 @@ public final class SipGrpc {
      * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
      * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
      * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * &lt;p&gt;A request may carry a &lt;code&gt;warm_transfer_outcome&lt;/code&gt; notice (participant owner only, refused otherwise with
+     * &lt;code&gt;exception_name=InvalidWarmTransferOutcomeNotice&lt;/code&gt;). The notice is handed to the speech-to-speech
+     * pipeline whether or not the level changed, and the answer of the pipeline is returned in
+     * &lt;code&gt;SipStatus.warm_transfer_outcome_notice_status&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     default void sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request,
@@ -696,6 +740,24 @@ public final class SipGrpc {
     default io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioRequest> sipStreamCallAudio(
         io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioResponse> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getSipStreamCallAudioMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Send DTMF keys into the ongoing connected call, as RFC 4733 telephone-events (e.g. to navigate an IVR the bot
+     * called, or for an operator).&lt;/p&gt;
+     * &lt;p&gt;Metadata as for &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call; a peer outside the container presents
+     * &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; when the container has one.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; / &lt;code&gt;description&lt;/code&gt;
+     * (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;, &lt;code&gt;NoOngoingCall&lt;/code&gt;,
+     * &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;InvalidDtmf&lt;/code&gt;) and never assigned to the shared status. The keys are never
+     * logged in clear.&lt;/p&gt;
+     * </pre>
+     */
+    default void sipSendDtmf(ondewo.sip.SipOuterClass.SipSendDtmfRequest request,
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSipSendDtmfMethod(), responseObserver);
     }
   }
 
@@ -790,6 +852,15 @@ public final class SipGrpc {
      * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
      * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
      * is sent and the call is kept.&lt;/p&gt;
+     * &lt;p&gt;Transfer delegation (see &lt;code&gt;SipTransferDelegation&lt;/code&gt;): in a container started with
+     * &lt;code&gt;SIP_TRANSFER_DELEGATION_ACTIVE=True&lt;/code&gt; a transfer that the in-container speech-to-speech pipeline asks for
+     * on a connected call is not sent. It is parked in &lt;code&gt;SipStatus.delegated_transfer&lt;/code&gt; and RETURNED as
+     * &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with &lt;code&gt;exception_name=TransferDelegated&lt;/code&gt; and
+     * &lt;code&gt;description = reason=delegated-to-vtsi&lt;/code&gt;; the call is kept. A client (ONDEWO VTSI) then claims it with
+     * &lt;code&gt;delegation&lt;/code&gt; and &lt;code&gt;delegated_request_id&lt;/code&gt;. A second transfer of the pipeline while one is
+     * parked is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt;. Without that environment variable, and
+     * for every request with &lt;code&gt;delegation = SIP_TRANSFER_DELEGATION_UNSPECIFIED&lt;/code&gt; from any other peer, the
+     * transfer is sent as before.&lt;/p&gt;
      * </pre>
      */
     public void sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request,
@@ -898,6 +969,10 @@ public final class SipGrpc {
      * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
      * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
      * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * &lt;p&gt;A request may carry a &lt;code&gt;warm_transfer_outcome&lt;/code&gt; notice (participant owner only, refused otherwise with
+     * &lt;code&gt;exception_name=InvalidWarmTransferOutcomeNotice&lt;/code&gt;). The notice is handed to the speech-to-speech
+     * pipeline whether or not the level changed, and the answer of the pipeline is returned in
+     * &lt;code&gt;SipStatus.warm_transfer_outcome_notice_status&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public void sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request,
@@ -925,6 +1000,25 @@ public final class SipGrpc {
         io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipCallAudioResponse> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getSipStreamCallAudioMethod(), getCallOptions()), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Send DTMF keys into the ongoing connected call, as RFC 4733 telephone-events (e.g. to navigate an IVR the bot
+     * called, or for an operator).&lt;/p&gt;
+     * &lt;p&gt;Metadata as for &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call; a peer outside the container presents
+     * &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; when the container has one.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; / &lt;code&gt;description&lt;/code&gt;
+     * (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;, &lt;code&gt;NoOngoingCall&lt;/code&gt;,
+     * &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;InvalidDtmf&lt;/code&gt;) and never assigned to the shared status. The keys are never
+     * logged in clear.&lt;/p&gt;
+     * </pre>
+     */
+    public void sipSendDtmf(ondewo.sip.SipOuterClass.SipSendDtmfRequest request,
+        io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSipSendDtmfMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -1001,6 +1095,15 @@ public final class SipGrpc {
      * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
      * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
      * is sent and the call is kept.&lt;/p&gt;
+     * &lt;p&gt;Transfer delegation (see &lt;code&gt;SipTransferDelegation&lt;/code&gt;): in a container started with
+     * &lt;code&gt;SIP_TRANSFER_DELEGATION_ACTIVE=True&lt;/code&gt; a transfer that the in-container speech-to-speech pipeline asks for
+     * on a connected call is not sent. It is parked in &lt;code&gt;SipStatus.delegated_transfer&lt;/code&gt; and RETURNED as
+     * &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with &lt;code&gt;exception_name=TransferDelegated&lt;/code&gt; and
+     * &lt;code&gt;description = reason=delegated-to-vtsi&lt;/code&gt;; the call is kept. A client (ONDEWO VTSI) then claims it with
+     * &lt;code&gt;delegation&lt;/code&gt; and &lt;code&gt;delegated_request_id&lt;/code&gt;. A second transfer of the pipeline while one is
+     * parked is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt;. Without that environment variable, and
+     * for every request with &lt;code&gt;delegation = SIP_TRANSFER_DELEGATION_UNSPECIFIED&lt;/code&gt; from any other peer, the
+     * transfer is sent as before.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request) throws io.grpc.StatusException {
@@ -1101,6 +1204,10 @@ public final class SipGrpc {
      * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
      * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
      * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * &lt;p&gt;A request may carry a &lt;code&gt;warm_transfer_outcome&lt;/code&gt; notice (participant owner only, refused otherwise with
+     * &lt;code&gt;exception_name=InvalidWarmTransferOutcomeNotice&lt;/code&gt;). The notice is handed to the speech-to-speech
+     * pipeline whether or not the level changed, and the answer of the pipeline is returned in
+     * &lt;code&gt;SipStatus.warm_transfer_outcome_notice_status&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request) throws io.grpc.StatusException {
@@ -1128,6 +1235,24 @@ public final class SipGrpc {
         sipStreamCallAudio() {
       return io.grpc.stub.ClientCalls.blockingBidiStreamingCall(
           getChannel(), getSipStreamCallAudioMethod(), getCallOptions());
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Send DTMF keys into the ongoing connected call, as RFC 4733 telephone-events (e.g. to navigate an IVR the bot
+     * called, or for an operator).&lt;/p&gt;
+     * &lt;p&gt;Metadata as for &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call; a peer outside the container presents
+     * &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; when the container has one.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; / &lt;code&gt;description&lt;/code&gt;
+     * (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;, &lt;code&gt;NoOngoingCall&lt;/code&gt;,
+     * &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;InvalidDtmf&lt;/code&gt;) and never assigned to the shared status. The keys are never
+     * logged in clear.&lt;/p&gt;
+     * </pre>
+     */
+    public ondewo.sip.SipOuterClass.SipStatus sipSendDtmf(ondewo.sip.SipOuterClass.SipSendDtmfRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getSipSendDtmfMethod(), getCallOptions(), request);
     }
   }
 
@@ -1204,6 +1329,15 @@ public final class SipGrpc {
      * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
      * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
      * is sent and the call is kept.&lt;/p&gt;
+     * &lt;p&gt;Transfer delegation (see &lt;code&gt;SipTransferDelegation&lt;/code&gt;): in a container started with
+     * &lt;code&gt;SIP_TRANSFER_DELEGATION_ACTIVE=True&lt;/code&gt; a transfer that the in-container speech-to-speech pipeline asks for
+     * on a connected call is not sent. It is parked in &lt;code&gt;SipStatus.delegated_transfer&lt;/code&gt; and RETURNED as
+     * &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with &lt;code&gt;exception_name=TransferDelegated&lt;/code&gt; and
+     * &lt;code&gt;description = reason=delegated-to-vtsi&lt;/code&gt;; the call is kept. A client (ONDEWO VTSI) then claims it with
+     * &lt;code&gt;delegation&lt;/code&gt; and &lt;code&gt;delegated_request_id&lt;/code&gt;. A second transfer of the pipeline while one is
+     * parked is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt;. Without that environment variable, and
+     * for every request with &lt;code&gt;delegation = SIP_TRANSFER_DELEGATION_UNSPECIFIED&lt;/code&gt; from any other peer, the
+     * transfer is sent as before.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipTransferCall(ondewo.sip.SipOuterClass.SipTransferCallRequest request) {
@@ -1304,11 +1438,33 @@ public final class SipGrpc {
      * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
      * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
      * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * &lt;p&gt;A request may carry a &lt;code&gt;warm_transfer_outcome&lt;/code&gt; notice (participant owner only, refused otherwise with
+     * &lt;code&gt;exception_name=InvalidWarmTransferOutcomeNotice&lt;/code&gt;). The notice is handed to the speech-to-speech
+     * pipeline whether or not the level changed, and the answer of the pipeline is returned in
+     * &lt;code&gt;SipStatus.warm_transfer_outcome_notice_status&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public ondewo.sip.SipOuterClass.SipStatus sipSetCallMediaControl(ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSipSetCallMediaControlMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Send DTMF keys into the ongoing connected call, as RFC 4733 telephone-events (e.g. to navigate an IVR the bot
+     * called, or for an operator).&lt;/p&gt;
+     * &lt;p&gt;Metadata as for &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call; a peer outside the container presents
+     * &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; when the container has one.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; / &lt;code&gt;description&lt;/code&gt;
+     * (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;, &lt;code&gt;NoOngoingCall&lt;/code&gt;,
+     * &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;InvalidDtmf&lt;/code&gt;) and never assigned to the shared status. The keys are never
+     * logged in clear.&lt;/p&gt;
+     * </pre>
+     */
+    public ondewo.sip.SipOuterClass.SipStatus sipSendDtmf(ondewo.sip.SipOuterClass.SipSendDtmfRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSipSendDtmfMethod(), getCallOptions(), request);
     }
   }
 
@@ -1389,6 +1545,15 @@ public final class SipGrpc {
      * party in it, the invited participant included. The refusal is RETURNED as &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with
      * &lt;code&gt;exception_name=ParticipantsPresent&lt;/code&gt; and &lt;code&gt;description = reason=participants-present&lt;/code&gt;; nothing
      * is sent and the call is kept.&lt;/p&gt;
+     * &lt;p&gt;Transfer delegation (see &lt;code&gt;SipTransferDelegation&lt;/code&gt;): in a container started with
+     * &lt;code&gt;SIP_TRANSFER_DELEGATION_ACTIVE=True&lt;/code&gt; a transfer that the in-container speech-to-speech pipeline asks for
+     * on a connected call is not sent. It is parked in &lt;code&gt;SipStatus.delegated_transfer&lt;/code&gt; and RETURNED as
+     * &lt;code&gt;TRANSFER_CALL_FAILED&lt;/code&gt; with &lt;code&gt;exception_name=TransferDelegated&lt;/code&gt; and
+     * &lt;code&gt;description = reason=delegated-to-vtsi&lt;/code&gt;; the call is kept. A client (ONDEWO VTSI) then claims it with
+     * &lt;code&gt;delegation&lt;/code&gt; and &lt;code&gt;delegated_request_id&lt;/code&gt;. A second transfer of the pipeline while one is
+     * parked is refused with &lt;code&gt;exception_name=TransferInProgress&lt;/code&gt;. Without that environment variable, and
+     * for every request with &lt;code&gt;delegation = SIP_TRANSFER_DELEGATION_UNSPECIFIED&lt;/code&gt; from any other peer, the
+     * transfer is sent as before.&lt;/p&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipTransferCall(
@@ -1497,12 +1662,35 @@ public final class SipGrpc {
      * &lt;code&gt;NoOngoingCall&lt;/code&gt;, &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;CsiMediaControlFailed&lt;/code&gt;) and never assigned to
      * the shared status. When the pipeline refuses or fails, a requested pause is rolled back and a requested mute is
      * kept (the safe direction); the returned fields carry the actual level.&lt;/p&gt;
+     * &lt;p&gt;A request may carry a &lt;code&gt;warm_transfer_outcome&lt;/code&gt; notice (participant owner only, refused otherwise with
+     * &lt;code&gt;exception_name=InvalidWarmTransferOutcomeNotice&lt;/code&gt;). The notice is handed to the speech-to-speech
+     * pipeline whether or not the level changed, and the answer of the pipeline is returned in
+     * &lt;code&gt;SipStatus.warm_transfer_outcome_notice_status&lt;/code&gt;.&lt;/p&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipSetCallMediaControl(
         ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSipSetCallMediaControlMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * &lt;p&gt;Send DTMF keys into the ongoing connected call, as RFC 4733 telephone-events (e.g. to navigate an IVR the bot
+     * called, or for an operator).&lt;/p&gt;
+     * &lt;p&gt;Metadata as for &lt;code&gt;SipSetCallMediaControl&lt;/code&gt;: &lt;code&gt;x-ondewo-expected-call-id&lt;/code&gt; must equal
+     * &lt;code&gt;SipStatus.call_id&lt;/code&gt; of the ongoing call; a peer outside the container presents
+     * &lt;code&gt;x-ondewo-sip-call-control-token&lt;/code&gt; when the container has one.&lt;/p&gt;
+     * &lt;p&gt;Returns the live status. Refusals are RETURNED in &lt;code&gt;exception_name&lt;/code&gt; / &lt;code&gt;description&lt;/code&gt;
+     * (&lt;code&gt;CallScopeMismatch&lt;/code&gt;, &lt;code&gt;CallControlUnauthenticated&lt;/code&gt;, &lt;code&gt;NoOngoingCall&lt;/code&gt;,
+     * &lt;code&gt;AmdInProgress&lt;/code&gt;, &lt;code&gt;InvalidDtmf&lt;/code&gt;) and never assigned to the shared status. The keys are never
+     * logged in clear.&lt;/p&gt;
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ondewo.sip.SipOuterClass.SipStatus> sipSendDtmf(
+        ondewo.sip.SipOuterClass.SipSendDtmfRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSipSendDtmfMethod(), getCallOptions()), request);
     }
   }
 
@@ -1519,7 +1707,8 @@ public final class SipGrpc {
   private static final int METHODID_SIP_UN_MUTE = 10;
   private static final int METHODID_SIP_REPORT_ANSWERING_MACHINE_DETECTED = 11;
   private static final int METHODID_SIP_SET_CALL_MEDIA_CONTROL = 12;
-  private static final int METHODID_SIP_STREAM_CALL_AUDIO = 13;
+  private static final int METHODID_SIP_SEND_DTMF = 13;
+  private static final int METHODID_SIP_STREAM_CALL_AUDIO = 14;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1588,6 +1777,10 @@ public final class SipGrpc {
           break;
         case METHODID_SIP_SET_CALL_MEDIA_CONTROL:
           serviceImpl.sipSetCallMediaControl((ondewo.sip.SipOuterClass.SipSetCallMediaControlRequest) request,
+              (io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus>) responseObserver);
+          break;
+        case METHODID_SIP_SEND_DTMF:
+          serviceImpl.sipSendDtmf((ondewo.sip.SipOuterClass.SipSendDtmfRequest) request,
               (io.grpc.stub.StreamObserver<ondewo.sip.SipOuterClass.SipStatus>) responseObserver);
           break;
         default:
@@ -1709,6 +1902,13 @@ public final class SipGrpc {
               ondewo.sip.SipOuterClass.SipCallAudioRequest,
               ondewo.sip.SipOuterClass.SipCallAudioResponse>(
                 service, METHODID_SIP_STREAM_CALL_AUDIO)))
+        .addMethod(
+          getSipSendDtmfMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ondewo.sip.SipOuterClass.SipSendDtmfRequest,
+              ondewo.sip.SipOuterClass.SipStatus>(
+                service, METHODID_SIP_SEND_DTMF)))
         .build();
   }
 
@@ -1771,6 +1971,7 @@ public final class SipGrpc {
               .addMethod(getSipReportAnsweringMachineDetectedMethod())
               .addMethod(getSipSetCallMediaControlMethod())
               .addMethod(getSipStreamCallAudioMethod())
+              .addMethod(getSipSendDtmfMethod())
               .build();
         }
       }

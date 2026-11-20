@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO SIP Java Client 5.7.0
+
+### Improvements
+
+* Tracking API Version [5.7.0](https://github.com/ondewo/ondewo-sip-api/releases/tag/5.7.0) ( [Documentation](https://ondewo.github.io/ondewo-sip-api/) )
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Generated with ondewo-proto-compiler 5.17.0 (protoc 35.1). New runtime floors: protobuf-java 4.35.1, grpc-java 1.85.1, proto-google-common-protos 2.82.0.
+
+*****************
+
 ## Release ONDEWO SIP Java Client 5.5.2
 
 ### Improvements
